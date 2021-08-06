@@ -27,4 +27,6 @@
     <string name="sign_out">Sign Out</string>
     <string name="accessGymAnywhere">Access Gym Anywhere</string>
     <string name="hello_blank_fragment">frag</string>
+    <string name="branches">Branches</string>
+    <string name="settings">Settings</string>
 </resources>
