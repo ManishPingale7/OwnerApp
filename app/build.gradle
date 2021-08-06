@@ -59,7 +59,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-common-java8:2.3.1"
 
-
+    // Also declare the dependency for the Google Play services library and specify its version
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
 
     //MultiDex
     def multidex_version = "2.0.1"

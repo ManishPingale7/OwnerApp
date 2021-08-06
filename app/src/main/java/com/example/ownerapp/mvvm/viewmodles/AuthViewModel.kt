@@ -16,5 +16,11 @@ class AuthViewModel(
 
 
 
+    fun sendUserToMainActivity(){
+        repository.sendUserToMainActivity()
+    }
+
+
+
 
 }

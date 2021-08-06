@@ -8,4 +8,8 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     fun signOut() {
         repository.signOut()
     }
+
+    fun sendUserToLoginActivity() {
+        repository.sendUserToLoginActivity()
+    }
 }
