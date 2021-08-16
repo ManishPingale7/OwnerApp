@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/btn_circular.xml" value="0.41333333333333333" />
         <entry key="app/src/main/res/drawable/plus.xml" value="0.41333333333333333" />
+        <entry key="app/src/main/res/layout/activity_add_branch.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_branches.xml" value="0.38958333333333334" />

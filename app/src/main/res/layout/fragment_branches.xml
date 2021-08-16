@@ -16,15 +16,18 @@
         android:layout_height="match_parent">
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_action_button"
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_addBranch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="32dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
             android:contentDescription="@string/todo"
-            app:srcCompat="@drawable/plus"
+            app:icon="@drawable/plus"
+            app:iconTint="@color/white"
             app:tint="@android:color/white"
+            android:textColor="@color/white"
+            android:text="@string/add_branch"
             tools:ignore="RtlHardcoded" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

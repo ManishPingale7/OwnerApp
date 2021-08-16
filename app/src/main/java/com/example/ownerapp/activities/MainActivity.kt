@@ -1,6 +1,5 @@
 package com.example.ownerapp.activities
 
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -29,11 +28,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var viewModel: MainViewModel
     private lateinit var component: DaggerFactoryComponent
-    private val TAG = "mActivity"
-    lateinit var database: FirebaseDatabase
-    lateinit var myRef: DatabaseReference
-    var loggedIn = false
+    private lateinit var database: FirebaseDatabase
+    private lateinit var myRef: DatabaseReference
     private var currentuser: FirebaseUser? = null
+    private val TAG = "mActivity"
+
+
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,8 +47,8 @@ class MainActivity : AppCompatActivity() {
         actionBar.setHomeButtonEnabled(true)
 
         val navController = findNavController(R.id.ContainerViewMain)
-        val appBarConfigration = AppBarConfiguration(setOf(R.id.branches, R.id.settings))
-        setupActionBarWithNavController(navController, appBarConfigration)
+        val appBarConfig = AppBarConfiguration(setOf(R.id.branches, R.id.settings))
+        setupActionBarWithNavController(navController, appBarConfig)
         binding.bottomNavigation.setupWithNavController(navController)
 
 
@@ -58,12 +58,8 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
 
         val window: Window = this.window
-
-
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
         window.statusBarColor = ContextCompat.getColor(this, R.color.my_statusbar_color)
         mAuth = FirebaseAuth.getInstance()
         component = DaggerFactoryComponent.builder()

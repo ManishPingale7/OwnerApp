@@ -1,14 +1,269 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Fragments.Settings">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".Fragments.Settings">
 
-</FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:text="@string/branches"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/my_statusbar_color"
+            android:textSize="16sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="90"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="@string/view_all_branches"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserratregular"
+                    android:text="@string/view_your_current_branches"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="90"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="@string/add_new_branch"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserratregular"
+                    android:text="@string/create_your_new_branch"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="90"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="View Active/Inactive Users"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserratregular"
+                    android:text="View Your Users"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:text="@string/business"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/my_statusbar_color"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="90"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="@string/view_business_performance"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/currentBranchSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserratregular"
+                    android:text="@string/view_stats"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="90"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="@string/view_specific_branch_performance"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserratregular"
+                    android:text="@string/branch_income"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:text="@string/app"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/my_statusbar_color"
+            android:textSize="16sp" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+
+</ScrollView>

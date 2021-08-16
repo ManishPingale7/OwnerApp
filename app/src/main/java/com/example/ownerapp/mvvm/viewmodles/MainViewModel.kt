@@ -12,4 +12,7 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     fun sendUserToLoginActivity() {
         repository.sendUserToLoginActivity()
     }
+    fun addNewBranch(name:String){
+        repository.addNewBranch(name)
+    }
 }
