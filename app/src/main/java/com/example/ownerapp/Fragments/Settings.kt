@@ -1,11 +1,13 @@
 package com.example.ownerapp.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import com.example.ownerapp.activities.AddNewBranch
 import com.example.ownerapp.databinding.FragmentSettingsBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -30,6 +32,10 @@ class Settings : Fragment() {
     ): View {
 
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        binding.addNewBranch.setOnClickListener {
+            val intent= Intent(requireContext(),AddNewBranch::class.java)
+            startActivity(intent)
+        }
         init()
 
         return binding.root

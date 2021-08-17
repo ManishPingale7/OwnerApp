@@ -2,6 +2,7 @@ package com.example.ownerapp.Fragments
 
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProviders
+import com.example.ownerapp.activities.AddNewBranch
 import com.example.ownerapp.databinding.FragmentBranchesBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -24,7 +26,7 @@ class Branches : Fragment() {
     private lateinit var viewModel: MainViewModel
     private var _binding: FragmentBranchesBinding? = null
     private val binding get() = _binding!!
-    lateinit var currentUser: FirebaseUser
+    private var currentUser: FirebaseUser? = null
     var mAuth = FirebaseAuth.getInstance()
 
 
@@ -36,27 +38,29 @@ class Branches : Fragment() {
         _binding = FragmentBranchesBinding.inflate(inflater, container, false)
         init()
         binding.fabAddBranch.setOnClickListener {
-            val inputEditTextField = EditText(requireContext())
-            val dialog = AlertDialog.Builder(requireContext())
-                .setTitle("Create New Branch")
-                .setMessage("Enter name of Branch")
-                .setView(inputEditTextField)
-                .setPositiveButton(
-                    "Create"
-                ) { _, _ ->
-                    val branchName = inputEditTextField.text.toString()
-                    if (branchName.isNotEmpty()) {
-                        viewModel.addNewBranch(branchName)
-                    }
-                    Log.d(TAG, "onCreateView: $branchName")
-                }
-                .setNegativeButton(
-                    "Cancel"
-                ) { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .create()
-            dialog.show()
+            val intent= Intent(requireContext(),AddNewBranch::class.java)
+            startActivity(intent)
+//            val inputEditTextField = EditText(requireContext())
+//            val dialog = AlertDialog.Builder(requireContext())
+//                .setTitle("Create New Branch")
+//                .setMessage("Enter name of Branch")
+//                .setView(inputEditTextField)
+//                .setPositiveButton(
+//                    "Create"
+//                ) { _, _ ->
+//                    val branchName = inputEditTextField.text.toString()
+//                    if (branchName.isNotEmpty()) {
+//                        viewModel.addNewBranch(branchName)
+//                    }
+//                    Log.d(TAG, "onCreateView: $branchName")
+//                }
+//                .setNegativeButton(
+//                    "Cancel"
+//                ) { dialog, _ ->
+//                    dialog.dismiss()
+//                }
+//                .create()
+//            dialog.show()
         }
 
 
@@ -72,7 +76,7 @@ class Branches : Fragment() {
             ViewModelProviders.of(this@Branches, component.getFactory())
                 .get(MainViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
-        currentUser = mAuth.currentUser!!
+        currentUser = mAuth.currentUser
 
     }
 }

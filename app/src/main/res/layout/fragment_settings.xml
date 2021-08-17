@@ -29,6 +29,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/viewAllBranches"
             android:layout_marginTop="10dp"
             android:baselineAligned="false"
             android:orientation="horizontal"
@@ -70,6 +71,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/addNewBranch"
             android:layout_marginTop="10dp"
             android:baselineAligned="false"
             android:orientation="horizontal"
@@ -111,6 +113,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/viewActiveInactive"
             android:layout_marginTop="10dp"
             android:baselineAligned="false"
             android:orientation="horizontal"
@@ -164,6 +167,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/viewBusinessPerformance"
             android:layout_marginTop="10dp"
             android:baselineAligned="false"
             android:orientation="horizontal"
@@ -206,6 +210,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/viewSpecificBranch"
             android:layout_marginTop="10dp"
             android:baselineAligned="false"
             android:orientation="horizontal"
@@ -243,21 +248,6 @@
 
             </LinearLayout>
         </LinearLayout>
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/montserratsemibold"
-            android:text="@string/app"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/my_statusbar_color"
-            android:textSize="16sp" />
-
 
         <View
             android:layout_width="match_parent"
