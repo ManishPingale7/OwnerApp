@@ -74,10 +74,11 @@ abstract class BaseRepository(private var contextBase: Context) {
         }
 
         val smallCaseName = name.lowercase()
-        branchesInfoRef.child(smallCaseName).child(BRANCH_NAME).setValue(name)
-        branchesInfoRef.child(smallCaseName).child(BRANCH_ID).setValue(branchID)
-        branchesInfoRef.child(smallCaseName).child(BRANCH_PASS).setValue(branchPassword)
-        branchesInfoRef.child(smallCaseName).child(BRANCH_KEY).setValue(key.toString())
+        val result=smallCaseName.replace(" ", "");
+        branchesInfoRef.child(result).child(BRANCH_NAME).setValue(name)
+        branchesInfoRef.child(result).child(BRANCH_ID).setValue(branchID)
+        branchesInfoRef.child(result).child(BRANCH_PASS).setValue(branchPassword)
+        branchesInfoRef.child(result).child(BRANCH_KEY).setValue(key.toString())
 
     }
 
