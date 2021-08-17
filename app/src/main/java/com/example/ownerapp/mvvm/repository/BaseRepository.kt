@@ -7,6 +7,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.ownerapp.Utils.Constants
+import com.example.ownerapp.Utils.Constants.BRANCH_ID
+import com.example.ownerapp.Utils.Constants.BRANCH_KEY
+import com.example.ownerapp.Utils.Constants.BRANCH_NAME
+import com.example.ownerapp.Utils.Constants.BRANCH_PASS
 import com.example.ownerapp.activities.LoginActivity
 import com.example.ownerapp.activities.MainActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -22,6 +26,7 @@ abstract class BaseRepository(private var contextBase: Context) {
     var curUser = mAuthBase.currentUser
     val fDatabase = FirebaseDatabase.getInstance()
     val branchesNameRef = fDatabase.getReference(Constants.BRANCHES_SPINNER)
+    val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
 
     val branchesList = MutableLiveData<java.util.ArrayList<String>>()
 
@@ -60,13 +65,21 @@ abstract class BaseRepository(private var contextBase: Context) {
         return branchesList
     }
 
-    fun addNewBranch(name: String) {
+    fun addNewBranch(name: String, branchID: String, branchPassword: String) {
         val key = branchesNameRef.push().key
         branchesNameRef.child(key.toString()).setValue(name).addOnCompleteListener {
-            if (it.isSuccessful){
+            if (it.isSuccessful) {
                 Toast.makeText(contextBase, "Branch Added", Toast.LENGTH_SHORT).show()
             }
         }
+
+        val smallCaseName = name.lowercase()
+        val result=smallCaseName.replace(" ", "");
+        branchesInfoRef.child(result).child(BRANCH_NAME).setValue(name)
+        branchesInfoRef.child(result).child(BRANCH_ID).setValue(branchID)
+        branchesInfoRef.child(result).child(BRANCH_PASS).setValue(branchPassword)
+        branchesInfoRef.child(result).child(BRANCH_KEY).setValue(key.toString())
+
     }
 
 
