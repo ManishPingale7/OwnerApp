@@ -34,6 +34,7 @@ class AuthRepository(var context: Context) : BaseRepository(context) {
                                 .show()
                         }
                     } else {
+                        Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show()
                         Log.d(TAG, "login: Login Failed :- ${task.exception}")
                     }
                 }
@@ -46,7 +47,12 @@ class AuthRepository(var context: Context) : BaseRepository(context) {
     fun forgotPassword(email: String) {
         if (email.isNotEmpty()) {
             mAuth.sendPasswordResetEmail(email).addOnCompleteListener {
-
+                if (it.isSuccessful){
+                    Toast.makeText(context, "Password Reset", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Log.d(TAG, "forgotPassword: Failed")
+                }
             }
         }
     }
