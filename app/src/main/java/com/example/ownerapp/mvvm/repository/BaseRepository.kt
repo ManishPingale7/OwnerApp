@@ -72,7 +72,6 @@ abstract class BaseRepository(private var contextBase: Context) {
                 Toast.makeText(contextBase, "Branch Added", Toast.LENGTH_SHORT).show()
             }
         }
-
         val smallCaseName = name.lowercase()
         val result=smallCaseName.replace(" ", "");
         branchesInfoRef.child(result).child(BRANCH_NAME).setValue(name)
