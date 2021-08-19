@@ -56,6 +56,5 @@ class AddNewBranch : AppCompatActivity() {
             .build() as DaggerFactoryComponent
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
-
     }
 }
