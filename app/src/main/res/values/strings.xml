@@ -45,4 +45,5 @@
     <string name="branch_name">Branch Name</string>
     <string name="branch_id">Branch ID</string>
     <string name="branch_password">Branch Password</string>
+    <string name="textview">text</string>
 </resources>

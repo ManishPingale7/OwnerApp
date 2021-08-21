@@ -37,31 +37,7 @@ class Branches : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentBranchesBinding.inflate(inflater, container, false)
         init()
-        binding.fabAddBranch.setOnClickListener {
-            val intent= Intent(requireContext(),AddNewBranch::class.java)
-            startActivity(intent)
-//            val inputEditTextField = EditText(requireContext())
-//            val dialog = AlertDialog.Builder(requireContext())
-//                .setTitle("Create New Branch")
-//                .setMessage("Enter name of Branch")
-//                .setView(inputEditTextField)
-//                .setPositiveButton(
-//                    "Create"
-//                ) { _, _ ->
-//                    val branchName = inputEditTextField.text.toString()
-//                    if (branchName.isNotEmpty()) {
-//                        viewModel.addNewBranch(branchName)
-//                    }
-//                    Log.d(TAG, "onCreateView: $branchName")
-//                }
-//                .setNegativeButton(
-//                    "Cancel"
-//                ) { dialog, _ ->
-//                    dialog.dismiss()
-//                }
-//                .create()
-//            dialog.show()
-        }
+
 
 
         return binding.root

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.activities.AddNewBranch
+import com.example.ownerapp.activities.ViewAllBranches
 import com.example.ownerapp.databinding.FragmentSettingsBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -38,6 +39,10 @@ class Settings : Fragment() {
         }
         init()
 
+        binding.viewAllBranches.setOnClickListener {
+            val intent= Intent(requireContext(),ViewAllBranches::class.java)
+            startActivity(intent)
+        }
         return binding.root
     }
 

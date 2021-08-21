@@ -32,9 +32,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var myRef: DatabaseReference
     private var currentuser: FirebaseUser? = null
     private val TAG = "mActivity"
-
-
     lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
