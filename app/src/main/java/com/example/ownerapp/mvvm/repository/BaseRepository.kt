@@ -77,8 +77,6 @@ abstract class BaseRepository(private var contextBase: Context) {
         branchesInfoRef.child(result).child(BRANCH_NAME).setValue(name)
         branchesInfoRef.child(result).child(BRANCH_ID).setValue(branchID)
         branchesInfoRef.child(result).child(BRANCH_PASS).setValue(branchPassword)
-        branchesInfoRef.child(result).child(BRANCH_KEY).setValue(key.toString())
-
     }
 
 

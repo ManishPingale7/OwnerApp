@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OwnerApp">
         <activity
+            android:name=".activities.ViewAllBranches"
+            android:exported="true" />
+        <activity
             android:name=".activities.AddNewBranch"
             android:exported="true" />
         <activity
