@@ -6,14 +6,9 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.example.ownerapp.Utils.Branch
+import com.example.ownerapp.data.Branch
 import com.example.ownerapp.Utils.Constants
-import com.example.ownerapp.Utils.Constants.BRANCH_ID
-import com.example.ownerapp.Utils.Constants.BRANCH_KEY
-import com.example.ownerapp.Utils.Constants.BRANCH_NAME
-import com.example.ownerapp.Utils.Constants.BRANCH_PASS
 import com.example.ownerapp.activities.LoginActivity
-import com.example.ownerapp.activities.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -25,9 +20,9 @@ abstract class BaseRepository(private var contextBase: Context) {
 
     private var mAuthBase = FirebaseAuth.getInstance()
     var curUser = mAuthBase.currentUser
-    val fDatabase = FirebaseDatabase.getInstance()
-    val branchesNameRef = fDatabase.getReference(Constants.BRANCHES_SPINNER)
-    val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
+    private val fDatabase = FirebaseDatabase.getInstance()
+    private val branchesNameRef = fDatabase.getReference(Constants.BRANCHES_SPINNER)
+    private val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
 
     val branchesList = MutableLiveData<java.util.ArrayList<String>>()
 
@@ -36,15 +31,13 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
     fun sendUserToMainActivity() {
-        Intent(contextBase, MainActivity::class.java).also {
-            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            contextBase.startActivity(it)
-        }
+
+
     }
 
+
     fun sendUserToLoginActivity() {
-        Intent(contextBase, LoginActivity::class.java).also {
-            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        Intent(contextBase, LoginActivity::class.java ).also {
             contextBase.startActivity(it)
         }
     }
@@ -69,14 +62,13 @@ abstract class BaseRepository(private var contextBase: Context) {
     fun addNewBranch(branch: Branch) {
         val key = branchesNameRef.push().key
         branchesNameRef.child(key.toString()).setValue(branch.branchName).addOnCompleteListener {
-            if (it.isSuccessful) {
+            if (it.isSuccessful)
                 Toast.makeText(contextBase, "Branch Added", Toast.LENGTH_SHORT).show()
-            }
+            else
+                Toast.makeText(contextBase, "Cannot add branch \nTry later", Toast.LENGTH_SHORT).show()
         }
-        val smallCaseName = branch.branchName.lowercase()
-        val result=smallCaseName.replace(" ", "");
+        val result = branch.branchName.lowercase().replace(" ", "");
         branchesInfoRef.child(result).setValue(branch)
-
     }
 
 

@@ -1,25 +1,21 @@
 package com.example.ownerapp.activities
 
-import android.content.ContentValues.TAG
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.example.ownerapp.R
-import com.example.ownerapp.databinding.ActivityLoginBinding
-import com.example.ownerapp.di.components.DaggerFactoryComponent
-import com.example.ownerapp.mvvm.viewmodles.AuthViewModel
-import com.google.firebase.auth.FirebaseAuth
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
+import com.example.ownerapp.R
 import com.example.ownerapp.Utils.Constants.email
-import com.example.ownerapp.Utils.Constants.password
+import com.example.ownerapp.databinding.ActivityLoginBinding
+import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
 import com.example.ownerapp.di.modules.RepositoryModule
 import com.example.ownerapp.mvvm.repository.AuthRepository
+import com.example.ownerapp.mvvm.viewmodles.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 
 class LoginActivity : AppCompatActivity() {
@@ -42,11 +38,11 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLoginLg.setOnClickListener {
             val em = binding.logEmailEdit.text.toString()
             val pass = binding.logPassEdit.text.toString()
-            if (em==email) {
+            if (em == email)
                 viewModel.login(em, pass)
-            }else{
+            else
                 Toast.makeText(this, "Access Denied", Toast.LENGTH_SHORT).show()
-            }
+
         }
 
 

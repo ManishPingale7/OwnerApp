@@ -40,26 +40,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         init()
+
         setSupportActionBar(binding.toolbarMain)
-        val actionBar: ActionBar? = supportActionBar
-        actionBar!!.setDisplayHomeAsUpEnabled(true)
-        actionBar.setHomeButtonEnabled(true)
+//        val actionBar: ActionBar? = supportActionBar
+//        actionBar!!.setDisplayHomeAsUpEnabled(true)
+//        actionBar.setHomeButtonEnabled(true)
 
         val navController = findNavController(R.id.ContainerViewMain)
         val appBarConfig = AppBarConfiguration(setOf(R.id.branches, R.id.settings))
         setupActionBarWithNavController(navController, appBarConfig)
         binding.bottomNavigation.setupWithNavController(navController)
 
-
     }
 
 
     private fun init() {
 
+        //Toolbar stuff
         val window: Window = this.window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.my_statusbar_color)
+
+
         mAuth = FirebaseAuth.getInstance()
         component = DaggerFactoryComponent.builder()
             .repositoryModule(RepositoryModule(this))
@@ -73,7 +76,6 @@ class MainActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         myRef = database.reference
 
-
     }
 
     private fun checkUser() {
@@ -82,6 +84,7 @@ class MainActivity : AppCompatActivity() {
         if (currentuser == null) {
             Log.d(TAG, "checkUser: User null")
             viewModel.sendUserToLoginActivity()
+            finish()
         }
 
     }
