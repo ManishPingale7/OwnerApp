@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.R
+import com.example.ownerapp.Utils.Branch
 import com.example.ownerapp.databinding.ActivityAddNewBranchBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -34,9 +35,11 @@ class AddNewBranch : AppCompatActivity() {
             val branchID = binding.branchID.text.toString()
             val branchPassword = binding.branchPassword.text.toString()
 
+            val branch = Branch(branchName, branchID, branchPassword)
+
             if (branchName.isNotEmpty() && branchID.isNotEmpty() && branchPassword.isNotEmpty()) {
-                viewModel.addNewBranch(branchName,branchID,branchPassword)
-                val intent= Intent(this,MainActivity::class.java)
+                viewModel.addNewBranch(branch)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Fill the Fields", Toast.LENGTH_SHORT).show()
