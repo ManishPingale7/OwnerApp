@@ -33,16 +33,16 @@ class ViewAllBranches : AppCompatActivity() {
         setContentView(binding.root)
         init()
 
-        viewModel.fetchBranchNames().observe(this, {
-            Log.d(TAG, "onCreateView: Size ${it.size}")
-            val arrayAdapter = ArrayAdapter(
-                this, R.layout.dropdownitem,
-                it.toArray()
-            )
-
-            arrayAdapter.notifyDataSetChanged()
-            binding.listViewBranches.adapter = arrayAdapter
-        })
+//        viewModel.fetchBranchNames().observe(this, {
+//            Log.d(TAG, "onCreateView: Size ${it.size}")
+//            val arrayAdapter = ArrayAdapter(
+//                this, R.layout.dropdownitem,
+//                it.toArray()
+//            )
+//
+//            arrayAdapter.notifyDataSetChanged()
+//            binding.listViewBranches.adapter = arrayAdapter
+//        })
     }
 
     private fun init() {
