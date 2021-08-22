@@ -6,6 +6,7 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import com.example.ownerapp.Utils.Branch
 import com.example.ownerapp.Utils.Constants
 import com.example.ownerapp.Utils.Constants.BRANCH_ID
 import com.example.ownerapp.Utils.Constants.BRANCH_KEY
@@ -65,18 +66,17 @@ abstract class BaseRepository(private var contextBase: Context) {
         return branchesList
     }
 
-    fun addNewBranch(name: String, branchID: String, branchPassword: String) {
+    fun addNewBranch(branch: Branch) {
         val key = branchesNameRef.push().key
-        branchesNameRef.child(key.toString()).setValue(name).addOnCompleteListener {
+        branchesNameRef.child(key.toString()).setValue(branch.branchName).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(contextBase, "Branch Added", Toast.LENGTH_SHORT).show()
             }
         }
-        val smallCaseName = name.lowercase()
+        val smallCaseName = branch.branchName.lowercase()
         val result=smallCaseName.replace(" ", "");
-        branchesInfoRef.child(result).child(BRANCH_NAME).setValue(name)
-        branchesInfoRef.child(result).child(BRANCH_ID).setValue(branchID)
-        branchesInfoRef.child(result).child(BRANCH_PASS).setValue(branchPassword)
+        branchesInfoRef.child(result).setValue(branch)
+
     }
 
 

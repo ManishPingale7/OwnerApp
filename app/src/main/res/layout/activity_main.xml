@@ -23,7 +23,7 @@
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="Your Reader"
+            app:title="Home"
             app:titleTextColor="@color/white">
 
         </com.google.android.material.appbar.MaterialToolbar>

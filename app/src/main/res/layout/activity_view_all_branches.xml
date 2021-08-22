@@ -29,9 +29,9 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listViewBranches"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerViewBranches"
         />
 </LinearLayout>

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/branches"
-        android:name="com.example.ownerapp.Fragments.Branches"
-        android:label="Branches"
-        tools:layout="@layout/fragment_branches" />
+        android:name="com.example.ownerapp.Fragments.Home"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/settings"
         android:name="com.example.ownerapp.Fragments.Settings"
