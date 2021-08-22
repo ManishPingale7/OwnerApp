@@ -23,7 +23,6 @@ class Home : Fragment() {
     private var currentUser: FirebaseUser? = null
     var mAuth = FirebaseAuth.getInstance()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,8 +30,6 @@ class Home : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         init()
-
-
 
         return binding.root
     }
