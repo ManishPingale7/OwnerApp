@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import com.example.ownerapp.Utils.Constants
 import com.example.ownerapp.activities.LoginActivity
 import com.example.ownerapp.data.Branch
@@ -24,7 +24,7 @@ abstract class BaseRepository(private var contextBase: Context) {
     private val branchesNameRef = fDatabase.getReference(Constants.BRANCHES_SPINNER)
     private val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
 
-    val branchesList = MutableLiveData<ArrayList<Branch>>()
+    private lateinit var branchesList: LiveData<ArrayList<Branch>>
 
     fun signOut() {
         mAuthBase.signOut()
@@ -43,21 +43,23 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
 
-    fun fetchBranches(): MutableLiveData<ArrayList<Branch>> {
+    fun fetchBranches(): ArrayList<Branch> {
         var branches = ArrayList<Branch>()
+        branches.clear()
         branchesInfoRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 dataSnapshot.children.forEach {
                     branches.add(it.getValue(Branch::class.java)!!)
                 }
-                Log.d("GET IT", "onDataChange: DATA=3 $branches\n")
+                Log.d("HELLO", "fsbefjs 1 : $branches")
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.d(ContentValues.TAG, "onCancelled: $error")
             }
         })
-        return branchesList
+
+        return branches
     }
 
 
@@ -70,7 +72,7 @@ abstract class BaseRepository(private var contextBase: Context) {
                 Toast.makeText(contextBase, "Cannot add branch \nTry later", Toast.LENGTH_SHORT)
                     .show()
         }
-        val result = branch.branchName.lowercase().replace(" ", "");
+        val result = branch.branchName.lowercase().replace(" ", "")
         branchesInfoRef.child(result).setValue(branch)
     }
 

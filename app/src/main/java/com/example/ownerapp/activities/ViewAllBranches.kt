@@ -1,14 +1,13 @@
 package com.example.ownerapp.activities
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ownerapp.Adapters.BranchesAdapter
 import com.example.ownerapp.R
 import com.example.ownerapp.databinding.ActivityViewAllBranchesBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
@@ -19,6 +18,7 @@ import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 
 class ViewAllBranches : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
+    private val branchesAdapter = BranchesAdapter()
     private lateinit var component: DaggerFactoryComponent
     lateinit var binding: ActivityViewAllBranchesBinding
 
@@ -26,11 +26,17 @@ class ViewAllBranches : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityViewAllBranchesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        init()
-        viewModel.fetchBranches().observe(this) {
-            Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show()
-            Log.d(TAG, "onCreate: DATA= $it")
+
+        binding.apply {
+            recyclerViewBranches.apply {
+                adapter = branchesAdapter
+                layoutManager = LinearLayoutManager(this@ViewAllBranches)
+                setHasFixedSize(true)
+            }
         }
+        init()
+
+
     }
 
     private fun init() {
@@ -48,6 +54,6 @@ class ViewAllBranches : AppCompatActivity() {
             .get(MainViewModel::class.java)
 
         //RecyclerView Stuff
-
+        branchesAdapter.submitList(viewModel.branches)
     }
 }

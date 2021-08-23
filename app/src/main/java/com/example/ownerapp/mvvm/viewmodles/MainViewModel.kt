@@ -1,11 +1,15 @@
 package com.example.ownerapp.mvvm.viewmodles
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ownerapp.data.Branch
 import com.example.ownerapp.mvvm.repository.MainRepository
 
 class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
+     val branches: ArrayList<Branch>
+
+    init {
+        branches = repository.fetchBranches()
+    }
 
     fun signOut() {
         repository.signOut()
@@ -19,9 +23,8 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
         repository.addNewBranch(branch)
     }
 
-    fun fetchBranches(): MutableLiveData<ArrayList<Branch>> {
-        return repository.fetchBranches()
-    }
+    fun fetchBranches() = repository.fetchBranches()
+
 
     fun sendUserToMainActivity() {
         repository.sendUserToMainActivity()

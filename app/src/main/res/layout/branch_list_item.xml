@@ -42,6 +42,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/hide_it"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,6 +53,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:enabled="false"
@@ -65,7 +67,7 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/become_Member"
+                android:id="@+id/edit_password"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
