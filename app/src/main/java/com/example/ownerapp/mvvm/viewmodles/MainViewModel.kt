@@ -19,8 +19,8 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
         repository.addNewBranch(branch)
     }
 
-    fun fetchBranchNames(): MutableLiveData<ArrayList<String>> {
-        return repository.fetchBranchNames()
+    fun fetchBranches(): MutableLiveData<ArrayList<Branch>> {
+        return repository.fetchBranches()
     }
 
     fun sendUserToMainActivity() {
