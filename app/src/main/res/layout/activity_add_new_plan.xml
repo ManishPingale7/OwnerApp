@@ -30,44 +30,42 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/log_email_edit_lay"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserratsemibold"
+        android:fontFamily="@font/semibold"
         android:hint="Plan Name"
         android:textAllCaps="false"
 
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/log_email_edit"
+            android:id="@+id/planName_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserratsemibold"
+            android:fontFamily="@font/semibold"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/log_pass_edit_lay"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserratsemibold"
+        android:fontFamily="@font/semibold"
         android:hint="@string/description"
         android:textAllCaps="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/log_pass_edit"
+            android:id="@+id/desc_plan_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserratsemibold"
+            android:fontFamily="@font/semibold"
             android:inputType="textMultiLine" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/montserratsemibold"
+        android:fontFamily="@font/semibold"
         android:text="@string/duration"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -93,19 +91,19 @@
         android:weightSum="2">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/menuDays"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
             app:hintEnabled="false">
 
-            <AutoCompleteTextView
-                android:id="@+id/days_data"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/number_Days"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/montserratsemibold"
+                android:fontFamily="@font/semibold"
+                android:inputType="number"
                 android:hint="@string/number" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -124,7 +122,7 @@
                 android:id="@+id/type_time"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/montserratsemibold"
+                android:fontFamily="@font/semibold"
                 android:hint="@string/type" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -137,7 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/montserratsemibold"
+        android:fontFamily="@font/semibold"
         android:text="Fees"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -152,7 +150,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/montserratsemibold"
+        android:fontFamily="@font/semibold"
         android:hint="Fees"
         android:textAllCaps="false"
 
@@ -162,7 +160,7 @@
             android:id="@+id/feesPlan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserratsemibold"
+            android:fontFamily="@font/semibold"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,7 +172,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/btn_circular"
-        android:fontFamily="@font/montserratsemibold"
+        android:fontFamily="@font/semibold"
         android:text="@string/create"
         android:textAllCaps="false"
         android:textColor="@color/white"

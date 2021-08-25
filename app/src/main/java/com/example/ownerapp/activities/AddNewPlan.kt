@@ -3,10 +3,12 @@ package com.example.ownerapp.activities
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.R
+import com.example.ownerapp.data.Plan
 import com.example.ownerapp.databinding.ActivityAddNewPlanBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -25,6 +27,23 @@ class AddNewPlan : AppCompatActivity() {
         binding = ActivityAddNewPlanBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
+
+
+        binding.btnConPlan.setOnClickListener {
+            val name=binding.planNameEdit.text.toString()
+            val desc=binding.descPlanEdit.text.toString()
+            val timeNumber=binding.numberDays.text.toString()
+            val type=binding.typeTime.text.toString()
+            val fees=binding.feesPlan.text.toString()
+
+            if (name.isNotEmpty()&&desc.isNotEmpty()&&timeNumber.isNotEmpty()&&type.isNotEmpty()&&fees.isNotEmpty()){
+                viewModel.repository.addNewPlan(Plan(name = name,desc,timeNumber,type,fees))
+                viewModel.repository.sendUserToMainActivity()
+            }else{
+                Toast.makeText(this, "Fill the Fields", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
 
     }
