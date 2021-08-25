@@ -8,7 +8,4 @@ class MainRepository(private var contextMain: Context) : BaseRepository(contextM
     private var mAuthMain = FirebaseAuth.getInstance()
     var curUserMain=mAuthMain.currentUser
 
-
-
-
 }

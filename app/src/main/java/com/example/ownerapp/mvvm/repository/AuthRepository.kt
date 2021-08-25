@@ -2,18 +2,14 @@ package com.example.ownerapp.mvvm.repository
 
 import android.content.ContentValues.TAG
 import android.content.Context
-import android.util.Log
-
 import android.content.Intent
-
+import android.util.Log
 import android.widget.Toast
-import com.example.ownerapp.activities.LoginActivity
 import com.example.ownerapp.activities.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 
 class AuthRepository(var context: Context) : BaseRepository(context) {
-
     private var mAuth = FirebaseAuth.getInstance()
 
     fun login(email: String, password: String) {

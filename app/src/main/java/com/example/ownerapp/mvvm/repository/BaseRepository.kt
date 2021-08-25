@@ -1,11 +1,11 @@
 package com.example.ownerapp.mvvm.repository
 
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.ownerapp.Utils.Constants
 import com.example.ownerapp.activities.LoginActivity
 import com.example.ownerapp.data.Branch
@@ -16,7 +16,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 abstract class BaseRepository(private var contextBase: Context) {
-
 
     private var mAuthBase = FirebaseAuth.getInstance()
     var curUser = mAuthBase.currentUser
@@ -43,34 +42,38 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
 
-    fun fetchBranches(): ArrayList<Branch> {
-        var branches = ArrayList<Branch>()
-        branches.clear()
+    fun fetchBranches(): MutableLiveData<ArrayList<Branch>> {
+        var branches: MutableLiveData<ArrayList<Branch>>? = MutableLiveData<ArrayList<Branch>>()
+        var tempList = ArrayList<Branch>(10)
+        tempList.clear()
         branchesInfoRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                branches?.value?.clear()
                 dataSnapshot.children.forEach {
-                    branches.add(it.getValue(Branch::class.java)!!)
+                    tempList.add(it.getValue(Branch::class.java)!!)
+                    Log.d("TAG", "onDataChange: $tempList")
                 }
-                Log.d("HELLO", "fsbefjs 1 : $branches")
+                branches?.value = tempList
+                Log.d("TAG", "onDataChange:${branches?.value} ")
             }
-
             override fun onCancelled(error: DatabaseError) {
-                Log.d(ContentValues.TAG, "onCancelled: $error")
+                Log.d("HENLO", "onCancelled: $error")
             }
         })
-
-        return branches
+        return branches!!
     }
 
 
     fun addNewBranch(branch: Branch) {
         val key = branchesNameRef.push().key
         branchesNameRef.child(key.toString()).setValue(branch.branchName).addOnCompleteListener {
-            if (it.isSuccessful)
+            if (it.isSuccessful) {
                 Toast.makeText(contextBase, "Branch Added", Toast.LENGTH_SHORT).show()
-            else
+            } else {
                 Toast.makeText(contextBase, "Cannot add branch \nTry later", Toast.LENGTH_SHORT)
                     .show()
+                Log.d("HENLO", "addNewBranch: HEYY ${it.exception}")
+            }
         }
         val result = branch.branchName.lowercase().replace(" ", "")
         branchesInfoRef.child(result).setValue(branch)

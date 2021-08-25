@@ -11,7 +11,6 @@ import dagger.Provides
 class RepositoryModule constructor(private var context: Context) {
 
 
-
     @Provides
     fun provideMainRepository(): BaseRepository {
         return MainRepository(contextMain = context)

@@ -5,11 +5,9 @@ import com.example.ownerapp.data.Branch
 import com.example.ownerapp.mvvm.repository.MainRepository
 
 class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
-     val branches: ArrayList<Branch>
 
-    init {
-        branches = repository.fetchBranches()
-    }
+
+    fun fetchAllBranches() = repository.fetchBranches()
 
     fun signOut() {
         repository.signOut()
@@ -22,9 +20,6 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     fun addNewBranch(branch: Branch) {
         repository.addNewBranch(branch)
     }
-
-    fun fetchBranches() = repository.fetchBranches()
-
 
     fun sendUserToMainActivity() {
         repository.sendUserToMainActivity()

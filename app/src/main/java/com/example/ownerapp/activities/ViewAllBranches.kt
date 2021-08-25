@@ -1,6 +1,8 @@
 package com.example.ownerapp.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -35,8 +37,19 @@ class ViewAllBranches : AppCompatActivity() {
             }
         }
         init()
+        setupRecycler()
 
+    }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setupRecycler() {
+        //RecyclerView Stuff
+        viewModel.fetchAllBranches().observe(this@ViewAllBranches) {
+            branchesAdapter.submitList(it)
+            branchesAdapter.notifyDataSetChanged()
+            Log.d("hi", "fsbefjs:$it ")
+//            it.clear()
+        }
     }
 
     private fun init() {
@@ -53,7 +66,6 @@ class ViewAllBranches : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
 
-        //RecyclerView Stuff
-        branchesAdapter.submitList(viewModel.branches)
+
     }
 }
