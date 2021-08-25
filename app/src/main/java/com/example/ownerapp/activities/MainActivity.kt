@@ -63,13 +63,13 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.my_statusbar_color)
 
 
-        mAuth = FirebaseAuth.getInstance()
         component = DaggerFactoryComponent.builder()
             .repositoryModule(RepositoryModule(this))
             .factoryModule(FactoryModule(MainRepository(this)))
             .build() as DaggerFactoryComponent
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
+        mAuth = FirebaseAuth.getInstance()
 
         currentuser = mAuth.currentUser
         checkUser()

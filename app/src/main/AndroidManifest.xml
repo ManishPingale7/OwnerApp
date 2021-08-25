@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OwnerApp">
         <activity
+            android:name=".activities.AddNewPlan"
+            android:exported="true" />
+        <activity
             android:name=".activities.ViewAllBranches"
             android:exported="true" />
         <activity
@@ -27,6 +30,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

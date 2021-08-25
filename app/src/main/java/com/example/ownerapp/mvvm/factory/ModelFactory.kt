@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.ownerapp.mvvm.repository.AuthRepository
 import com.example.ownerapp.mvvm.repository.BaseRepository
 import com.example.ownerapp.mvvm.repository.MainRepository
+import com.example.ownerapp.mvvm.repository.PlanRepository
 import com.example.ownerapp.mvvm.viewmodles.AuthViewModel
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
+import com.example.ownerapp.mvvm.viewmodles.NewPlanViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ModelFactory(
@@ -20,6 +22,9 @@ class ModelFactory(
             }
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(repository = repository as MainRepository) as T
+            }
+            modelClass.isAssignableFrom(NewPlanViewModel::class.java) -> {
+                return NewPlanViewModel(repository = repository as PlanRepository) as T
             }
             else -> {
                 throw IllegalArgumentException("ViewModel Not Found")
