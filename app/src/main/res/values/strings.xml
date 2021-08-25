@@ -46,4 +46,12 @@
     <string name="textview">text</string>
     <string name="edit">Edit</string>
     <string name="home">Home</string>
+    <string name="description">Description</string>
+    <string name="days">Days</string>
+    <string name="number">Number</string>
+    <string name="type">Type</string>
+    <string name="duration">Duration</string>
+    <string name="create">Create</string>
+    <string name="add_new_plan_for_users">Add new Plan for Users</string>
+    <string name="add_new_plan">Add New Plan</string>
 </resources>
