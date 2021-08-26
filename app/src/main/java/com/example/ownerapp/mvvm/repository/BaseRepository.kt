@@ -64,20 +64,7 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
 
-    fun addNewBranch(branch: Branch) {
-        val key = branchesNameRef.push().key
-        branchesNameRef.child(key.toString()).setValue(branch.branchName).addOnCompleteListener {
-            if (it.isSuccessful) {
-                Toast.makeText(contextBase, "Branch Added", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(contextBase, "Cannot add branch \nTry later", Toast.LENGTH_SHORT)
-                    .show()
-                Log.d("HENLO", "addNewBranch: HEYY ${it.exception}")
-            }
-        }
-        val result = branch.branchName.lowercase().replace(" ", "")
-        branchesInfoRef.child(result).setValue(branch)
-    }
+
 
 
 }
