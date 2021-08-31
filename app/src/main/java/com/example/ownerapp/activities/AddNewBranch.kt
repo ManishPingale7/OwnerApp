@@ -16,9 +16,7 @@ import com.example.ownerapp.databinding.ActivityAddNewBranchBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
 import com.example.ownerapp.di.modules.RepositoryModule
-import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.repository.NewBranchRepo
-import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 import com.example.ownerapp.mvvm.viewmodles.NewBranchViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -43,10 +41,17 @@ class AddNewBranch : AppCompatActivity() {
 
             Log.d(TAG, "onCreate: upperString $upperString")
             if (branchName.isNotEmpty() && branchID.isNotEmpty() && branchPassword.isNotEmpty()) {
-                viewModel.repository.addNewBranch(Branch(upperString, branchID, branchPassword))
-               val intent = Intent(this,MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                if (branchPassword.length >= 8) {
+                    viewModel.repository.addNewBranch(Branch(upperString, branchID, branchPassword))
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(
+                        this, "password should be at least 8 characters", Toast.LENGTH_SHORT
+                    ).show()
+                }
+
             } else
                 Toast.makeText(this, "Fill the Fields", Toast.LENGTH_SHORT).show()
         }

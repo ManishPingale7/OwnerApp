@@ -14,5 +14,7 @@ object Constants {
     const val BRANCH_KEY="branchKey"
     const val PLAN="plan"
 
+    const val BRANCHES="branches"
+
 
 }
