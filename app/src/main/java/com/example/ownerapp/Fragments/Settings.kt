@@ -25,7 +25,7 @@ class Settings : Fragment() {
     private lateinit var viewModel: MainViewModel
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-    lateinit var currentUser: FirebaseUser
+    var currentUser: FirebaseUser?=null
     var mAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
@@ -62,7 +62,7 @@ class Settings : Fragment() {
             ViewModelProviders.of(this@Settings, component.getFactory())
                 .get(MainViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
-        currentUser = mAuth.currentUser!!
+        currentUser = mAuth.currentUser
 
     }
 

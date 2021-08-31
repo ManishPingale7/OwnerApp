@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.ownerapp.Utils.Constants
 import com.example.ownerapp.activities.LoginActivity
+import com.example.ownerapp.activities.MainActivity
 import com.example.ownerapp.data.Branch
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -30,8 +31,9 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
     fun sendUserToMainActivity() {
-
-
+        Intent(contextBase, MainActivity::class.java).also {
+            contextBase.startActivity(it)
+        }
     }
 
 
@@ -64,20 +66,7 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
 
-    fun addNewBranch(branch: Branch) {
-        val key = branchesNameRef.push().key
-        branchesNameRef.child(key.toString()).setValue(branch.branchName).addOnCompleteListener {
-            if (it.isSuccessful) {
-                Toast.makeText(contextBase, "Branch Added", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(contextBase, "Cannot add branch \nTry later", Toast.LENGTH_SHORT)
-                    .show()
-                Log.d("HENLO", "addNewBranch: HEYY ${it.exception}")
-            }
-        }
-        val result = branch.branchName.lowercase().replace(" ", "")
-        branchesInfoRef.child(result).setValue(branch)
-    }
+
 
 
 }
