@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 //        actionBar.setHomeButtonEnabled(true)
 
         val navController = findNavController(R.id.ContainerViewMain)
-        val appBarConfig = AppBarConfiguration(setOf(R.id.branches, R.id.settings))
+        val appBarConfig = AppBarConfiguration(setOf(R.id.branches, R.id.specific,R.id.settings))
         setupActionBarWithNavController(navController, appBarConfig)
         binding.bottomNavigation.setupWithNavController(navController)
 

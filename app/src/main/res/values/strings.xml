@@ -57,25 +57,27 @@
     <string name="view_active_inactive_users">View Active/Inactive Users</string>
     <string name="view_your_users">View Your Users</string>
     <string name="revenue_from_business">Revenue from Business</string>
+    <string name="overall">Overall</string>
+    <string name="specific">Specific</string>
 
     <string-array name="durationType">
         <item>Day</item>
         <item>Month</item>
         <item>Year</item>
     </string-array>
-<!--    <string-array name="durationNum">-->
-<!--        <item>1</item>-->
-<!--        <item>2</item>-->
-<!--        <item>3</item>-->
-<!--        <item>4</item>-->
-<!--        <item>5</item>-->
-<!--        <item>6</item>-->
-<!--        <item>7</item>-->
-<!--        <item>8</item>-->
-<!--        <item>9</item>-->
-<!--        <item>10</item>-->
-<!--        <item>11</item>-->
-<!--        <item>92</item>-->
-<!--    </string-array>-->
+    <!--    <string-array name="durationNum">-->
+    <!--        <item>1</item>-->
+    <!--        <item>2</item>-->
+    <!--        <item>3</item>-->
+    <!--        <item>4</item>-->
+    <!--        <item>5</item>-->
+    <!--        <item>6</item>-->
+    <!--        <item>7</item>-->
+    <!--        <item>8</item>-->
+    <!--        <item>9</item>-->
+    <!--        <item>10</item>-->
+    <!--        <item>11</item>-->
+    <!--        <item>92</item>-->
+    <!--    </string-array>-->
 
 </resources>
