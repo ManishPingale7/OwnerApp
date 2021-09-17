@@ -1,6 +1,6 @@
 package com.example.ownerapp.Fragments
 
-import android.graphics.Color
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +15,7 @@ import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import org.eazegraph.lib.models.PieModel
-import org.eazegraph.lib.models.ValueLinePoint
-import org.eazegraph.lib.models.ValueLineSeries
+
 
 
 class Home : Fragment() {
@@ -34,38 +32,8 @@ class Home : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         init()
-        binding.pieChartHome.addPieSlice(
-            PieModel(
-                "Members", 80F,
-                Color.parseColor("#66BB6A")
-            )
-        )
-        binding.pieChartHome.addPieSlice(
-            PieModel(
-                "InActive", 20F,
-                Color.parseColor("#FFA726")
-            )
-        )
 
 
-        val series = ValueLineSeries()
-        series.color = -0xa9480f
-        series.addPoint(ValueLinePoint("Start", 0f))
-        series.addPoint(ValueLinePoint("Jan", 1000f))
-        series.addPoint(ValueLinePoint("Feb", 3000f))
-        series.addPoint(ValueLinePoint("Mar", 3200f))
-        series.addPoint(ValueLinePoint("Apr", 6000f))
-        series.addPoint(ValueLinePoint("Mai", 1000f))
-        series.addPoint(ValueLinePoint("Jun", 3232f))
-        series.addPoint(ValueLinePoint("Jul", 2478f))
-        series.addPoint(ValueLinePoint("Aug", 12786f))
-        series.addPoint(ValueLinePoint("Sep", 1000f))
-        series.addPoint(ValueLinePoint("Oct", 3000f))
-        series.addPoint(ValueLinePoint("Nov", 1000f))
-        series.addPoint(ValueLinePoint("Dec", 3000f))
-        series.addPoint(ValueLinePoint("End", 0f))
-        binding.cubiclinechart.addSeries(series)
-        binding.cubiclinechart.startAnimation()
 
         return binding.root
     }
