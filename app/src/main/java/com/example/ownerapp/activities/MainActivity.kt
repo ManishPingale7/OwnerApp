@@ -1,11 +1,12 @@
 package com.example.ownerapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
-import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -75,6 +76,9 @@ class MainActivity : AppCompatActivity() {
         checkUser()
         database = FirebaseDatabase.getInstance()
         myRef = database.reference
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        resources.configuration.uiMode = Configuration.UI_MODE_NIGHT_YES
+        setTheme(R.style.Theme_AppTheme_Dark)
 
     }
 

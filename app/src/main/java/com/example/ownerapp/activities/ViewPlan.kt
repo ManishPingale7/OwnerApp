@@ -1,10 +1,12 @@
 package com.example.ownerapp.activities
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -61,6 +63,8 @@ class ViewPlan : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
 
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        resources.configuration.uiMode = Configuration.UI_MODE_NIGHT_YES
+        setTheme(R.style.Theme_AppTheme_Dark)
     }
 }

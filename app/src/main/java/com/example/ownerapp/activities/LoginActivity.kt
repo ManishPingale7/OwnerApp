@@ -1,10 +1,12 @@
 package com.example.ownerapp.activities
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.R
@@ -62,6 +64,9 @@ class LoginActivity : AppCompatActivity() {
             .build() as DaggerFactoryComponent
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(AuthViewModel::class.java)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        resources.configuration.uiMode = Configuration.UI_MODE_NIGHT_YES
+        setTheme(R.style.Theme_AppTheme_Dark)
     }
 
 }

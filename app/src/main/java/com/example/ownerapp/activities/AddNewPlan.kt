@@ -1,6 +1,7 @@
 package com.example.ownerapp.activities
 
 import android.content.ContentValues.TAG
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
@@ -8,6 +9,7 @@ import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.R
@@ -84,5 +86,8 @@ class AddNewPlan : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(NewPlanViewModel::class.java)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        resources.configuration.uiMode = Configuration.UI_MODE_NIGHT_YES
+        setTheme(R.style.Theme_AppTheme_Dark)
     }
 }
