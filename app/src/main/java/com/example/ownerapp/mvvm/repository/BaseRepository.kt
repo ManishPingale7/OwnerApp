@@ -1,15 +1,18 @@
 package com.example.ownerapp.mvvm.repository
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.ownerapp.Utils.Constants
+import com.example.ownerapp.Utils.Constants.PLANS
 import com.example.ownerapp.activities.LoginActivity
 import com.example.ownerapp.activities.MainActivity
+import com.example.ownerapp.activities.ViewPlan
 import com.example.ownerapp.data.Branch
+import com.example.ownerapp.data.Plan
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -21,10 +24,8 @@ abstract class BaseRepository(private var contextBase: Context) {
     private var mAuthBase = FirebaseAuth.getInstance()
     var curUser = mAuthBase.currentUser
     private val fDatabase = FirebaseDatabase.getInstance()
-    private val branchesNameRef = fDatabase.getReference(Constants.BRANCHES_SPINNER)
     private val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
-
-    private lateinit var branchesList: LiveData<ArrayList<Branch>>
+    private val plansRef = fDatabase.getReference(PLANS)
 
     fun signOut() {
         mAuthBase.signOut()
@@ -45,8 +46,8 @@ abstract class BaseRepository(private var contextBase: Context) {
 
 
     fun fetchBranches(): MutableLiveData<ArrayList<Branch>> {
-        var branches: MutableLiveData<ArrayList<Branch>>? = MutableLiveData<ArrayList<Branch>>()
-        var tempList = ArrayList<Branch>(10)
+        val branches: MutableLiveData<ArrayList<Branch>>? = MutableLiveData<ArrayList<Branch>>()
+        val tempList = ArrayList<Branch>(10)
         tempList.clear()
         branchesInfoRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -58,14 +59,42 @@ abstract class BaseRepository(private var contextBase: Context) {
                 branches?.value = tempList
                 Log.d("TAG", "onDataChange:${branches?.value} ")
             }
+
             override fun onCancelled(error: DatabaseError) {
                 Log.d("HENLO", "onCancelled: $error")
             }
         })
         return branches!!
     }
+    fun sendUserToViewPlanActivity() {
+        Intent(contextBase, ViewPlan::class.java).also {
+            contextBase.startActivity(it)
+        }
+    }
 
 
+    fun fetchAllPlans(): MutableLiveData<ArrayList<Plan>> {
+        val plans: MutableLiveData<ArrayList<Plan>> = MutableLiveData<ArrayList<Plan>>()
+        val tempList = ArrayList<Plan>(10)
+        tempList.clear()
+        plansRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                plans .value?.clear()
+                dataSnapshot.children.forEach {
+                    Log.d(TAG, "onDataChange: $it")
+                    tempList.add(it.getValue(Plan::class.java)!!)
+                    Log.d("TAG", "onDataChange: $tempList")
+                }
+                plans.value = tempList
+                Log.d("TAG", "onDataChange:${plans.value} ")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("HENLO", "onCancelled: $error")
+            }
+        })
+        return plans
+    }
 
 
 

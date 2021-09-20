@@ -13,7 +13,7 @@ object Constants {
     const val BRANCH_PASS="branchPass"
     const val BRANCH_KEY="branchKey"
     const val PLAN="plan"
-
+    const val PLANS = "plan"
     const val BRANCHES="branches"
 
 

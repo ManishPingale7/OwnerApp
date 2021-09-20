@@ -50,6 +50,9 @@ class Settings : Fragment() {
             val intent = Intent(requireContext(), AddNewPlan::class.java)
             startActivity(intent)
         }
+        binding.viewAllPlans.setOnClickListener {
+            viewModel.sendUserToViewPlanActivity()
+        }
         return binding.root
     }
 

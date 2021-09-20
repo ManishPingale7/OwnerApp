@@ -23,12 +23,14 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_view_all_branches.xml" value="0.11666666666666667" />
+        <entry key="app/src/main/res/layout/activity_view_plan.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/branch_list_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/dropdownitem.xml" value="0.11666666666666667" />
         <entry key="app/src/main/res/layout/fragment_branches.xml" value="0.38958333333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_overall.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/planlistitem.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.4036458333333333" />
       </map>
     </option>

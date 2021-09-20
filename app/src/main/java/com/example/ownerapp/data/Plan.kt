@@ -6,4 +6,6 @@ data class Plan(
     var timeNumber: String,
     var timetype: String,
     var fees: String
-)
+) {
+    constructor() : this("", "", "", "", "")
+}

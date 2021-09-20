@@ -17,4 +17,6 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
         repository.sendUserToLoginActivity()
     }
 
+    fun getAllPlans() = repository.fetchAllPlans()
+    fun sendUserToViewPlanActivity() =repository.sendUserToViewPlanActivity()
 }

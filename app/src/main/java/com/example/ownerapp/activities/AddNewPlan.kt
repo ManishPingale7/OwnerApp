@@ -51,7 +51,7 @@ class AddNewPlan : AppCompatActivity() {
                     if (!onceClicked) {
                         viewModel.repository.addNewPlan(
                             Plan(
-                                name = name,
+                                name,
                                 desc,
                                 timeNumber,
                                 type,

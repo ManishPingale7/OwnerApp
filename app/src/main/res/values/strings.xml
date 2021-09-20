@@ -59,6 +59,8 @@
     <string name="revenue_from_business">Revenue from Business</string>
     <string name="overall">Overall</string>
     <string name="specific">Specific</string>
+    <string name="view_all_plans">View all Plans</string>
+    <string name="plans">Plans</string>
 
     <string-array name="durationType">
         <item>Day</item>

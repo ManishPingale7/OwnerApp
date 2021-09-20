@@ -12,14 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OwnerApp">
         <activity
-            android:name=".activities.AddNewPlan"
+            android:name=".activities.ViewPlan"
             android:exported="true" />
+        <activity
+            android:name=".activities.AddNewPlan"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.ViewAllBranches"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.AddNewBranch"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
