@@ -16,19 +16,17 @@
         android:layout_marginTop="60dp" />
 
     <TextView
+        android:id="@+id/demo_txt_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/demo_txt_1"
-        android:text="@string/proceed_with_your"
         android:layout_below="@id/lg_preview_logo"
+        android:layout_marginStart="30dp"
+        android:gravity="center_horizontal"
+        android:text="@string/proceed_with_your"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:gravity="center_horizontal"
-        android:textSize="22sp"
-        android:layout_marginStart="30dp"
         android:textColor="@color/black"
-        android:fontFamily="@font/semibold"
-        />
+        android:textSize="22sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,7 +41,6 @@
         android:gravity="center_horizontal"
         android:textSize="22sp"
         android:layout_marginStart="30dp"
-        android:fontFamily="@font/semibold"
         android:layout_marginTop="10dp"
 
         />
@@ -56,7 +53,7 @@
 
         android:id="@+id/log_email_edit_lay"
         android:layout_below="@id/demo_txt_2"
-        android:fontFamily="@font/regular"
+
 
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
@@ -72,7 +69,7 @@
             android:inputType="textEmailAddress"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
-            android:fontFamily="@font/semibold"
+
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,7 +80,7 @@
         android:id="@+id/log_pass_edit_lay"
         android:layout_below="@id/log_email_edit_lay"
         android:layout_marginStart="40dp"
-        android:fontFamily="@font/regular"
+
         android:layout_marginEnd="40dp"
         android:hint="@string/password"
         android:textAllCaps="false"
@@ -98,7 +95,7 @@
             android:drawablePadding="10dp"
             android:inputType="textPassword"
             android:drawableStart="@drawable/ic_pass"
-            android:fontFamily="@font/semibold"
+
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,7 +108,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/btn_circular"
-        android:fontFamily="@font/semibold"
+
         android:text="@string/login"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -127,7 +124,7 @@
         android:textColor="@color/black"
         android:textAllCaps="false"
         android:textSize="12sp"
-        android:fontFamily="@font/regular"
+
         android:layout_marginTop="11dp"
         android:layout_alignParentEnd="true"
         android:gravity="center_horizontal"
@@ -149,7 +146,7 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:text="@string/don_t_have_an_account"
-            android:fontFamily="@font/semibold"
+
             android:textSize="12sp"
             android:id="@+id/lev1"
             android:layout_marginTop="20dp"/>
@@ -162,7 +159,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/lev1"
-            android:fontFamily="@font/semibold"
+
             android:gravity="center"
             android:text="@string/signup"
             android:textColor="@color/blue"
