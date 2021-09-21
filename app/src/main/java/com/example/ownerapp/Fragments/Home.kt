@@ -1,6 +1,7 @@
 package com.example.ownerapp.Fragments
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,10 @@ import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import org.eazegraph.lib.models.PieModel
+
+
+
 
 
 
@@ -33,6 +38,34 @@ class Home : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         init()
 
+
+// Set the data and color to the pie chart
+
+// Set the data and color to the pie chart
+        binding.piechart.addPieSlice(
+            PieModel(
+                "R", 40.toFloat(),
+                Color.parseColor("#FFA726")
+            )
+        )
+        binding.piechart.addPieSlice(
+            PieModel(
+                "Python", 20.toFloat(),
+                Color.parseColor("#66BB6A")
+            )
+        )
+        binding.piechart.addPieSlice(
+            PieModel(
+                "C++", 20.toFloat(),
+                Color.parseColor("#EF5350")
+            )
+        )
+        binding.piechart.addPieSlice(
+            PieModel(
+                "Java", 20.toFloat(),
+                Color.parseColor("#29B6F6")
+            )
+        )
 
 
         return binding.root

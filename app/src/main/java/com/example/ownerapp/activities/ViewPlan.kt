@@ -63,8 +63,6 @@ class ViewPlan : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        resources.configuration.uiMode = Configuration.UI_MODE_NIGHT_YES
-        setTheme(R.style.Theme_AppTheme_Dark)
+
     }
 }

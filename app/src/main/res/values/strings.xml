@@ -61,6 +61,19 @@
     <string name="specific">Specific</string>
     <string name="view_all_plans">View all Plans</string>
     <string name="plans">Plans</string>
+    <string name="plan_name">Plan Name</string>
+    <string name="normal">Normal</string>
+    <string name="rs_4599">Rs.4599</string>
+    <string name="fees">Fees</string>
+    <string name="_30">30</string>
+    <string name="revenue">revenue</string>
+    <string name="revenue_this_month">Revenue This Month</string>
+    <string name="revenue_today">Revenue Today</string>
+    <string name="users_till_now">Users Till Now</string>
+    <string name="users">users</string>
+    <string name="refresh">Refresh</string>
+    <string name="products">Products</string>
+    <string name="view_all_products">View All Products</string>
 
     <string-array name="durationType">
         <item>Day</item>

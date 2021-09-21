@@ -76,9 +76,9 @@ class MainActivity : AppCompatActivity() {
         checkUser()
         database = FirebaseDatabase.getInstance()
         myRef = database.reference
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        resources.configuration.uiMode = Configuration.UI_MODE_NIGHT_YES
-        setTheme(R.style.Theme_AppTheme_Dark)
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//        resources.configuration.uiMode = Configuration.UI_MODE_NIGHT_YES
+//        setTheme(R.style.Theme_AppTheme_Dark)
 
     }
 

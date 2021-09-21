@@ -64,9 +64,7 @@ class LoginActivity : AppCompatActivity() {
             .build() as DaggerFactoryComponent
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(AuthViewModel::class.java)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        resources.configuration.uiMode = Configuration.UI_MODE_NIGHT_YES
-        setTheme(R.style.Theme_AppTheme_Dark)
+
     }
 
 }
