@@ -74,6 +74,8 @@
     <string name="refresh">Refresh</string>
     <string name="products">Products</string>
     <string name="view_all_products">View All Products</string>
+    <string name="product_name">Product Name</string>
+    <string name="orders">Orders</string>
 
     <string-array name="durationType">
         <item>Day</item>

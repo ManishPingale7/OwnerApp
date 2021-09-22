@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/branches"
-        android:name="com.example.ownerapp.Fragments.Home"
+        android:name="com.example.ownerapp.Fragments.mainFrags.Home"
         android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/settings"
-        android:name="com.example.ownerapp.Fragments.Settings"
+        android:name="com.example.ownerapp.Fragments.mainFrags.Settings"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/specific"
-        android:name="com.example.ownerapp.Fragments.Specific"
+        android:name="com.example.ownerapp.Fragments.mainFrags.Specific"
         android:label="Specific"
         tools:layout="@layout/fragment_specific">
         <action

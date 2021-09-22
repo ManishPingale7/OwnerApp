@@ -1,12 +1,10 @@
 package com.example.ownerapp.activities
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
