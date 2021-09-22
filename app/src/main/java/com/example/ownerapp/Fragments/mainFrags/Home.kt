@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.example.ownerapp.R
 import com.example.ownerapp.databinding.FragmentHomeBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -17,10 +18,8 @@ import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import org.eazegraph.lib.models.PieModel
-
-
-
-
+import org.eazegraph.lib.models.ValueLinePoint
+import org.eazegraph.lib.models.ValueLineSeries
 
 
 class Home : Fragment() {
@@ -67,6 +66,24 @@ class Home : Fragment() {
             )
         )
 
+        val series = ValueLineSeries()
+        series.color = resources.getColor(R.color.demo_green)
+        series.addPoint(ValueLinePoint("Start", 0f))
+        series.addPoint(ValueLinePoint("Jan", 3000f))
+        series.addPoint(ValueLinePoint("Feb", 4000f))
+        series.addPoint(ValueLinePoint("Mar", 3200f))
+        series.addPoint(ValueLinePoint("Apr", 4000f))
+        series.addPoint(ValueLinePoint("Mai", 5000f))
+        series.addPoint(ValueLinePoint("Jun", 4232f))
+        series.addPoint(ValueLinePoint("Jul", 4478f))
+        series.addPoint(ValueLinePoint("Aug", 3786f))
+        series.addPoint(ValueLinePoint("Sep", 5000f))
+        series.addPoint(ValueLinePoint("Oct", 5000f))
+        series.addPoint(ValueLinePoint("Nov", 4000f))
+        series.addPoint(ValueLinePoint("Dec", 3000f))
+        series.addPoint(ValueLinePoint("End", 2000f))
+        binding.cubiclinechart.addSeries(series)
+        binding.cubiclinechart.startAnimation()
 
         return binding.root
     }

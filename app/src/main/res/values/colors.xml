@@ -13,6 +13,8 @@
 
 
 
+    <color name="demo_green">#32cd32</color>
+
     <color name="my_statusbar_color">#10AAF0</color>
     <color name="primary_color">#10AAF0</color>
 
