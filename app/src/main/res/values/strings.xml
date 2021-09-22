@@ -76,6 +76,10 @@
     <string name="view_all_products">View All Products</string>
     <string name="product_name">Product Name</string>
     <string name="orders">Orders</string>
+    <string name="add_product_category">Add Product Category</string>
+    <string name="add_new_product_category">Add New Product Category</string>
+    <string name="product_price">Product Price</string>
+    <string name="pick_images">Pick Images</string>
 
     <string-array name="durationType">
         <item>Day</item>
