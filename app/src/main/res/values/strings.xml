@@ -80,6 +80,7 @@
     <string name="add_new_product_category">Add New Product Category</string>
     <string name="product_price">Product Price</string>
     <string name="pick_images">Pick Images</string>
+    <string name="next">next</string>
 
     <string-array name="durationType">
         <item>Day</item>

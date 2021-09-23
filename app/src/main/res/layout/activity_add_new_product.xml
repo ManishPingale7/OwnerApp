@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".activities.AddNewProduct">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -84,17 +85,50 @@
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPagerImage"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_margin="10dp"
-        android:visibility="gone" />
+        android:layout_height="wrap_content"
+        android:id="@+id/ImageLay"
+        android:visibility="gone"
+
+        >
+
+        <ImageSwitcher
+            android:id="@+id/imageSwitcherAdd"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+             />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageSwitcherAdd"
+            android:layout_alignParentStart="true"
+            android:layout_margin="5dp"
+            android:text="@string/back" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/frontButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageSwitcherAdd"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="5dp"
+            android:text="@string/next" />
+
+
+    </RelativeLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/pickImages"
         android:layout_marginStart="40dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
