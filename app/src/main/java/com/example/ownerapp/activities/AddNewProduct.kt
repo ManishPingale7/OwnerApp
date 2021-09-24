@@ -36,7 +36,10 @@ class AddNewProduct : AppCompatActivity() {
     private lateinit var component: DaggerFactoryComponent
     var position = 0
 
+
     var getContent = registerForActivityResult(GetMultipleContents()) { it ->
+        binding.ImageLay.visibility = View.VISIBLE
+
         arrayListImages.clear()
         it.forEach {
             it?.let { it1 ->
@@ -90,6 +93,10 @@ class AddNewProduct : AppCompatActivity() {
                 binding.imageSwitcherAdd.setImageURI(arrayListImages[position])
                 position++
             }
+        }
+
+        binding.submitProduct.setOnClickListener {
+
         }
     }
 
@@ -166,7 +173,6 @@ class AddNewProduct : AppCompatActivity() {
     }
 
     private fun init() {
-        //Toolbar stuff
         val window: Window = this.window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)

@@ -8,25 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".activities.AddNewProduct">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarNewProd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_prods_New"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="Add New Product"
-            app:titleTextColor="@color/white">
-
-        </com.google.android.material.appbar.MaterialToolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -35,7 +17,6 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:drawablePadding="12dp"
         android:hint="@string/product_name">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -54,7 +35,6 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
-        android:drawablePadding="12dp"
         android:hint="@string/description">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -66,30 +46,61 @@
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
-        android:drawablePadding="12dp"
-        android:hint="@string/product_price">
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_marginTop="20dp"
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/productPrice"
-            android:layout_width="match_parent"
+        >
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="number">
+            android:layout_weight="50"
+            android:hint="@string/product_price"
+            android:layout_gravity="start"
+            android:layout_marginStart="40dp">
 
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/productPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="12dp"
+            android:layout_marginEnd="40dp"
+            android:hint="@string/category"
+            android:layout_gravity="end">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/productPrice2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ImageLay"
-        android:visibility="visible"
+        android:visibility="gone"
         >
 
         <ImageSwitcher
@@ -103,11 +114,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/backButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageSwitcherAdd"
             android:layout_alignParentStart="true"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -137,7 +148,22 @@
         android:id="@+id/pickImages"
         android:drawableStart="@drawable/plus"
         android:text="@string/pick_images"
-        android:layout_gravity="center"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="start"
         android:textAllCaps="false" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:id="@+id/submitProduct"
+        android:background="@drawable/btn_circular"
+        android:text="@string/continuestr"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="start"
+        android:textAllCaps="true" />
 
 </LinearLayout>

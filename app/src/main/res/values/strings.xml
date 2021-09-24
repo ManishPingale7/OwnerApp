@@ -81,6 +81,7 @@
     <string name="product_price">Product Price</string>
     <string name="pick_images">Pick Images</string>
     <string name="next">next</string>
+    <string name="category">Category</string>
 
     <string-array name="durationType">
         <item>Day</item>
