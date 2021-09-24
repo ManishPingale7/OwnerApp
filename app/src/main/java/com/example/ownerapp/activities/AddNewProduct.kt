@@ -2,7 +2,6 @@ package com.example.ownerapp.activities
 
 import android.Manifest
 import android.content.ContentValues.TAG
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -13,6 +12,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -27,21 +27,35 @@ import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 
+
 class AddNewProduct : AppCompatActivity() {
     lateinit var binding: ActivityAddNewProductBinding
     var arrayListImages = ArrayList<Uri>()
     private lateinit var mAuth: FirebaseAuth
     private lateinit var viewModel: MainViewModel
     private lateinit var component: DaggerFactoryComponent
-    val PICK_IMAGES_CODE = 223
     var position = 0
+
+    var getContent = registerForActivityResult(GetMultipleContents()) { it ->
+        arrayListImages.clear()
+        it.forEach {
+            it?.let { it1 ->
+                arrayListImages.add(it1)
+                Log.d(TAG, "Selected Images are$it1: ")
+            }
+
+        }
+        Log.d(TAG, "Selected Images are ${arrayListImages.size}: ")
+        binding.imageSwitcherAdd.setImageURI(arrayListImages[0])
+        binding.imageSwitcherAdd.visibility = View.VISIBLE
+        position = 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNewProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        arrayListImages.clear()
         init()
 
         binding.imageSwitcherAdd.setFactory {
@@ -63,6 +77,7 @@ class AddNewProduct : AppCompatActivity() {
 
 
         binding.backButton.setOnClickListener {
+            Log.d(TAG, "Back $position size = ${arrayListImages.size}")
             if (position > 0) {
                 position--
                 binding.imageSwitcherAdd.setImageURI(arrayListImages[position])
@@ -70,8 +85,11 @@ class AddNewProduct : AppCompatActivity() {
         }
 
         binding.frontButton.setOnClickListener {
-            if (position < arrayListImages.size - 1)
+            Log.d(TAG, "Front $position")
+            if (position < arrayListImages.size - 1) {
                 binding.imageSwitcherAdd.setImageURI(arrayListImages[position])
+                position++
+            }
         }
     }
 
@@ -119,43 +137,9 @@ class AddNewProduct : AppCompatActivity() {
     }
 
     private fun pickImage() {
-
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGES_CODE)
-
+        getContent.launch("image/*")
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-
-        if (requestCode == PICK_IMAGES_CODE && resultCode == RESULT_OK && null != data) {
-            Log.d(TAG, "onActivityResult: Data.data= ${data.data!!}\n\n")
-
-            if (data.clipData != null) {
-                binding.ImageLay.visibility = View.VISIBLE
-                val count = data.clipData!!.itemCount
-                for (i in 0 until count) {
-                    arrayListImages.add(data.clipData!!.getItemAt(i).uri)
-                }
-                binding.imageSwitcherAdd.setImageURI(arrayListImages[0])
-                binding.imageSwitcherAdd.visibility = View.VISIBLE
-                position = 0
-
-            } else {
-                binding.ImageLay.visibility = View.VISIBLE
-                arrayListImages.clear()
-                arrayListImages.add(data.data!!)
-                binding.imageSwitcherAdd.setImageURI(arrayListImages[0])
-                position = 0
-            }
-
-
-        }
-    }
 
 
     override fun onRequestPermissionsResult(
@@ -197,5 +181,6 @@ class AddNewProduct : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
     }
+
 
 }
