@@ -51,6 +51,7 @@ class Settings : Fragment() {
             startActivity(intent)
         }
 
+
         binding.addNewPlan.setOnClickListener {
 
             val intent = Intent(requireContext(), AddNewPlan::class.java)
