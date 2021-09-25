@@ -2,6 +2,7 @@ package com.example.ownerapp.activities
 
 import android.Manifest
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -19,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.R
+import com.example.ownerapp.data.Product
 import com.example.ownerapp.databinding.ActivityAddNewProductBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -78,6 +80,44 @@ class AddNewProduct : AppCompatActivity() {
             }
         }
 
+        binding.submitProduct.setOnClickListener {
+            val name = binding.productName.text.toString()
+            val price = binding.productPrice.text.toString()
+            val category = binding.productCategory.text.toString()
+            val desc = binding.productDesc.text.toString()
+
+
+            if (name.isNotEmpty()) {
+                if (price.isNotEmpty()) {
+                    if (category.isNotEmpty()) {
+                        if (desc.isNotEmpty()) {
+                            if (arrayListImages.size > 0) {
+                                //Adding Products here
+                                val product = Product(name, desc, price, category, arrayListImages)
+                                viewModel.addProduct(product)
+                                Intent(this, MainActivity::class.java).also {
+                                    startActivity(it)
+                                    finish()
+                                }
+                            } else {
+                                Toast.makeText(this, "Select Product Images", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        } else {
+                            Toast.makeText(this, "Enter Description", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Select The Category", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this, "Enter Product Price", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "Enter Product name", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
 
         binding.backButton.setOnClickListener {
             Log.d(TAG, "Back $position size = ${arrayListImages.size}")
@@ -89,7 +129,7 @@ class AddNewProduct : AppCompatActivity() {
 
         binding.frontButton.setOnClickListener {
             Log.d(TAG, "Front $position")
-            if (position < arrayListImages.size - 1) {
+            if (position < arrayListImages.size) {
                 binding.imageSwitcherAdd.setImageURI(arrayListImages[position])
                 position++
             }

@@ -38,7 +38,7 @@
         android:hint="@string/description">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/address_data"
+            android:id="@+id/productDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine">
@@ -84,10 +84,10 @@
             android:layout_gravity="end">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/productPrice2"
+                android:id="@+id/productCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number">
+                android:inputType="text">
 
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>

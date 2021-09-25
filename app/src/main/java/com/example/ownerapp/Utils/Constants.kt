@@ -16,5 +16,8 @@ object Constants {
     const val PLANS = "plan"
     const val BRANCHES="branches"
 
+    const val PRODUCTS="products"
+    const val CATEGORY="productCategory"
+
 
 }
