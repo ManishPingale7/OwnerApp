@@ -9,43 +9,27 @@
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/activity_add_new_branch.xml" value="0.3671875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/activity_main.xml" value="0.3671875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/activity_view_all_branches.xml" value="0.4" />
-        <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/branch_list_item.xml" value="0.536" />
+        <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/branch_list_item.xml" value="0.264" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/branchlistitem.xml" value="0.3671875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/dropdownitem.xml" value="0.2546875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/fragment_home.xml" value="0.2546875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/fragment_settings.xml" value="0.4" />
-        <entry key="app/src/main/res/drawable/bg_overlay.xml" value="0.2984375" />
+        <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/planlistitem.xml" value="0.2546875" />
         <entry key="app/src/main/res/drawable/btn_circular.xml" value="0.41333333333333333" />
-        <entry key="app/src/main/res/drawable/ic_adjust.xml" value="0.4197916666666667" />
-        <entry key="app/src/main/res/drawable/ic_check.xml" value="0.4197916666666667" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.2324074074074074" />
         <entry key="app/src/main/res/drawable/plus.xml" value="0.41333333333333333" />
-        <entry key="app/src/main/res/drawable/shape_background.xml" value="0.4197916666666667" />
-        <entry key="app/src/main/res/drawable/shape_button.xml" value="0.4197916666666667" />
         <entry key="app/src/main/res/layout/activity_add_branch.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_add_new_branch.xml" value="0.358974358974359" />
-        <entry key="app/src/main/res/layout/activity_add_new_category.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_add_new_plan.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_add_new_product.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/activity_products.xml" value="0.1921182266009852" />
         <entry key="app/src/main/res/layout/activity_view_all_branches.xml" value="0.11666666666666667" />
-        <entry key="app/src/main/res/layout/activity_view_plan.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/branch_list_item.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/demoimageview.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dropdownitem.xml" value="0.11666666666666667" />
         <entry key="app/src/main/res/layout/fragment_branches.xml" value="0.38958333333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/fragment_overall.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/fragment_products.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_specific.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/image_slider_layout_item.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/planlistitem.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/menu/product_menu.xml" value="0.3098958333333333" />
       </map>
     </option>
   </component>

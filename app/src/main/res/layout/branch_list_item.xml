@@ -47,15 +47,12 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
                 android:hint="@string/branch_password"
-                android:textSize="16sp"
-                app:passwordToggleEnabled="true">
+                android:textSize="16sp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
