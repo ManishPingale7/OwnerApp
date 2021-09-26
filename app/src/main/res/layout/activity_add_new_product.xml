@@ -165,7 +165,7 @@
             android:textAllCaps="true"
             app:button_background="@drawable/shape_button"
             app:button_bottom_padding="20dp"
-            app:button_image_disabled="@drawable/ic_adjust"
+            app:button_image_disabled="@drawable/ic_arrow_forward"
             app:button_image_enabled="@drawable/ic_check"
             app:button_left_padding="20dp"
             app:button_right_padding="20dp"
