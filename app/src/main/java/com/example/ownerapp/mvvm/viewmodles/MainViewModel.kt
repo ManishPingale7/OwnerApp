@@ -23,4 +23,6 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     fun addProduct(product: Product) {
         repository.addProduct(product)
     }
+
+    fun addCategory(category: String) = repository.addCategory(category)
 }
