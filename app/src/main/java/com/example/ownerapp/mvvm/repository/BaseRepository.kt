@@ -160,7 +160,7 @@ abstract class BaseRepository(private var contextBase: Context) {
             }
         }
 
-//        updateProducts(product,key)
+
 
 
         Log.d(TAG, "addProduct: \n\n Product Images ${product.productImages.size}")
@@ -168,12 +168,6 @@ abstract class BaseRepository(private var contextBase: Context) {
 
     }
 
-//    private fun updateProducts(product: Product,key:String) {
-//        productsInfo.child(product.category.trim()).child(key).child("productImages")
-//            .setValue(product.productImages).addOnSuccessListener {
-//                Toast.makeText(contextBase, "Updated", Toast.LENGTH_SHORT).show()
-//            }
-//    }
 
     fun addCategory(category: String) {
 
