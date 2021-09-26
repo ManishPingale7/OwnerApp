@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OwnerApp">
         <activity
+            android:name=".activities.AddNewCategory"
+            android:exported="true" />
+        <activity
             android:name=".activities.AddProductCategory"
             android:exported="true" />
         <activity

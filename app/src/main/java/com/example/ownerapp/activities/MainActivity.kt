@@ -22,6 +22,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import android.content.Intent
+
+import com.ebanx.swipebtn.OnStateChangeListener
+
+
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
@@ -46,9 +52,10 @@ class MainActivity : AppCompatActivity() {
 //        actionBar.setHomeButtonEnabled(true)
 
         val navController = findNavController(R.id.ContainerViewMain)
-        val appBarConfig = AppBarConfiguration(setOf(R.id.branches, R.id.specific,R.id.settings))
+        val appBarConfig = AppBarConfiguration(setOf(R.id.branches, R.id.specific,R.id.products,R.id.settings))
         setupActionBarWithNavController(navController, appBarConfig)
         binding.bottomNavigation.setupWithNavController(navController)
+
 
     }
 

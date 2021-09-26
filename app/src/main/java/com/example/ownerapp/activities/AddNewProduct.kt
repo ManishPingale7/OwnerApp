@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
+import com.ebanx.swipebtn.OnStateChangeListener
 import com.example.ownerapp.Adapters.ImageSliderAdapter
 import com.example.ownerapp.R
 import com.example.ownerapp.data.Product
@@ -56,7 +57,7 @@ class AddNewProduct : AppCompatActivity() {
             }
 
         }
-        renewItems(binding.sliderView)
+        applySelectedPhotos(binding.sliderView)
         Log.d(TAG, "Selected Images are ${arrayListImages.size}: ")
         position = 0
     }
@@ -76,10 +77,7 @@ class AddNewProduct : AppCompatActivity() {
             )
         })
 
-//        binding.imageSwitcherAdd.setFactory {
-//            val imageView = ImageView(applicationContext)
-//            imageView
-//        }
+
 
         binding.pickImages.setOnClickListener {
             if (ActivityCompat.checkSelfPermission(
@@ -94,7 +92,7 @@ class AddNewProduct : AppCompatActivity() {
             }
         }
 
-        binding.submitProduct.setOnClickListener {
+        binding.submitProduct.setOnStateChangeListener(OnStateChangeListener {
             val name = binding.productName.text.toString()
             val price = binding.productPrice.text.toString()
             val category = binding.productCategory.text.toString()
@@ -129,7 +127,7 @@ class AddNewProduct : AppCompatActivity() {
             } else
                 Toast.makeText(this, "Enter Product name", Toast.LENGTH_SHORT).show()
 
-        }
+        })
 
 
     }
@@ -227,7 +225,7 @@ class AddNewProduct : AppCompatActivity() {
         adapter = ImageSliderAdapter()
         adapter!!.setContext(this)
         binding.sliderView.setSliderAdapter(adapter!!)
-        binding.sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);//set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        binding.sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)//set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         binding.sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
         binding.sliderView.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
         binding.sliderView.indicatorSelectedColor = Color.WHITE
@@ -238,27 +236,27 @@ class AddNewProduct : AppCompatActivity() {
     }
 
 
-    fun renewItems(view: View?) {
+    fun applySelectedPhotos(view: View?) {
         val sliderItemList: MutableList<SliderItem> = ArrayList()
         //dummy data
         for (i in 0 until arrayListImages.size) {
             val sliderItem = SliderItem()
             sliderItem.description = "Slider Item $i"
-            sliderItem.imageUrl= arrayListImages[i].toString()
+            sliderItem.imageUrl = arrayListImages[i].toString()
             sliderItemList.add(sliderItem)
         }
         adapter!!.renewItems(sliderItemList as ArrayList<SliderItem>)
     }
 
-    fun removeLastItem(view: View?) {
-        if (adapter!!.count - 1 >= 0) adapter!!.deleteItem(adapter!!.count - 1)
-    }
-
-    fun addNewItem(view: View?) {
-        val sliderItem = SliderItem()
-        sliderItem.description = "Slider Item Added Manually"
-        sliderItem.imageUrl =
-            "https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-        adapter!!.addItem(sliderItem)
-    }
+//    fun removeLastItem(view: View?) {
+//        if (adapter!!.count - 1 >= 0) adapter!!.deleteItem(adapter!!.count - 1)
+//    }
+//
+//    fun addNewItem(view: View?) {
+//        val sliderItem = SliderItem()
+//        sliderItem.description = "Slider Item Added Manually"
+//        sliderItem.imageUrl =
+//            "https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+//        adapter!!.addItem(sliderItem)
+//    }
 }

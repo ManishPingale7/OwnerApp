@@ -196,7 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="Products"
+            android:text="Product Dashbord"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/my_statusbar_color"
