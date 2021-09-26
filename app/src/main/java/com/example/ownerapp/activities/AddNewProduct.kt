@@ -105,7 +105,7 @@ class AddNewProduct : AppCompatActivity() {
                         if (desc.isNotEmpty()) {
                             if (arrayListImages.size > 0) {
                                 //Adding Products here
-                                val product = Product(name, desc, price, category, arrayListImages,"")
+                                val product = Product(name, desc, price, category, arrayListImages)
                                 viewModel.addProduct(product)
                                 Intent(this, MainActivity::class.java).also {
                                     startActivity(it)
