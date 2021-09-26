@@ -29,12 +29,15 @@ abstract class BaseRepository(private var contextBase: Context) {
 
     private var mAuthBase = FirebaseAuth.getInstance()
     var curUser = mAuthBase.currentUser
+
     private val fDatabase = FirebaseDatabase.getInstance()
     private val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
     private val plansRef = fDatabase.getReference(PLANS)
     var storage = FirebaseStorage.getInstance()
     var storageRefProduct: StorageReference = storage.reference
     val categoryInfo = fDatabase.getReference(Constants.CATEGORYINFO)
+    val productsInfo = fDatabase.getReference(Constants.PRODUCTS)
+
     fun signOut() {
         mAuthBase.signOut()
     }
@@ -129,11 +132,16 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
     fun addProduct(product: Product) {
-        val productsInfo = fDatabase.getReference(Constants.PRODUCTS)
         val key = productsInfo.push().key.toString()
-        product.key = key
-        var i = 0
+
+
         Log.d(TAG, "addProduct: Product $product\n\n")
+        productsInfo.child(product.category.trim()).child(key).setValue(product)
+            .addOnSuccessListener {
+                Toast.makeText(contextBase, "Product Added Successfully", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(contextBase, "Try Again later", Toast.LENGTH_SHORT).show()
+            }
         for (i in 0 until product.productImages.size) {
             val ref =
                 storageRefProduct.child(Constants.PRODUCTS).child(product.category.trim())
@@ -141,7 +149,9 @@ abstract class BaseRepository(private var contextBase: Context) {
             ref.putFile(product.productImages[i].toUri()).addOnSuccessListener {
                 ref.downloadUrl.addOnSuccessListener {
                     product.productImages[i] = it.toString()
-                    Log.d(TAG, "addProduct: Download URL=${it}")
+                    Log.d(TAG, "addProduct: Download URL=${product.productImages[i]}")
+                    productsInfo.child(product.category.trim()).child(key).child("productImages")
+                        .child(i.toString()).setValue(product.productImages[i])
                 }.addOnFailureListener {
                     Log.d(TAG, "addProduct: Errors ${it.message} \n\n ${it.cause}\n\n")
                 }
@@ -149,15 +159,21 @@ abstract class BaseRepository(private var contextBase: Context) {
                 Log.d(TAG, "addProduct: Failed at $i")
             }
         }
+
+//        updateProducts(product,key)
+
+
         Log.d(TAG, "addProduct: \n\n Product Images ${product.productImages.size}")
-        productsInfo.child(product.category.trim()).child(key).setValue(product)
-            .addOnSuccessListener {
-                Toast.makeText(contextBase, "Product Added Successfully", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(contextBase, "Try Again later", Toast.LENGTH_SHORT).show()
-            }
+
 
     }
+
+//    private fun updateProducts(product: Product,key:String) {
+//        productsInfo.child(product.category.trim()).child(key).child("productImages")
+//            .setValue(product.productImages).addOnSuccessListener {
+//                Toast.makeText(contextBase, "Updated", Toast.LENGTH_SHORT).show()
+//            }
+//    }
 
     fun addCategory(category: String) {
 
