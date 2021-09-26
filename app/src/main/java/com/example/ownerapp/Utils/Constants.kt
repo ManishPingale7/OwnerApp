@@ -18,6 +18,7 @@ object Constants {
 
     const val PRODUCTS="products"
     const val CATEGORY="productCategory"
+    const val CATEGORYINFO="categoryInfo"
 
 
 }

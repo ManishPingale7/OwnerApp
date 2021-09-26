@@ -8,7 +8,8 @@ data class Product(
     var desc: String,
     var price: String,
     var category: String,
-    var productImages: ArrayList<Uri>
+    var productImages: ArrayList<String>,
+    var key:String?=null
 ) {
-    constructor() : this("", "", "", "", ArrayList<Uri>())
+    constructor() : this("", "", "", "", ArrayList<String>(),"")
 }

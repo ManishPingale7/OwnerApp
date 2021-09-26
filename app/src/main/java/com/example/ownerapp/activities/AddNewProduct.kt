@@ -39,7 +39,7 @@ import com.smarteist.autoimageslider.SliderView
 
 class AddNewProduct : AppCompatActivity() {
     lateinit var binding: ActivityAddNewProductBinding
-    var arrayListImages = ArrayList<Uri>()
+    var arrayListImages = ArrayList<String>()
     private lateinit var mAuth: FirebaseAuth
     private lateinit var viewModel: MainViewModel
     private lateinit var component: DaggerFactoryComponent
@@ -52,7 +52,7 @@ class AddNewProduct : AppCompatActivity() {
         arrayListImages.clear()
         it.forEach {
             it?.let { it1 ->
-                arrayListImages.add(it1)
+                arrayListImages.add(it1.toString())
                 Log.d(TAG, "Selected Images are$it1: ")
             }
 
@@ -105,7 +105,7 @@ class AddNewProduct : AppCompatActivity() {
                         if (desc.isNotEmpty()) {
                             if (arrayListImages.size > 0) {
                                 //Adding Products here
-                                val product = Product(name, desc, price, category, arrayListImages)
+                                val product = Product(name, desc, price, category, arrayListImages,"")
                                 viewModel.addProduct(product)
                                 Intent(this, MainActivity::class.java).also {
                                     startActivity(it)
