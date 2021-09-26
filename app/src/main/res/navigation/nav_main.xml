@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_branches_to_specific2"
             app:destination="@id/specific" />
+        <action
+            android:id="@+id/action_branches_to_products2"
+            app:destination="@id/products" />
     </fragment>
     <fragment
         android:id="@+id/settings"
@@ -33,6 +36,24 @@
             app:destination="@id/settings" />
         <action
             android:id="@+id/action_specific2_to_branches"
+            app:destination="@id/branches" />
+        <action
+            android:id="@+id/action_specific_to_settings"
+            app:destination="@id/settings" />
+        <action
+            android:id="@+id/action_specific_to_products2"
+            app:destination="@id/products" />
+    </fragment>
+    <fragment
+        android:id="@+id/products"
+        android:name="com.example.ownerapp.Fragments.productFrags.Products"
+        android:label="Products"
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/action_products2_to_specific"
+            app:destination="@id/specific" />
+        <action
+            android:id="@+id/action_products2_to_branches"
             app:destination="@id/branches" />
     </fragment>
 </navigation>
