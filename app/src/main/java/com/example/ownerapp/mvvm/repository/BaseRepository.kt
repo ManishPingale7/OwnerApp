@@ -134,7 +134,7 @@ abstract class BaseRepository(private var contextBase: Context) {
     fun addProduct(product: Product) {
         val key = productsInfo.push().key.toString()
 
-
+        product.key=key
         Log.d(TAG, "addProduct: Product $product\n\n")
         productsInfo.child(product.category.trim()).child(key).setValue(product)
             .addOnSuccessListener {
