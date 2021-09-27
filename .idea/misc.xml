@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.41875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/drawable/btn_circular.xml" value="0.2512820512820513" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/drawable/ic_edit.xml" value="0.2512820512820513" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/drawable/ic_password.xml" value="0.2512820512820513" />
@@ -26,7 +27,7 @@
         <entry key="app/src/main/res/layout/activity_add_new_branch.xml" value="0.358974358974359" />
         <entry key="app/src/main/res/layout/activity_add_new_category.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_add_new_plan.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_add_new_product.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_add_new_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_products.xml" value="0.1921182266009852" />
@@ -44,6 +45,7 @@
         <entry key="app/src/main/res/layout/fragment_specific.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/image_slider_layout_item.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/planlistitem.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/progress_btn_layout.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/menu/product_menu.xml" value="0.3098958333333333" />
       </map>

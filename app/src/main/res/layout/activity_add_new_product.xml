@@ -148,34 +148,47 @@
             android:drawableStart="@drawable/plus"
             android:text="@string/pick_images"
             android:layout_marginStart="40dp"
+            android:drawableTint="@color/blue"
             android:layout_marginTop="20dp"
             android:layout_gravity="start"
             android:textAllCaps="false" />
 
-        <com.ebanx.swipebtn.SwipeButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:id="@+id/submitProduct"
-            android:text="@string/continuestr"
+<!--        <com.ebanx.swipebtn.SwipeButton-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:id="@+id/submitProduct"-->
+<!--            android:text="@string/continuestr"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_gravity="start"-->
+<!--            android:textAllCaps="true"-->
+<!--            app:button_background="@drawable/shape_button"-->
+<!--            app:button_bottom_padding="20dp"-->
+<!--            app:button_image_disabled="@drawable/ic_arrow_forward"-->
+<!--            app:button_image_enabled="@drawable/ic_check"-->
+<!--            app:button_left_padding="20dp"-->
+<!--            app:button_right_padding="20dp"-->
+<!--            app:button_top_padding="20dp"-->
+<!--            app:inner_text="Add Product"-->
+<!--            app:inner_text_background="@drawable/shape_background"-->
+<!--            app:inner_text_bottom_padding="16dp"-->
+<!--            app:inner_text_color="#fff"-->
+<!--            app:inner_text_size="18sp"-->
+<!--            app:inner_text_top_padding="16dp" />-->
+
+
+        <include
+            android:id="@+id/submitProduct2"
+            layout="@layout/progress_btn_layout"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
             android:layout_marginTop="20dp"
-            android:layout_gravity="start"
-            android:textAllCaps="true"
-            app:button_background="@drawable/shape_button"
-            app:button_bottom_padding="20dp"
-            app:button_image_disabled="@drawable/ic_arrow_forward"
-            app:button_image_enabled="@drawable/ic_check"
-            app:button_left_padding="20dp"
-            app:button_right_padding="20dp"
-            app:button_top_padding="20dp"
-            app:inner_text="Swipe Right"
-            app:inner_text_background="@drawable/shape_background"
-            app:inner_text_bottom_padding="16dp"
-            app:inner_text_color="#fff"
-            app:inner_text_size="18sp"
-            app:inner_text_top_padding="16dp"/>
+            android:layout_marginEnd="40dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            />
+
 
     </LinearLayout>
 

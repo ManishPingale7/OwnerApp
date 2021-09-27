@@ -5,9 +5,10 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -19,9 +20,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
-import com.ebanx.swipebtn.OnStateChangeListener
 import com.example.ownerapp.Adapters.ImageSliderAdapter
 import com.example.ownerapp.R
+import com.example.ownerapp.Utils.ProgressBtn
 import com.example.ownerapp.data.Product
 import com.example.ownerapp.data.SliderItem
 import com.example.ownerapp.databinding.ActivityAddNewProductBinding
@@ -32,7 +33,6 @@ import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
-import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController.ClickListener
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 
@@ -57,7 +57,7 @@ class AddNewProduct : AppCompatActivity() {
             }
 
         }
-        applySelectedPhotos(binding.sliderView)
+        applySelectedPhotos()
         Log.d(TAG, "Selected Images are ${arrayListImages.size}: ")
         position = 0
     }
@@ -70,12 +70,12 @@ class AddNewProduct : AppCompatActivity() {
         init()
         initSlider()
 
-        binding.sliderView.setOnIndicatorClickListener(ClickListener {
+        binding.sliderView.setOnIndicatorClickListener {
             Log.i(
                 "GGG",
                 "onIndicatorClicked: " + binding.sliderView.currentPagePosition
             )
-        })
+        }
 
 
 
@@ -92,7 +92,14 @@ class AddNewProduct : AppCompatActivity() {
             }
         }
 
-        binding.submitProduct.setOnStateChangeListener(OnStateChangeListener {
+//        binding.submitProduct.setOnStateChangeListener {
+//
+//        }
+
+        val view = findViewById<View>(R.id.submitProduct2)
+
+        view.setOnClickListener {
+            val progressBtn = ProgressBtn(this, view)
             val name = binding.productName.text.toString()
             val price = binding.productPrice.text.toString()
             val category = binding.productCategory.text.toString()
@@ -105,29 +112,38 @@ class AddNewProduct : AppCompatActivity() {
                         if (desc.isNotEmpty()) {
                             if (arrayListImages.size > 0) {
                                 //Adding Products here
+                                progressBtn.buttonActivated()
                                 val product = Product(name, desc, price, category, arrayListImages)
                                 viewModel.addProduct(product)
-                                Intent(this, MainActivity::class.java).also {
-                                    startActivity(it)
-                                    finish()
-                                }
-                            } else
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    progressBtn.buttonfinished()
+                                    Intent(this@AddNewProduct, MainActivity::class.java).also {
+                                        startActivity(it)
+                                        finish()
+                                    }
+                                }, 3000)
+
+
+                            } else {
                                 Toast.makeText(this, "Select Product Images", Toast.LENGTH_SHORT)
                                     .show()
 
-                        } else
+                            }
+                        } else {
                             Toast.makeText(this, "Enter Description", Toast.LENGTH_SHORT).show()
-
-                    } else
+                        }
+                    } else {
                         Toast.makeText(this, "Select The Category", Toast.LENGTH_SHORT).show()
-
-                } else
+                    }
+                } else {
                     Toast.makeText(this, "Enter Product Price", Toast.LENGTH_SHORT).show()
-
-            } else
+                }
+            } else {
                 Toast.makeText(this, "Enter Product name", Toast.LENGTH_SHORT).show()
+            }
+        }
 
-        })
+
 
 
     }
@@ -236,27 +252,16 @@ class AddNewProduct : AppCompatActivity() {
     }
 
 
-    fun applySelectedPhotos(view: View?) {
+    private fun applySelectedPhotos() {
         val sliderItemList: MutableList<SliderItem> = ArrayList()
-        //dummy data
         for (i in 0 until arrayListImages.size) {
             val sliderItem = SliderItem()
             sliderItem.description = "Slider Item $i"
-            sliderItem.imageUrl = arrayListImages[i].toString()
+            sliderItem.imageUrl = arrayListImages[i]
             sliderItemList.add(sliderItem)
         }
         adapter!!.renewItems(sliderItemList as ArrayList<SliderItem>)
     }
 
-//    fun removeLastItem(view: View?) {
-//        if (adapter!!.count - 1 >= 0) adapter!!.deleteItem(adapter!!.count - 1)
-//    }
-//
-//    fun addNewItem(view: View?) {
-//        val sliderItem = SliderItem()
-//        sliderItem.description = "Slider Item Added Manually"
-//        sliderItem.imageUrl =
-//            "https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-//        adapter!!.addItem(sliderItem)
-//    }
+
 }
