@@ -1,13 +1,12 @@
 package com.example.ownerapp.activities
 
 import android.annotation.SuppressLint
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +18,7 @@ import com.example.ownerapp.di.modules.FactoryModule
 import com.example.ownerapp.di.modules.RepositoryModule
 import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
+import kotlinx.android.synthetic.main.branch_list_item.*
 
 class ViewAllBranches : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -52,6 +52,13 @@ class ViewAllBranches : AppCompatActivity() {
             Log.d("hi", "fsbefjs:$it ")
 //            it.clear()
         }
+
+        branchesAdapter.setOnEditClickListener(object : BranchesAdapter.onItemClickedListener {
+            override fun onEditButtonClicked(position: Int) {
+                Toast.makeText(applicationContext, "Clicked!", Toast.LENGTH_SHORT).show()
+
+            }
+        })
     }
 
     private fun init() {

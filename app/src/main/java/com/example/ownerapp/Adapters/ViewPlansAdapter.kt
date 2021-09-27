@@ -35,6 +35,7 @@ class ViewPlansAdapter : ListAdapter<Plan, ViewPlansAdapter.PlansViewHolder>(Dif
                 cardType.text = plan.timetype
                 cardFees.text = plan.fees
             }
+
         }
     }
 

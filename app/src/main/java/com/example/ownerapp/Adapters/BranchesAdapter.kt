@@ -9,6 +9,15 @@ import com.example.ownerapp.data.Branch
 import com.example.ownerapp.databinding.BranchListItemBinding
 
 class BranchesAdapter : ListAdapter<Branch, BranchesAdapter.MyViewHolder>(DiffCallBack()) {
+    private lateinit var mListener: onItemClickedListener
+
+    interface onItemClickedListener {
+        fun onEditButtonClicked(position: Int)
+    }
+
+    fun setOnEditClickListener(listener: onItemClickedListener) {
+        mListener = listener
+    }
 
     inner class MyViewHolder(private val binding: BranchListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -16,9 +25,16 @@ class BranchesAdapter : ListAdapter<Branch, BranchesAdapter.MyViewHolder>(DiffCa
         fun bind(branch: Branch) {
             binding.apply {
                 password.setText(branch.branchPass)
-                hideIt.isPasswordVisibilityToggleEnabled = false
                 branchNameItem.text = branch.branchName
+                hideIt.isPasswordVisibilityToggleEnabled = true
+
                 branchIDItem.text = branch.branchID
+            }
+            binding.apply {
+                editPassword.setOnClickListener {
+                    if (adapterPosition != RecyclerView.NO_POSITION)
+                        mListener.onEditButtonClicked(adapterPosition)
+                }
             }
         }
     }
