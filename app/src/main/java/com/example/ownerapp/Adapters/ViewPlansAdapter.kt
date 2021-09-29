@@ -28,7 +28,7 @@ class ViewPlansAdapter : ListAdapter<Plan, ViewPlansAdapter.PlansViewHolder>(Dif
         RecyclerView.ViewHolder(binding.root) {
         var text = ""
         fun bind(plan: Plan) {
-            text = if (plan.isPt) {
+            text = if (plan.pt) {
                 "Personal Training"
             } else {
                 "Normal"
