@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardViewPlans"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    android:padding="10dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="12dp">
+    app:cardElevation="8dp">
 
     <LinearLayout
+        android:id="@+id/plansLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg1"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/cardPlanName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="15dp"
+            android:fontFamily="@font/montserratsemibold"
             android:text="@string/plan_name"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/cardPlanDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-
-            android:text="@string/description"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/cardPlanDesc"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="15dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:fontFamily="@font/montserratregular"-->
+        <!--            android:text="@string/description"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="18sp" />-->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,7 +46,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="10dp"
-                android:baselineAligned="false"
                 android:weightSum="3">
 
                 <LinearLayout
@@ -58,8 +60,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserratsemibold"
                         android:text="@string/duration"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -68,8 +71,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserratsemibold"
                         android:text="@string/_30"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -85,8 +89,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:text="@string/type"
-                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:text="Type"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -95,8 +100,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:text="@string/normal"
-                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:text="None"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -112,8 +118,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:text="@string/fees"
-                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:text="Fees"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -122,8 +129,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:text="@string/rs_4599"
-                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:text="Rs.4599"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
                 </LinearLayout>
 

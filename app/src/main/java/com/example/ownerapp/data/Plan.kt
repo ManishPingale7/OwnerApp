@@ -5,7 +5,7 @@ data class Plan(
     val desc: String,
     val timeNumber: String,
     val fees: String,
-    val pt:Boolean
+    val pt:Boolean?
 ) {
-    constructor() : this("", "", "", "",false)
+    constructor() : this("", "", "", "",null)
 }
