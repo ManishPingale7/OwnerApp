@@ -1,11 +1,11 @@
 package com.example.ownerapp.data
 
 data class Plan(
-    var name: String,
-    var desc: String,
-    var timeNumber: String,
-    var timetype: String,
-    var fees: String
+    val name: String,
+    val desc: String,
+    val timeNumber: String,
+    val fees: String,
+    val isPt:Boolean
 ) {
-    constructor() : this("", "", "", "", "")
+    constructor() : this("", "", "", "",false)
 }
