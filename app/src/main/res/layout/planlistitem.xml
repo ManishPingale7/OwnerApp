@@ -90,7 +90,7 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/cardType"
+                        android:id="@+id/isPersonal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

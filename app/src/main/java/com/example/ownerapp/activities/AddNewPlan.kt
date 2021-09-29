@@ -1,7 +1,6 @@
 package com.example.ownerapp.activities
 
 import android.content.ContentValues.TAG
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
@@ -9,7 +8,6 @@ import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.R
@@ -26,6 +24,7 @@ class AddNewPlan : AppCompatActivity() {
     private lateinit var component: DaggerFactoryComponent
     lateinit var binding: ActivityAddNewPlanBinding
     var onceClicked = false
+    var isPersonalTraning = false
     var arraylistType = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +40,9 @@ class AddNewPlan : AppCompatActivity() {
 
         Log.d(TAG, "onCreate: ${arraylistType.size}")
 
+        binding.switchPt.setOnCheckedChangeListener { _, isChecked ->
+            isPersonalTraning = isChecked
+        }
         binding.btnConPlan.setOnClickListener {
             val name = binding.planNameEdit.text.toString()
             val desc = binding.descPlanEdit.text.toString()
@@ -55,9 +57,9 @@ class AddNewPlan : AppCompatActivity() {
                             Plan(
                                 name,
                                 desc,
-                                timeNumber,
-                                type,
-                                fees
+                                "$timeNumber $type",
+                                fees,
+                                isPersonalTraning
                             )
                         )
                         onceClicked = true
