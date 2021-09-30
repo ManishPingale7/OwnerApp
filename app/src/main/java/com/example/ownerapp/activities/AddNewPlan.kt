@@ -47,11 +47,15 @@ class AddNewPlan : AppCompatActivity() {
             val name = binding.planNameEdit.text.toString()
             val desc = binding.descPlanEdit.text.toString()
             val timeNumber = binding.numberDays.text.toString()
-            val type = binding.typeTime.text.toString()
+            var type = binding.typeTime.text.toString()
             val fees = binding.feesPlan.text.toString()
 
             if (name.isNotEmpty() && desc.isNotEmpty() && timeNumber.isNotEmpty() && type.isNotEmpty() && fees.isNotEmpty()) {
                 if (arraylistType.contains(type)) {
+                    if (timeNumber.toInt() > 0) {
+                        type += "s"
+                    }
+
                     if (!onceClicked) {
                         viewModel.repository.addNewPlan(
                             Plan(

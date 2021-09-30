@@ -1,6 +1,7 @@
 package com.example.ownerapp.Adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -27,18 +28,23 @@ class ViewPlansAdapter : ListAdapter<Plan, ViewPlansAdapter.PlansViewHolder>(Dif
     inner class PlansViewHolder(val binding: PlanlistitemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         var text = ""
+        var RESULT = View.VISIBLE
         fun bind(plan: Plan) {
-            text = if (plan.pt!!) {
-                "Personal Training"
+            if (plan.pt!!) {
+                text = "PT"
+                RESULT = View.VISIBLE
+
             } else {
-                "Normal"
+                text = "Normal"
+                RESULT = View.INVISIBLE
             }
             binding.apply {
                 cardPlanName.text = plan.name
-               // cardPlanDesc.text = plan.desc
+                // cardPlanDesc.text = plan.desc
                 cardDuration.text = plan.timeNumber
                 isPersonal.text = text
                 cardFees.text = plan.fees
+                badgeGold.visibility = RESULT
             }
 
         }
