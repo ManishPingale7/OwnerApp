@@ -28,14 +28,14 @@ class ViewPlansAdapter : ListAdapter<Plan, ViewPlansAdapter.PlansViewHolder>(Dif
         RecyclerView.ViewHolder(binding.root) {
         var text = ""
         fun bind(plan: Plan) {
-            text = if (plan.isPt) {
+            text = if (plan.pt!!) {
                 "Personal Training"
             } else {
                 "Normal"
             }
             binding.apply {
                 cardPlanName.text = plan.name
-                cardPlanDesc.text = plan.desc
+               // cardPlanDesc.text = plan.desc
                 cardDuration.text = plan.timeNumber
                 isPersonal.text = text
                 cardFees.text = plan.fees

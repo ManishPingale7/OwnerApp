@@ -35,8 +35,8 @@ abstract class BaseRepository(private var contextBase: Context) {
     private val plansRef = fDatabase.getReference(PLANS)
     var storage = FirebaseStorage.getInstance()
     var storageRefProduct: StorageReference = storage.reference
-    val categoryInfo = fDatabase.getReference(Constants.CATEGORYINFO)
-    val productsInfo = fDatabase.getReference(Constants.PRODUCTS)
+    private val categoryInfo = fDatabase.getReference(Constants.CATEGORYINFO)
+    private val productsInfo = fDatabase.getReference(Constants.PRODUCTS)
 
     fun signOut() {
         mAuthBase.signOut()
@@ -57,7 +57,7 @@ abstract class BaseRepository(private var contextBase: Context) {
 
 
     fun fetchBranches(): MutableLiveData<ArrayList<Branch>> {
-        val branches: MutableLiveData<ArrayList<Branch>>? = MutableLiveData<ArrayList<Branch>>()
+        val branches: MutableLiveData<ArrayList<Branch>> = MutableLiveData<ArrayList<Branch>>()
         val tempList = ArrayList<Branch>(10)
         tempList.clear()
         branchesInfoRef.addValueEventListener(object : ValueEventListener {
