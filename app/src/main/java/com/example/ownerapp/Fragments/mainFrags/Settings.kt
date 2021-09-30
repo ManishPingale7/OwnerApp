@@ -26,8 +26,8 @@ class Settings : Fragment() {
     private lateinit var viewModel: MainViewModel
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-    var currentUser: FirebaseUser?=null
-    var mAuth = FirebaseAuth.getInstance()
+    var currentUser: FirebaseUser? = null
+    private var mAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +42,7 @@ class Settings : Fragment() {
         init()
 
         binding.viewAllBranches.setOnClickListener {
-            val intent = Intent(requireContext(), ViewAllBranches::class.java)
-            startActivity(intent)
+            startActivity(Intent(context, ViewAllBranches::class.java))
         }
 
         binding.viewAllProducts.setOnClickListener {
@@ -60,8 +59,10 @@ class Settings : Fragment() {
         binding.viewAllPlans.setOnClickListener {
             viewModel.sendUserToViewPlanActivity()
         }
+
         return binding.root
     }
+
 
     private fun init() {
         val component: DaggerFactoryComponent = DaggerFactoryComponent.builder()
@@ -75,5 +76,6 @@ class Settings : Fragment() {
         currentUser = mAuth.currentUser
 
     }
+
 
 }
