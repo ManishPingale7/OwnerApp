@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".Fragments.mainFrags.Settings">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+
         tools:context=".Fragments.mainFrags.Settings">
 
 
@@ -19,8 +21,11 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="Modifications"
+            android:fontFamily="@font/montserratsemibold"
+
             android:textAlignment="center"
             android:textAllCaps="false"
+
             android:textColor="@color/my_statusbar_color"
             android:textSize="16sp" />
 
@@ -47,6 +52,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="@string/view_all_branches"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -60,6 +67,8 @@
                     android:text="@string/view_your_current_branches"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -86,6 +95,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:layout_marginStart="10dp"
                     android:text="@string/add_new_branch"
                     android:textAlignment="center"
@@ -99,6 +110,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:text="@string/create_your_new_branch"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -131,6 +144,8 @@
                     android:layout_marginStart="10dp"
                     android:text="@string/add_new_plan"
                     android:textAlignment="center"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -140,6 +155,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:text="@string/add_new_plan_for_users"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
@@ -170,6 +187,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/montserratsemibold"
 
                     android:text="@string/plans"
                     android:textAlignment="center"
@@ -184,6 +202,8 @@
                     android:layout_marginTop="5dp"
 
                     android:text="@string/view_all_plans"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -191,6 +211,7 @@
 
             </LinearLayout>
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -199,6 +220,8 @@
             android:text="Product Dashbord"
             android:textAlignment="center"
             android:textAllCaps="false"
+            android:fontFamily="@font/montserratsemibold"
+
             android:textColor="@color/my_statusbar_color"
             android:textSize="16sp" />
         <LinearLayout
@@ -223,6 +246,8 @@
                     android:layout_marginStart="10dp"
 
                     android:text="@string/products"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -233,6 +258,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserratsemibold"
 
                     android:text="@string/view_all_products"
                     android:textAlignment="textStart"
@@ -264,6 +290,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="@string/add_product_category"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -274,6 +302,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:text="@string/add_new_product_category"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
@@ -290,6 +320,8 @@
             android:layout_marginTop="20dp"
 
             android:text="@string/business"
+            android:fontFamily="@font/montserratsemibold"
+
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/my_statusbar_color"
@@ -316,6 +348,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+
 
                     android:text="@string/view_business_performance"
                     android:textAlignment="center"
@@ -329,6 +363,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserratsemibold"
 
                     android:text="@string/view_stats"
                     android:textAlignment="textStart"
@@ -365,6 +400,8 @@
                     android:text="@string/view_specific_branch_performance"
                     android:textAlignment="center"
                     android:textAllCaps="false"
+                    android:fontFamily="@font/montserratsemibold"
+
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -373,6 +410,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserratsemibold"
+
 
                     android:text="@string/branch_income"
                     android:textAlignment="textStart"
@@ -404,6 +443,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+
 
                     android:text="@string/view_active_inactive_users"
                     android:textAlignment="center"
@@ -416,11 +457,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-
                     android:text="@string/view_your_users"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/montserratsemibold"
                     android:textSize="12sp" />
 
             </LinearLayout>

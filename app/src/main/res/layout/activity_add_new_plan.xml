@@ -181,18 +181,16 @@
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_con_plan"
-            android:layout_width="match_parent"
+
+        <include
+            android:id="@+id/btn_con_plan2"
+            layout="@layout/progress_btn_layout"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/btn_circular"
-            android:text="@string/create"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:layout_width="match_parent"
+            />
     </LinearLayout>
 
 

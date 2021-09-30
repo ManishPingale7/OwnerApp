@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class PlanRepository(private var contextPlan: Context): BaseRepository(contextPlan) {
-    var mAuthPlan=FirebaseAuth.getInstance()
     private val fDatabase = FirebaseDatabase.getInstance()
     private val planRef = fDatabase.getReference(Constants.PLAN)
 

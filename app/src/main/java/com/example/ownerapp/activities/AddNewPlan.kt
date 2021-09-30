@@ -2,7 +2,10 @@ package com.example.ownerapp.activities
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ArrayAdapter
@@ -11,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.R
+import com.example.ownerapp.Utils.ProgressBtn
 import com.example.ownerapp.data.Plan
 import com.example.ownerapp.databinding.ActivityAddNewPlanBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
@@ -43,7 +47,12 @@ class AddNewPlan : AppCompatActivity() {
         binding.switchPt.setOnCheckedChangeListener { _, isChecked ->
             isPersonalTraning = isChecked
         }
-        binding.btnConPlan.setOnClickListener {
+
+
+        val view = findViewById<View>(R.id.btn_con_plan2)
+
+        view.setOnClickListener {
+            val progressBtn = ProgressBtn(this, view)
             val name = binding.planNameEdit.text.toString()
             val desc = binding.descPlanEdit.text.toString()
             val timeNumber = binding.numberDays.text.toString()
@@ -57,6 +66,7 @@ class AddNewPlan : AppCompatActivity() {
                     }
 
                     if (!onceClicked) {
+                        progressBtn.buttonActivated()
                         viewModel.repository.addNewPlan(
                             Plan(
                                 name,
@@ -67,8 +77,11 @@ class AddNewPlan : AppCompatActivity() {
                             )
                         )
                         onceClicked = true
-                        viewModel.repository.sendUserToMainActivity()
-                        finish()
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            progressBtn.buttonfinished()
+                            viewModel.repository.sendUserToMainActivity()
+                            finish()
+                        }, 3000)
                     }
                 } else {
                     Toast.makeText(this, "Wrong Duration Type", Toast.LENGTH_SHORT).show()
