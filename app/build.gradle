@@ -92,4 +92,7 @@ dependencies {
 
     implementation 'com.ebanx:swipe-button:0.4.0'
 
+    //Biometric
+    implementation 'androidx.biometric:biometric:1.2.0-alpha03'
+
 }

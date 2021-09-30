@@ -62,20 +62,20 @@ abstract class BaseRepository(private var contextBase: Context) {
         tempList.clear()
         branchesInfoRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                branches?.value?.clear()
+                branches.value?.clear()
                 dataSnapshot.children.forEach {
                     tempList.add(it.getValue(Branch::class.java)!!)
                     Log.d("TAG", "onDataChange: $tempList")
                 }
-                branches?.value = tempList
-                Log.d("TAG", "onDataChange:${branches?.value} ")
+                branches.value = tempList
+                Log.d("TAG", "onDataChange:${branches.value} ")
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.d("HENLO", "onCancelled: $error")
             }
         })
-        return branches!!
+        return branches
     }
 
     fun sendUserToViewPlanActivity() {
@@ -134,7 +134,7 @@ abstract class BaseRepository(private var contextBase: Context) {
     fun addProduct(product: Product) {
         val key = productsInfo.push().key.toString()
 
-        product.key=key
+        product.key = key
         Log.d(TAG, "addProduct: Product $product\n\n")
         productsInfo.child(product.category.trim()).child(key).setValue(product)
             .addOnSuccessListener {
