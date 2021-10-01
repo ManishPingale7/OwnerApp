@@ -84,6 +84,8 @@
     <string name="category">Category</string>
     <string name="enter_product_category">Enter Product Category</string>
     <string name="add">Add</string>
+    <string name="has_flavours">Has Flavours</string>
+    <string name="add_flavour">Add Flavour</string>
 
     <string-array name="durationType">
         <item>Day</item>

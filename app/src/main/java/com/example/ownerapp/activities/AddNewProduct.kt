@@ -267,7 +267,6 @@ class AddNewProduct : AppCompatActivity() {
     private fun addChipToGroup(txt: String, chipGroup: ChipGroup) {
         val chip = Chip(this)
         chip.text = txt
-//        chip.chipIcon = ContextCompat.getDrawable(requireContext(), baseline_person_black_18)
         chip.isCloseIconEnabled = true
         chip.setChipIconTintResource(android.R.color.holo_blue_light)
         chip.isClickable = false
@@ -280,8 +279,6 @@ class AddNewProduct : AppCompatActivity() {
     private fun printChipsValue(chipGroup: ChipGroup) {
         for (i in 0 until chipGroup.childCount) {
             val chipObj = chipGroup.getChildAt(i) as Chip
-            Log.d("ChipstextMain", chipObj.text.toString())
-
         }
     }
 
@@ -289,7 +286,6 @@ class AddNewProduct : AppCompatActivity() {
         flavoursChips.clear()
         for (i in 0 until chipGroup.childCount) {
             val chipObj = chipGroup.getChildAt(i) as Chip
-            Log.d("ChipstextMain", chipObj.text.toString())
             flavoursChips.add(chipObj.text.toString())
         }
     }
