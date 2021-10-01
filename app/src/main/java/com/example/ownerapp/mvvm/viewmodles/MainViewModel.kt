@@ -3,6 +3,7 @@ package com.example.ownerapp.mvvm.viewmodles
 import androidx.lifecycle.ViewModel
 import com.example.ownerapp.data.Branch
 import com.example.ownerapp.data.Product
+import com.example.ownerapp.data.ProductCategory
 import com.example.ownerapp.mvvm.repository.MainRepository
 
 class MainViewModel constructor(var repository: MainRepository) : ViewModel() {

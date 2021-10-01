@@ -15,7 +15,6 @@ import com.example.ownerapp.activities.ViewPlan
 import com.example.ownerapp.data.Branch
 import com.example.ownerapp.data.Plan
 import com.example.ownerapp.data.Product
-import com.example.ownerapp.data.ProductCategory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -29,7 +28,7 @@ abstract class BaseRepository(private var contextBase: Context) {
 
     private var mAuthBase = FirebaseAuth.getInstance()
     var curUser = mAuthBase.currentUser
-
+    val categoryList = MutableLiveData<ArrayList<String>>()
     private val fDatabase = FirebaseDatabase.getInstance()
     private val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
     private val plansRef = fDatabase.getReference(PLANS)
@@ -84,28 +83,24 @@ abstract class BaseRepository(private var contextBase: Context) {
         }
     }
 
-    fun fetchAllCategories(): MutableLiveData<ArrayList<ProductCategory>> {
-        val categories: MutableLiveData<ArrayList<ProductCategory>> =
-            MutableLiveData<ArrayList<ProductCategory>>()
-        val tempList = ArrayList<ProductCategory>(20)
-        categoryInfo.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                categories.value?.clear()
-                dataSnapshot.children.forEach {
-                    Log.d(TAG, "onDataChange: $it")
-                    tempList.add(it.getValue(ProductCategory::class.java)!!)
-                    Log.d("TAG", "onDataChange: $tempList")
+
+
+    fun fetchAllCategoriesNames(): MutableLiveData<ArrayList<String>> {
+        val list = ArrayList<String>()
+        categoryInfo.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dataSnapshot: DataSnapshot in snapshot.children) {
+                    list.add(dataSnapshot.value.toString())
                 }
-                categories.value = tempList
-                Log.d("TAG", "onDataChange:${categories.value} ")
+                categoryList.value = list
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d("HENLO", "onCancelled: $error")
+                Log.d(TAG, "onCancelled: $error")
             }
-        })
 
-        return categories
+        })
+        return categoryList
     }
 
     fun fetchAllPlans(): MutableLiveData<ArrayList<Plan>> {
@@ -170,7 +165,6 @@ abstract class BaseRepository(private var contextBase: Context) {
 
 
     fun addCategory(category: String) {
-
         val key = categoryInfo.push().key.toString()
         categoryInfo.child(key).setValue(category)
     }

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.R
 import com.example.ownerapp.activities.AddNewProduct
+import com.example.ownerapp.data.ProductCategory
 import com.example.ownerapp.databinding.FragmentProductsBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -87,7 +88,7 @@ class Products : Fragment() {
                 setPositiveButton("Add") { _, _ ->
                     val category = editText.text.toString()
                     if (category.isNotEmpty())
-                        viewModel.addCategory(category)
+                        viewModel.repository.addCategory(category)
                 }
                 setNegativeButton("Cancel") { dialog, _ ->
                     dialog.dismiss()

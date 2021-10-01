@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -13,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
 import androidx.appcompat.app.AlertDialog
@@ -32,9 +32,6 @@ import com.example.ownerapp.di.modules.RepositoryModule
 import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
-import com.smarteist.autoimageslider.SliderAnimations
-import com.smarteist.autoimageslider.SliderView
 
 
 class AddNewProduct : AppCompatActivity() {
@@ -44,6 +41,7 @@ class AddNewProduct : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private lateinit var component: DaggerFactoryComponent
     var position = 0
+    private var categories = ArrayList<String>()
     private var adapter: ImageSliderAdapter? = null
 
     var getContent = registerForActivityResult(GetMultipleContents()) { it ->
@@ -68,16 +66,21 @@ class AddNewProduct : AppCompatActivity() {
         setContentView(binding.root)
 
         init()
-        initSlider()
 
-        binding.sliderView.setOnIndicatorClickListener {
-            Log.i(
-                "GGG",
-                "onIndicatorClicked: " + binding.sliderView.currentPagePosition
+
+
+
+
+        viewModel.repository.fetchAllCategoriesNames().observe(this,{
+            val arrayAdapter = ArrayAdapter(
+                this, R.layout.dropdownitem,
+                it.toArray()
+
             )
-        }
-
-
+            categories = it
+            arrayAdapter.notifyDataSetChanged()
+            binding.productCategory.setAdapter(arrayAdapter)
+        })
 
         binding.pickImages.setOnClickListener {
             if (ActivityCompat.checkSelfPermission(
@@ -108,7 +111,7 @@ class AddNewProduct : AppCompatActivity() {
 
             if (name.isNotEmpty()) {
                 if (price.isNotEmpty()) {
-                    if (category.isNotEmpty()) {
+                    if (category.isNotEmpty() && categories.contains(category)) {
                         if (desc.isNotEmpty()) {
                             if (arrayListImages.size > 0) {
                                 //Adding Products here
@@ -133,7 +136,7 @@ class AddNewProduct : AppCompatActivity() {
                             Toast.makeText(this, "Enter Description", Toast.LENGTH_SHORT).show()
                         }
                     } else {
-                        Toast.makeText(this, "Select The Category", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Enter Valid Category", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Toast.makeText(this, "Enter Product Price", Toast.LENGTH_SHORT).show()
@@ -237,19 +240,7 @@ class AddNewProduct : AppCompatActivity() {
     }
 
 
-    private fun initSlider() {
-        adapter = ImageSliderAdapter()
-        adapter!!.setContext(this)
-        binding.sliderView.setSliderAdapter(adapter!!)
-        binding.sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)//set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        binding.sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
-        binding.sliderView.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
-        binding.sliderView.indicatorSelectedColor = Color.WHITE
-        binding.sliderView.indicatorUnselectedColor = Color.GRAY
-        binding.sliderView.scrollTimeInSec = 3
-        binding.sliderView.isAutoCycle = true
-        binding.sliderView.startAutoCycle()
-    }
+
 
 
     private fun applySelectedPhotos() {
