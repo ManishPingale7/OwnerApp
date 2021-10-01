@@ -9,12 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.R
+import com.example.ownerapp.activities.AddNewCategory
 import com.example.ownerapp.activities.AddNewProduct
-import com.example.ownerapp.data.ProductCategory
 import com.example.ownerapp.databinding.FragmentProductsBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -78,23 +77,27 @@ class Products : Fragment() {
 
         }
         binding.fabAddCategory.setOnClickListener {
-            val builder = android.app.AlertDialog.Builder(requireContext())
-            val inflater = layoutInflater
-            val dialogLay = inflater.inflate(R.layout.edittextlay, null)
-            val editText = dialogLay.findViewById<EditText>(R.id.category_edit)
+//            val builder = android.app.AlertDialog.Builder(requireContext())
+//            val inflater = layoutInflater
+//            val dialogLay = inflater.inflate(R.layout.edittextlay, null)
+//            val editText = dialogLay.findViewById<EditText>(R.id.category_edit)
+//
+//            with(builder) {
+//                setTitle("Add Product Category")
+//                setPositiveButton("Add") { _, _ ->
+//                    val category = editText.text.toString()
+//                    if (category.isNotEmpty())
+//                        viewModel.repository.addCategory(category)
+//                }
+//                setNegativeButton("Cancel") { dialog, _ ->
+//                    dialog.dismiss()
+//                }
+//                setView(dialogLay)
+//                show()
+//            }
 
-            with(builder) {
-                setTitle("Add Product Category")
-                setPositiveButton("Add") { _, _ ->
-                    val category = editText.text.toString()
-                    if (category.isNotEmpty())
-                        viewModel.repository.addCategory(category)
-                }
-                setNegativeButton("Cancel") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                setView(dialogLay)
-                show()
+            Intent(requireContext(), AddNewCategory::class.java).also {
+                startActivity(it)
             }
         }
 

@@ -9,12 +9,14 @@ import androidx.core.net.toUri
 import androidx.lifecycle.MutableLiveData
 import com.example.ownerapp.Utils.Constants
 import com.example.ownerapp.Utils.Constants.PLANS
+import com.example.ownerapp.Utils.Constants.STORAGECATEGORIES
 import com.example.ownerapp.activities.LoginActivity
 import com.example.ownerapp.activities.MainActivity
 import com.example.ownerapp.activities.ViewPlan
 import com.example.ownerapp.data.Branch
 import com.example.ownerapp.data.Plan
 import com.example.ownerapp.data.Product
+import com.example.ownerapp.data.ProductCategory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -27,14 +29,16 @@ import com.google.firebase.storage.StorageReference
 abstract class BaseRepository(private var contextBase: Context) {
 
     private var mAuthBase = FirebaseAuth.getInstance()
-    var curUser = mAuthBase.currentUser
     val categoryList = MutableLiveData<ArrayList<String>>()
     private val fDatabase = FirebaseDatabase.getInstance()
     private val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
     private val plansRef = fDatabase.getReference(PLANS)
     var storage = FirebaseStorage.getInstance()
     var storageRefProduct: StorageReference = storage.reference
+    var storageRefCategory: StorageReference = storage.reference
     private val categoryInfo = fDatabase.getReference(Constants.CATEGORYINFO)
+    private val categoryNames = fDatabase.getReference(Constants.CATEGORYNAMES)
+
     private val productsInfo = fDatabase.getReference(Constants.PRODUCTS)
 
     fun signOut() {
@@ -87,7 +91,7 @@ abstract class BaseRepository(private var contextBase: Context) {
 
     fun fetchAllCategoriesNames(): MutableLiveData<ArrayList<String>> {
         val list = ArrayList<String>()
-        categoryInfo.addListenerForSingleValueEvent(object : ValueEventListener {
+        categoryNames.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (dataSnapshot: DataSnapshot in snapshot.children) {
                     list.add(dataSnapshot.value.toString())
@@ -164,10 +168,26 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
 
-    fun addCategory(category: String) {
+    fun addCategory(category: ProductCategory) {
         val key = categoryInfo.push().key.toString()
         categoryInfo.child(key).setValue(category)
-    }
+        categoryNames.child(key).setValue(category.name)
 
+        val ref=storageRefCategory.child(STORAGECATEGORIES).child(key)
+
+
+            ref.putFile(category.image.toUri())
+            .addOnCompleteListener {
+                if (it.isSuccessful)
+                    ref.downloadUrl.addOnSuccessListener { it2 ->
+                        Toast.makeText(contextBase, "Done", Toast.LENGTH_SHORT).show()
+                        categoryInfo.child(key).child("image").setValue(it2.toString())
+                    }
+                else {
+                    Log.d(TAG, "addCategory: Failed to add ${it.exception}")
+                    Toast.makeText(contextBase, "Failed To Upload", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
 
 }
