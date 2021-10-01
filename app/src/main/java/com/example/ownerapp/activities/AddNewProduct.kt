@@ -12,9 +12,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
 import androidx.appcompat.app.AlertDialog
@@ -74,9 +72,9 @@ class AddNewProduct : AppCompatActivity() {
         binding.switchflavour.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 Log.d(TAG, "onCreate: Checked")
-                binding.chipGroup2HorizontalView.visibility = View.VISIBLE
+                binding.flavoursLay.visibility = View.VISIBLE
             } else {
-                binding.chipGroup2HorizontalView.visibility = View.GONE
+                binding.flavoursLay.visibility = View.GONE
                 Log.d(TAG, "onCreate: Not Checked")
 
             }
@@ -85,20 +83,16 @@ class AddNewProduct : AppCompatActivity() {
 
 
 
-
-
-        binding.etValue.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                val txtVal = v.text
-                if (!txtVal.isNullOrEmpty()) {
-                    addChipToGroup(txtVal.toString(), binding.chipGroup2)
-                    binding.etValue.setText("")
-                }
-
-                return@OnEditorActionListener true
+        binding.addFlavour.setOnClickListener {
+            val txtVal = binding.flavouredit.text
+            if (!txtVal.isNullOrEmpty()) {
+                addChipToGroup(txtVal.toString(), binding.chipGroup2)
+                binding.flavouredit.setText("")
             }
-            false
-        })
+        }
+
+
+
 
         viewModel.repository.fetchAllCategoriesNames().observe(this, {
             val arrayAdapter = ArrayAdapter(
@@ -123,10 +117,6 @@ class AddNewProduct : AppCompatActivity() {
                 checkForPermissions()
             }
         }
-
-//        binding.submitProduct.setOnStateChangeListener {
-//
-//        }
 
         val view = findViewById<View>(com.example.ownerapp.R.id.submitProduct2)
 

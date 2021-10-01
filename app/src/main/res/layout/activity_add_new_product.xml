@@ -55,6 +55,7 @@
             android:orientation="horizontal"
             android:weightSum="100"
             android:layout_marginTop="20dp"
+            android:baselineAligned="false"
 
             >
             <com.google.android.material.textfield.TextInputLayout
@@ -170,66 +171,86 @@
 
         </RelativeLayout>
 
-
-        <HorizontalScrollView
-            android:id="@+id/chipGroup2HorizontalView"
+        <LinearLayout
+            android:id="@+id/flavoursLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="16dp"
-            android:scrollbars="none"
-
-            android:visibility="gone"
-            app:layout_constraintVertical_bias="0.62">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Flavours: " />
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:duplicateParentState="false">
-
-                </com.google.android.material.chip.ChipGroup>
-
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:layout_marginStart="40dp"
+                >
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout"
-                    android:layout_width="100dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_weight="80"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:minWidth="32dp"
-                    android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/chipGroup2HorizontalView"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_min="32dp">
+                    android:id="@+id/flavoureditLay"
+                    android:hint="Add Flavour"
+                    android:textAllCaps="false"
+                    >
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/etValue"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/flavouredit"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:imeOptions="actionDone"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/TextAppearance.MaterialComponents.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="10"
+                    android:id="@+id/addFlavour"
+                    android:drawableStart="@drawable/plus"
+                    android:text="@string/add"
+                    android:drawableTint="@color/blue"
+                    android:textAllCaps="false"
+                    tools:targetApi="m" />
 
             </LinearLayout>
 
 
-        </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:id="@+id/chipGroup2HorizontalView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:scrollbars="none"
+
+                android:visibility="visible"
+                app:layout_constraintVertical_bias="0.62">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroup2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:duplicateParentState="false">
+
+                    </com.google.android.material.chip.ChipGroup>
+
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+        </LinearLayout>
 
 
         <include

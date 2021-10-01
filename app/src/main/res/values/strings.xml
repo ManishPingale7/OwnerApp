@@ -83,6 +83,7 @@
     <string name="next">next</string>
     <string name="category">Category</string>
     <string name="enter_product_category">Enter Product Category</string>
+    <string name="add">Add</string>
 
     <string-array name="durationType">
         <item>Day</item>
