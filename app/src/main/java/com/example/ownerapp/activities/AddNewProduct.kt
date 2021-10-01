@@ -12,7 +12,9 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
 import androidx.appcompat.app.AlertDialog
@@ -21,7 +23,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.Adapters.ImageSliderAdapter
-import com.example.ownerapp.R
 import com.example.ownerapp.Utils.ProgressBtn
 import com.example.ownerapp.data.Product
 import com.example.ownerapp.data.SliderItem
@@ -31,6 +32,8 @@ import com.example.ownerapp.di.modules.FactoryModule
 import com.example.ownerapp.di.modules.RepositoryModule
 import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -40,13 +43,13 @@ class AddNewProduct : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var viewModel: MainViewModel
     private lateinit var component: DaggerFactoryComponent
-    var position = 0
+    private var position = 0
     private var categories = ArrayList<String>()
+    private var flavoursChips = ArrayList<String>()
     private var adapter: ImageSliderAdapter? = null
 
     var getContent = registerForActivityResult(GetMultipleContents()) { it ->
         binding.ImageLay.visibility = View.VISIBLE
-
         arrayListImages.clear()
         it.forEach {
             it?.let { it1 ->
@@ -68,12 +71,38 @@ class AddNewProduct : AppCompatActivity() {
         init()
 
 
+        binding.switchflavour.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                Log.d(TAG, "onCreate: Checked")
+                binding.chipGroup2HorizontalView.visibility = View.VISIBLE
+            } else {
+                binding.chipGroup2HorizontalView.visibility = View.GONE
+                Log.d(TAG, "onCreate: Not Checked")
+
+            }
+        }
 
 
 
-        viewModel.repository.fetchAllCategoriesNames().observe(this,{
+
+
+
+        binding.etValue.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                val txtVal = v.text
+                if (!txtVal.isNullOrEmpty()) {
+                    addChipToGroup(txtVal.toString(), binding.chipGroup2)
+                    binding.etValue.setText("")
+                }
+
+                return@OnEditorActionListener true
+            }
+            false
+        })
+
+        viewModel.repository.fetchAllCategoriesNames().observe(this, {
             val arrayAdapter = ArrayAdapter(
-                this, R.layout.dropdownitem,
+                this, com.example.ownerapp.R.layout.dropdownitem,
                 it.toArray()
 
             )
@@ -99,7 +128,7 @@ class AddNewProduct : AppCompatActivity() {
 //
 //        }
 
-        val view = findViewById<View>(R.id.submitProduct2)
+        val view = findViewById<View>(com.example.ownerapp.R.id.submitProduct2)
 
         view.setOnClickListener {
             val progressBtn = ProgressBtn(this, view)
@@ -107,6 +136,8 @@ class AddNewProduct : AppCompatActivity() {
             val price = binding.productPrice.text.toString()
             val category = binding.productCategory.text.toString()
             val desc = binding.productDesc.text.toString()
+
+            addChipsToArray(binding.chipGroup2)
 
 
             if (name.isNotEmpty()) {
@@ -116,7 +147,7 @@ class AddNewProduct : AppCompatActivity() {
                             if (arrayListImages.size > 0) {
                                 //Adding Products here
                                 progressBtn.buttonActivated()
-                                val product = Product(name, desc, price, category, arrayListImages)
+                                val product = Product(name, desc, price, category, arrayListImages,flavoursChips)
                                 viewModel.addProduct(product)
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     progressBtn.buttonfinished()
@@ -227,7 +258,8 @@ class AddNewProduct : AppCompatActivity() {
         val window: Window = this.window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.my_statusbar_color)
+        window.statusBarColor =
+            ContextCompat.getColor(this, com.example.ownerapp.R.color.my_statusbar_color)
 
         component = DaggerFactoryComponent.builder()
             .repositoryModule(RepositoryModule(this))
@@ -236,11 +268,41 @@ class AddNewProduct : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
+        adapter= ImageSliderAdapter()
+        adapter!!.setContext(this)
 
     }
 
 
+    private fun addChipToGroup(txt: String, chipGroup: ChipGroup) {
+        val chip = Chip(this)
+        chip.text = txt
+//        chip.chipIcon = ContextCompat.getDrawable(requireContext(), baseline_person_black_18)
+        chip.isCloseIconEnabled = true
+        chip.setChipIconTintResource(android.R.color.holo_blue_light)
+        chip.isClickable = false
+        chip.isCheckable = false
+        chipGroup.addView(chip as View)
+        chip.setOnCloseIconClickListener { chipGroup.removeView(chip as View) }
+        printChipsValue(chipGroup)
+    }
 
+    private fun printChipsValue(chipGroup: ChipGroup) {
+        for (i in 0 until chipGroup.childCount) {
+            val chipObj = chipGroup.getChildAt(i) as Chip
+            Log.d("ChipstextMain", chipObj.text.toString())
+
+        }
+    }
+
+    private fun addChipsToArray(chipGroup: ChipGroup) {
+        flavoursChips.clear()
+        for (i in 0 until chipGroup.childCount) {
+            val chipObj = chipGroup.getChildAt(i) as Chip
+            Log.d("ChipstextMain", chipObj.text.toString())
+            flavoursChips.add(chipObj.text.toString())
+        }
+    }
 
 
     private fun applySelectedPhotos() {

@@ -141,7 +141,7 @@
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            style="@style/TextAppearance.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/pickImages"
@@ -153,30 +153,83 @@
             android:layout_gravity="start"
             android:textAllCaps="false" />
 
-<!--        <com.ebanx.swipebtn.SwipeButton-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:id="@+id/submitProduct"-->
-<!--            android:text="@string/continuestr"-->
-<!--            android:layout_marginStart="40dp"-->
-<!--            android:layout_marginEnd="40dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_gravity="start"-->
-<!--            android:textAllCaps="true"-->
-<!--            app:button_background="@drawable/shape_button"-->
-<!--            app:button_bottom_padding="20dp"-->
-<!--            app:button_image_disabled="@drawable/ic_arrow_forward"-->
-<!--            app:button_image_enabled="@drawable/ic_check"-->
-<!--            app:button_left_padding="20dp"-->
-<!--            app:button_right_padding="20dp"-->
-<!--            app:button_top_padding="20dp"-->
-<!--            app:inner_text="Add Product"-->
-<!--            app:inner_text_background="@drawable/shape_background"-->
-<!--            app:inner_text_bottom_padding="16dp"-->
-<!--            app:inner_text_color="#fff"-->
-<!--            app:inner_text_size="18sp"-->
-<!--            app:inner_text_top_padding="16dp" />-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchflavour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="40dp"
+                android:checked="false"
+                android:text="Has Flavours" />
+
+        </RelativeLayout>
+
+
+        <HorizontalScrollView
+            android:id="@+id/chipGroup2HorizontalView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:scrollbars="none"
+
+            android:visibility="gone"
+            app:layout_constraintVertical_bias="0.62">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Flavours: " />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:duplicateParentState="false">
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:minWidth="32dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/chipGroup2HorizontalView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_min="32dp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:imeOptions="actionDone"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
 
 
         <include
@@ -186,8 +239,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="40dp"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            />
+            android:layout_width="match_parent" />
 
 
     </LinearLayout>
