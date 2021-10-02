@@ -174,8 +174,6 @@ abstract class BaseRepository(private var contextBase: Context) {
         categoryNames.child(key).setValue(category.name)
 
         val ref=storageRefCategory.child(STORAGECATEGORIES).child(key)
-
-
             ref.putFile(category.image.toUri())
             .addOnCompleteListener {
                 if (it.isSuccessful)

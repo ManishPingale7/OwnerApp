@@ -29,6 +29,7 @@ class AddNewCategory : AppCompatActivity() {
     var imageUri: Uri? = null
 
     var getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { it ->
+
         Glide.with(this)
             .load(it)
             .fitCenter()

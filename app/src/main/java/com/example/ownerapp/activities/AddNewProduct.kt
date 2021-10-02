@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -33,6 +34,9 @@ import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
+import com.smarteist.autoimageslider.SliderAnimations
+import com.smarteist.autoimageslider.SliderView
 
 
 class AddNewProduct : AppCompatActivity() {
@@ -258,8 +262,9 @@ class AddNewProduct : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
-        adapter= ImageSliderAdapter()
-        adapter!!.setContext(this)
+
+
+        initSlider()
 
     }
 
@@ -302,5 +307,18 @@ class AddNewProduct : AppCompatActivity() {
         adapter!!.renewItems(sliderItemList as ArrayList<SliderItem>)
     }
 
+    private fun initSlider() {
+        adapter = ImageSliderAdapter()
+        adapter!!.setContext(this)
+        binding.sliderView.setSliderAdapter(adapter!!)
+        binding.sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)//set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        binding.sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+        binding.sliderView.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
+        binding.sliderView.indicatorSelectedColor = Color.WHITE
+        binding.sliderView.indicatorUnselectedColor = Color.GRAY
+        binding.sliderView.scrollTimeInSec = 3
+        binding.sliderView.isAutoCycle = true
+        binding.sliderView.startAutoCycle()
+    }
 
 }
