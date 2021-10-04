@@ -91,7 +91,8 @@
                     android:id="@+id/productCategory"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text">
+                    android:inputType="text"
+                    tools:ignore="LabelFor">
 
                 </AutoCompleteTextView>
             </com.google.android.material.textfield.TextInputLayout>
@@ -106,20 +107,18 @@
             android:id="@+id/ImageLay"
             android:visibility="gone"
             >
+
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="6dp"
                 android:layout_margin="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/carViewHolder">
+                android:visibility="visible">
+
                 <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/sliderView"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
                     app:sliderAnimationDuration="600"
                     app:sliderAutoCycleDirection="back_and_forth"
                     app:sliderAutoCycleEnabled="true"
@@ -132,11 +131,10 @@
                     app:sliderIndicatorSelectedColor="#5A5A5A"
                     app:sliderIndicatorUnselectedColor="#FFF"
                     app:sliderScrollTimeInSec="1"
-                    app:sliderStartAutoCycle="true" />
+                    app:sliderStartAutoCycle="true"
+                    android:visibility="visible"/>
 
             </androidx.cardview.widget.CardView>
-
-
 
 
         </RelativeLayout>
@@ -152,14 +150,13 @@
             android:drawableTint="@color/blue"
             android:layout_marginTop="20dp"
             android:layout_gravity="start"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            tools:targetApi="m" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switchflavour"
                 android:layout_width="wrap_content"
@@ -167,7 +164,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="40dp"
                 android:checked="false"
-                android:text="Has Flavours" />
+                android:text="@string/has_flavours" />
 
         </RelativeLayout>
 
@@ -191,10 +188,9 @@
                     android:layout_weight="80"
                     android:layout_height="wrap_content"
                     android:id="@+id/flavoureditLay"
-                    android:hint="Add Flavour"
+                    android:hint="@string/add_flavour"
                     android:textAllCaps="false"
                     >
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/flavouredit"
                         android:layout_width="match_parent"
@@ -215,7 +211,6 @@
                     tools:targetApi="m" />
 
             </LinearLayout>
-
 
 
             <HorizontalScrollView
@@ -263,6 +258,9 @@
             android:layout_width="match_parent" />
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
     </LinearLayout>
 
 

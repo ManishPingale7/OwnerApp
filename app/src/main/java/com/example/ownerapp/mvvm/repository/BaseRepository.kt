@@ -9,12 +9,14 @@ import androidx.core.net.toUri
 import androidx.lifecycle.MutableLiveData
 import com.example.ownerapp.Utils.Constants
 import com.example.ownerapp.Utils.Constants.PLANS
+import com.example.ownerapp.Utils.Constants.STORAGECATEGORIES
 import com.example.ownerapp.activities.LoginActivity
 import com.example.ownerapp.activities.MainActivity
 import com.example.ownerapp.activities.ViewPlan
 import com.example.ownerapp.data.Branch
 import com.example.ownerapp.data.Plan
 import com.example.ownerapp.data.Product
+import com.example.ownerapp.data.ProductCategory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,19 +25,24 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
+
 abstract class BaseRepository(private var contextBase: Context) {
 
     private var mAuthBase = FirebaseAuth.getInstance()
-    var curUser = mAuthBase.currentUser
     val categoryList = MutableLiveData<ArrayList<String>>()
+
+    var categories = MutableLiveData<ArrayList<ProductCategory>>()
+
     private val fDatabase = FirebaseDatabase.getInstance()
     private val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
     private val plansRef = fDatabase.getReference(PLANS)
     var storage = FirebaseStorage.getInstance()
     var storageRefProduct: StorageReference = storage.reference
+    var storageRefCategory: StorageReference = storage.reference
     private val categoryInfo = fDatabase.getReference(Constants.CATEGORYINFO)
-    private val productsInfo = fDatabase.getReference(Constants.PRODUCTS)
+    private val categoryNames = fDatabase.getReference(Constants.CATEGORYNAMES)
 
+    private val productsInfo = fDatabase.getReference(Constants.PRODUCTS)
 
     fun signOut() {
         mAuthBase.signOut()
@@ -84,9 +91,10 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
 
+
     fun fetchAllCategoriesNames(): MutableLiveData<ArrayList<String>> {
         val list = ArrayList<String>()
-        categoryInfo.addListenerForSingleValueEvent(object : ValueEventListener {
+        categoryNames.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (dataSnapshot: DataSnapshot in snapshot.children) {
                     list.add(dataSnapshot.value.toString())
@@ -101,6 +109,28 @@ abstract class BaseRepository(private var contextBase: Context) {
         })
         return categoryList
     }
+
+    fun getCategoriesInfo(): MutableLiveData<ArrayList<ProductCategory>> {
+        val tempList = ArrayList<ProductCategory>(20)
+
+        categoryInfo.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                categories.value?.clear()
+                dataSnapshot.children.forEach {
+                    Log.d(TAG, "onDataChange: $it")
+                    tempList.add(it.getValue(ProductCategory::class.java)!!)
+                }
+                categories.value = tempList
+                Log.d(TAG, "onDataChange:${categories.value} ")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(TAG, "onCancelled: $error")
+            }
+        })
+        return categories
+    }
+
 
     fun fetchAllPlans(): MutableLiveData<ArrayList<Plan>> {
         val plans: MutableLiveData<ArrayList<Plan>> = MutableLiveData<ArrayList<Plan>>()
@@ -132,8 +162,7 @@ abstract class BaseRepository(private var contextBase: Context) {
         Log.d(TAG, "addProduct: Product $product\n\n")
         productsInfo.child(product.category.trim()).child(key).setValue(product)
             .addOnSuccessListener {
-                Toast.makeText(contextBase, "Product Added Successfully", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(contextBase, "Product Added Successfully", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
                 Toast.makeText(contextBase, "Try Again later", Toast.LENGTH_SHORT).show()
             }
@@ -145,8 +174,7 @@ abstract class BaseRepository(private var contextBase: Context) {
                 ref.downloadUrl.addOnSuccessListener {
                     product.productImages[i] = it.toString()
                     Log.d(TAG, "addProduct: Download URL=${product.productImages[i]}")
-                    productsInfo.child(product.category.trim()).child(key)
-                        .child("productImages")
+                    productsInfo.child(product.category.trim()).child(key).child("productImages")
                         .child(i.toString()).setValue(product.productImages[i])
                 }.addOnFailureListener {
                     Log.d(TAG, "addProduct: Errors ${it.message} \n\n ${it.cause}\n\n")
@@ -155,15 +183,35 @@ abstract class BaseRepository(private var contextBase: Context) {
                 Log.d(TAG, "addProduct: Failed at $i")
             }
         }
+
+
+
+
+
         Log.d(TAG, "addProduct: \n\n Product Images ${product.productImages.size}")
 
 
     }
 
 
-    fun addCategory(category: String) {
+    fun addCategory(category: ProductCategory) {
         val key = categoryInfo.push().key.toString()
         categoryInfo.child(key).setValue(category)
+        categoryNames.child(key).setValue(category.name)
+
+        val ref=storageRefCategory.child(STORAGECATEGORIES).child(key)
+            ref.putFile(category.image.toUri())
+            .addOnCompleteListener {
+                if (it.isSuccessful)
+                    ref.downloadUrl.addOnSuccessListener { it2 ->
+                        Toast.makeText(contextBase, "Done", Toast.LENGTH_SHORT).show()
+                        categoryInfo.child(key).child("image").setValue(it2.toString())
+                    }
+                else {
+                    Log.d(TAG, "addCategory: Failed to add ${it.exception}")
+                    Toast.makeText(contextBase, "Failed To Upload", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
 }

@@ -37,7 +37,7 @@ class ImageSliderAdapter : SliderViewAdapter<ImageSliderAdapter.SliderAdapterVH>
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup): SliderAdapterVH? {
+    override fun onCreateViewHolder(parent: ViewGroup): SliderAdapterVH {
         val inflate: View =
             LayoutInflater.from(parent.context).inflate(R.layout.image_slider_layout_item, null)
         return SliderAdapterVH(inflate)

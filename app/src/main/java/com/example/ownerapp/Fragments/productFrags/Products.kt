@@ -2,6 +2,7 @@ package com.example.ownerapp.Fragments.productFrags
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,10 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.EditText
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.example.ownerapp.Adapters.GridAdapter
 import com.example.ownerapp.R
+import com.example.ownerapp.activities.AddNewCategory
 import com.example.ownerapp.activities.AddNewProduct
 import com.example.ownerapp.data.ProductCategory
 import com.example.ownerapp.databinding.FragmentProductsBinding
@@ -29,6 +32,9 @@ class Products : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
     private var clicked = false
+    var arrayListProductCat = ArrayList<ProductCategory>()
+    var arrayNames = ArrayList<String>()
+    var arrayImages = ArrayList<Uri>()
     private val rotateOpen: Animation by lazy {
         AnimationUtils.loadAnimation(
             requireContext(),
@@ -73,32 +79,38 @@ class Products : Fragment() {
             }
         }
 
+        viewModel.repository.getCategoriesInfo().observe(viewLifecycleOwner, {
+            arrayListProductCat = it
+            Log.d(TAG, "onCreateView: added to array")
+
+        })
+
         binding.fabMain.setOnClickListener {
             addBtnClicked()
 
         }
         binding.fabAddCategory.setOnClickListener {
-            val builder = android.app.AlertDialog.Builder(requireContext())
-            val inflater = layoutInflater
-            val dialogLay = inflater.inflate(R.layout.edittextlay, null)
-            val editText = dialogLay.findViewById<EditText>(R.id.category_edit)
-
-            with(builder) {
-                setTitle("Add Product Category")
-                setPositiveButton("Add") { _, _ ->
-                    val category = editText.text.toString()
-                    if (category.isNotEmpty())
-                        viewModel.repository.addCategory(category)
-                }
-                setNegativeButton("Cancel") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                setView(dialogLay)
-                show()
+            Intent(requireContext(), AddNewCategory::class.java).also {
+                startActivity(it)
             }
         }
 
 
+        arrayListProductCat.forEach { it ->
+            arrayImages.add(it.image.toUri())
+            arrayNames.add(it.name)
+            Log.d(TAG, "onCreateView: added to array2nd")
+        }
+
+        val gridAdapter = GridAdapter(requireContext(), arrayNames, arrayImages)
+
+
+        binding.gridView.adapter = gridAdapter
+
+
+        binding.gridView.setOnItemClickListener { parent, view, position, id ->
+
+        }
 
 
         return binding.root
