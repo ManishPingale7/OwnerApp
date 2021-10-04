@@ -157,8 +157,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switchflavour"
                 android:layout_width="wrap_content"
@@ -193,7 +191,6 @@
                     android:hint="@string/add_flavour"
                     android:textAllCaps="false"
                     >
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/flavouredit"
                         android:layout_width="match_parent"
@@ -214,7 +211,6 @@
                     tools:targetApi="m" />
 
             </LinearLayout>
-
 
 
             <HorizontalScrollView

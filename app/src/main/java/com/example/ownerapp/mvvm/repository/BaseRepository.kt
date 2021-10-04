@@ -30,6 +30,9 @@ abstract class BaseRepository(private var contextBase: Context) {
 
     private var mAuthBase = FirebaseAuth.getInstance()
     val categoryList = MutableLiveData<ArrayList<String>>()
+
+    var categories = MutableLiveData<ArrayList<ProductCategory>>()
+
     private val fDatabase = FirebaseDatabase.getInstance()
     private val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
     private val plansRef = fDatabase.getReference(PLANS)
@@ -107,6 +110,28 @@ abstract class BaseRepository(private var contextBase: Context) {
         return categoryList
     }
 
+    fun getCategoriesInfo(): MutableLiveData<ArrayList<ProductCategory>> {
+        val tempList = ArrayList<ProductCategory>(20)
+
+        categoryInfo.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                categories.value?.clear()
+                dataSnapshot.children.forEach {
+                    Log.d(TAG, "onDataChange: $it")
+                    tempList.add(it.getValue(ProductCategory::class.java)!!)
+                }
+                categories.value = tempList
+                Log.d(TAG, "onDataChange:${categories.value} ")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(TAG, "onCancelled: $error")
+            }
+        })
+        return categories
+    }
+
+
     fun fetchAllPlans(): MutableLiveData<ArrayList<Plan>> {
         val plans: MutableLiveData<ArrayList<Plan>> = MutableLiveData<ArrayList<Plan>>()
         val tempList = ArrayList<Plan>(10)
@@ -158,6 +183,7 @@ abstract class BaseRepository(private var contextBase: Context) {
                 Log.d(TAG, "addProduct: Failed at $i")
             }
         }
+
 
 
 
