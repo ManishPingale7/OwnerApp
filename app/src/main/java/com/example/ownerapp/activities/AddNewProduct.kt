@@ -109,6 +109,10 @@ class AddNewProduct : AppCompatActivity() {
             binding.productCategory.setAdapter(arrayAdapter)
         })
 
+
+
+
+
         binding.pickImages.setOnClickListener {
             if (ActivityCompat.checkSelfPermission(
                     this,
