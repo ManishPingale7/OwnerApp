@@ -23,7 +23,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-
 abstract class BaseRepository(private var contextBase: Context) {
 
     private var mAuthBase = FirebaseAuth.getInstance()
@@ -36,6 +35,7 @@ abstract class BaseRepository(private var contextBase: Context) {
     var storageRefProduct: StorageReference = storage.reference
     private val categoryInfo = fDatabase.getReference(Constants.CATEGORYINFO)
     private val productsInfo = fDatabase.getReference(Constants.PRODUCTS)
+
 
     fun signOut() {
         mAuthBase.signOut()
@@ -82,7 +82,6 @@ abstract class BaseRepository(private var contextBase: Context) {
             contextBase.startActivity(it)
         }
     }
-
 
 
     fun fetchAllCategoriesNames(): MutableLiveData<ArrayList<String>> {
@@ -133,7 +132,8 @@ abstract class BaseRepository(private var contextBase: Context) {
         Log.d(TAG, "addProduct: Product $product\n\n")
         productsInfo.child(product.category.trim()).child(key).setValue(product)
             .addOnSuccessListener {
-                Toast.makeText(contextBase, "Product Added Successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(contextBase, "Product Added Successfully", Toast.LENGTH_SHORT)
+                    .show()
             }.addOnFailureListener {
                 Toast.makeText(contextBase, "Try Again later", Toast.LENGTH_SHORT).show()
             }
@@ -145,7 +145,8 @@ abstract class BaseRepository(private var contextBase: Context) {
                 ref.downloadUrl.addOnSuccessListener {
                     product.productImages[i] = it.toString()
                     Log.d(TAG, "addProduct: Download URL=${product.productImages[i]}")
-                    productsInfo.child(product.category.trim()).child(key).child("productImages")
+                    productsInfo.child(product.category.trim()).child(key)
+                        .child("productImages")
                         .child(i.toString()).setValue(product.productImages[i])
                 }.addOnFailureListener {
                     Log.d(TAG, "addProduct: Errors ${it.message} \n\n ${it.cause}\n\n")
@@ -154,10 +155,6 @@ abstract class BaseRepository(private var contextBase: Context) {
                 Log.d(TAG, "addProduct: Failed at $i")
             }
         }
-
-
-
-
         Log.d(TAG, "addProduct: \n\n Product Images ${product.productImages.size}")
 
 
@@ -168,6 +165,5 @@ abstract class BaseRepository(private var contextBase: Context) {
         val key = categoryInfo.push().key.toString()
         categoryInfo.child(key).setValue(category)
     }
-
 
 }
