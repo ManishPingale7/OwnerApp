@@ -8,6 +8,8 @@ import com.example.ownerapp.mvvm.repository.MainRepository
 class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
 
 
+    val allCategories = repository.getCategoriesInfo()
+
     fun fetchAllBranches() = repository.fetchBranches()
 
     fun signOut() {
@@ -19,7 +21,7 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     }
 
     fun getAllPlans() = repository.fetchAllPlans()
-    fun sendUserToViewPlanActivity() =repository.sendUserToViewPlanActivity()
+    fun sendUserToViewPlanActivity() = repository.sendUserToViewPlanActivity()
     fun addProduct(product: Product) {
         repository.addProduct(product)
     }

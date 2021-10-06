@@ -111,21 +111,21 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
     fun getCategoriesInfo(): MutableLiveData<ArrayList<ProductCategory>> {
-        val tempList = ArrayList<ProductCategory>(20)
+        val tempList = ArrayList<ProductCategory>(40)
 
         categoryInfo.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 categories.value?.clear()
                 dataSnapshot.children.forEach {
-                    Log.d(TAG, "onDataChange: $it")
+                    Log.d(TAG, "onCreateView123 onDataChange: $it")
                     tempList.add(it.getValue(ProductCategory::class.java)!!)
                 }
                 categories.value = tempList
-                Log.d(TAG, "onDataChange:${categories.value} ")
+                Log.d(TAG, "onCreateView123 onDataChange:${categories.value} ")
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d(TAG, "onCancelled: $error")
+                Log.d(TAG, "onCreateView123 onCancelled: $error")
             }
         })
         return categories

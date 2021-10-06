@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -32,7 +33,7 @@ class Products : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
     private var clicked = false
-    var arrayListProductCat = ArrayList<ProductCategory>()
+    private var arrayListProductCat = arrayListOf<ProductCategory>()
     var arrayNames = ArrayList<String>()
     var arrayImages = ArrayList<Uri>()
     private val rotateOpen: Animation by lazy {
@@ -79,11 +80,26 @@ class Products : Fragment() {
             }
         }
 
-        viewModel.repository.getCategoriesInfo().observe(viewLifecycleOwner, {
+        viewModel.allCategories.observe(requireActivity()) {
             arrayListProductCat = it
-            Log.d(TAG, "onCreateView: added to array")
 
-        })
+            arrayListProductCat.forEach { it1 ->
+                arrayImages.add(it1.image.toUri())
+                arrayNames.add(it1.name)
+                Log.d(TAG, "onCreateView123: added to array2nd")
+            }
+
+            Log.d(TAG, "onCreateView123 45:  HERE IT IS $arrayNames ")
+
+            val gridAdapter = GridAdapter(requireContext(), arrayNames, arrayImages)
+            binding.gridView.adapter = gridAdapter
+        }
+
+        binding.gridView.setOnItemClickListener { parent, view, position, id ->
+            Toast.makeText(context, arrayNames[position], Toast.LENGTH_SHORT).show()
+        }
+
+
 
         binding.fabMain.setOnClickListener {
             addBtnClicked()
@@ -94,24 +110,6 @@ class Products : Fragment() {
                 startActivity(it)
             }
         }
-
-
-        arrayListProductCat.forEach { it ->
-            arrayImages.add(it.image.toUri())
-            arrayNames.add(it.name)
-            Log.d(TAG, "onCreateView: added to array2nd")
-        }
-
-        val gridAdapter = GridAdapter(requireContext(), arrayNames, arrayImages)
-
-
-        binding.gridView.adapter = gridAdapter
-
-
-        binding.gridView.setOnItemClickListener { parent, view, position, id ->
-
-        }
-
 
         return binding.root
     }
@@ -144,6 +142,5 @@ class Products : Fragment() {
             binding.fabAddProduct.visibility = View.INVISIBLE
         }
     }
-
 
 }
