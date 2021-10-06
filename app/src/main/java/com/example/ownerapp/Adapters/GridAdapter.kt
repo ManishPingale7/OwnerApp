@@ -20,10 +20,7 @@ class GridAdapter(
 
     var context: Context? = requireContext
 
-
     var inflater: LayoutInflater? = null
-
-
 
     override fun getCount(): Int {
         return arrayNames.size
