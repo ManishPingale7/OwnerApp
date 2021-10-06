@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">OwnerApp</string>
-    <string name="yourreader">YourReader</string>
     <string name="easily_listen_anything_you_want_to_read">Easily Listen anything you want to read</string>
     <string name="continue_with_id_password">Continue with ID Password</string>
     <string name="continue_with_google">Continue with Google</string>
@@ -92,19 +91,6 @@
         <item>Month</item>
         <item>Year</item>
     </string-array>
-    <!--    <string-array name="durationNum">-->
-    <!--        <item>1</item>-->
-    <!--        <item>2</item>-->
-    <!--        <item>3</item>-->
-    <!--        <item>4</item>-->
-    <!--        <item>5</item>-->
-    <!--        <item>6</item>-->
-    <!--        <item>7</item>-->
-    <!--        <item>8</item>-->
-    <!--        <item>9</item>-->
-    <!--        <item>10</item>-->
-    <!--        <item>11</item>-->
-    <!--        <item>92</item>-->
-    <!--    </string-array>-->
+
 
 </resources>
