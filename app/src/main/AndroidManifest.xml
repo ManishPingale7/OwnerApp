@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OwnerApp">
         <activity
+            android:name=".activities.ViewCategoryProducts"
+            android:exported="true" />
+        <activity
             android:name=".activities.ViewAllProducts"
             android:exported="true" />
         <activity

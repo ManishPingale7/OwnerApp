@@ -18,6 +18,7 @@ import com.example.ownerapp.Adapters.GridAdapter
 import com.example.ownerapp.R
 import com.example.ownerapp.activities.AddNewCategory
 import com.example.ownerapp.activities.AddNewProduct
+import com.example.ownerapp.activities.ViewCategoryProducts
 import com.example.ownerapp.data.ProductCategory
 import com.example.ownerapp.databinding.FragmentProductsBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
@@ -34,8 +35,7 @@ class Products : Fragment() {
     private lateinit var viewModel: MainViewModel
     private var clicked = false
     private var arrayListProductCat = arrayListOf<ProductCategory>()
-    var arrayNames = ArrayList<String>()
-    var arrayImages = ArrayList<Uri>()
+
     private val rotateOpen: Animation by lazy {
         AnimationUtils.loadAnimation(
             requireContext(),
@@ -83,20 +83,19 @@ class Products : Fragment() {
         viewModel.allCategories.observe(requireActivity()) {
             arrayListProductCat = it
 
-            arrayListProductCat.forEach { it1 ->
-                arrayImages.add(it1.image.toUri())
-                arrayNames.add(it1.name)
-                Log.d(TAG, "onCreateView123: added to array2nd")
-            }
 
-            Log.d(TAG, "onCreateView123 45:  HERE IT IS $arrayNames ")
-
-            val gridAdapter = GridAdapter(requireContext(), arrayNames, arrayImages)
+            val gridAdapter = GridAdapter(requireContext(), it)
             binding.gridView.adapter = gridAdapter
+
         }
 
         binding.gridView.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(context, arrayNames[position], Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "${arrayListProductCat[position]}", Toast.LENGTH_SHORT)
+                .show()
+
+            Intent(requireContext(), ViewCategoryProducts::class.java).also {
+                startActivity(it)
+            }
         }
 
 

@@ -10,12 +10,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.ownerapp.R
+import com.example.ownerapp.data.ProductCategory
 
 
 class GridAdapter(
     var requireContext: Context,
-    var arrayNames: ArrayList<String>,
-    var arrayImages: ArrayList<Uri>
+    var it: ArrayList<ProductCategory>
+
 ) : BaseAdapter() {
 
     var context: Context? = requireContext
@@ -23,11 +24,11 @@ class GridAdapter(
     var inflater: LayoutInflater? = null
 
     override fun getCount(): Int {
-        return arrayNames.size
+        return it.size
     }
 
     override fun getItem(position: Int): Any? {
-        return arrayImages[position]
+        return it[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -44,11 +45,11 @@ class GridAdapter(
         val imageView: ImageView = convertView!!.findViewById(R.id.grid_image)
         val textView: TextView = convertView.findViewById(R.id.item_name)
         Glide.with(convertView)
-            .load(arrayImages[position])
+            .load(it[position].image)
             .fitCenter()
             .into(imageView)
 
-        textView.text = arrayNames[position]
+        textView.text = it[position].name
         return convertView
     }
 
