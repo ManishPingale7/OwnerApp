@@ -1,10 +1,12 @@
 package com.example.ownerapp.activities
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -29,12 +31,15 @@ class AddNewCategory : AppCompatActivity() {
     var imageUri: Uri? = null
 
     var getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { it ->
-
-        Glide.with(this)
-            .load(it)
-            .fitCenter()
-            .into(binding.pickImage)
-        imageUri=it
+        if (it!=null){
+            Glide.with(this)
+                .load(it)
+                .fitCenter()
+                .into(binding.pickImage)
+            imageUri = it
+        }else{
+            Log.d(TAG, "Act:Selected Nothing")
+        }
     }
 
 
@@ -54,7 +59,7 @@ class AddNewCategory : AppCompatActivity() {
         val view = findViewById<View>(R.id.submitCat2)
 
         view.setOnClickListener {
-            val progressBtn=ProgressBtn(this,view)
+            val progressBtn = ProgressBtn(this, view)
             val name = binding.categoryName.text.toString()
             if (name.isNotEmpty()) {
                 if (imageUri != null) {
