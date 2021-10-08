@@ -23,6 +23,7 @@
             android:weightSum="100">
 
             <ImageView
+                android:id="@+id/productImage"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
@@ -61,11 +62,9 @@
                         android:textColor="@color/black" />
 
 
-
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        >
+                        android:layout_height="match_parent">
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:layout_width="wrap_content"
@@ -76,12 +75,12 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
+                            android:background="@drawable/drawable_cart"
+                            android:drawableEnd="@drawable/plus"
                             android:drawableTint="@color/my_statusbar_color"
                             android:text="Add"
                             android:textAllCaps="false"
                             android:textColor="@color/my_statusbar_color"
-                            android:drawableEnd="@drawable/plus"
-                            android:background="@drawable/drawable_cart"
                             tools:targetApi="m" />
                     </RelativeLayout>
 

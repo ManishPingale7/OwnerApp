@@ -22,4 +22,5 @@ object Constants {
     const val CATEGORYNAMES="categoryNames"
     const val STORAGECATEGORIES="storageCategories"
 
+
 }

@@ -9,6 +9,7 @@ import androidx.core.net.toUri
 import androidx.lifecycle.MutableLiveData
 import com.example.ownerapp.Utils.Constants
 import com.example.ownerapp.Utils.Constants.PLANS
+import com.example.ownerapp.Utils.Constants.PRODUCTS
 import com.example.ownerapp.Utils.Constants.STORAGECATEGORIES
 import com.example.ownerapp.activities.LoginActivity
 import com.example.ownerapp.activities.MainActivity
@@ -91,7 +92,6 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
 
-
     fun fetchAllCategoriesNames(): MutableLiveData<ArrayList<String>> {
         val list = ArrayList<String>()
         categoryNames.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -132,29 +132,6 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
 
-    fun fetchAllPlans(): MutableLiveData<ArrayList<Plan>> {
-        val plans: MutableLiveData<ArrayList<Plan>> = MutableLiveData<ArrayList<Plan>>()
-        val tempList = ArrayList<Plan>(10)
-        tempList.clear()
-        plansRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                plans.value?.clear()
-                dataSnapshot.children.forEach {
-                    Log.d(TAG, "onDataChange: $it")
-                    tempList.add(it.getValue(Plan::class.java)!!)
-                    Log.d("TAG", "onDataChange: $tempList")
-                }
-                plans.value = tempList
-                Log.d("TAG", "onDataChange:${plans.value} ")
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("HENLO", "onCancelled: $error")
-            }
-        })
-        return plans
-    }
-
     fun addProduct(product: Product) {
         val key = productsInfo.push().key.toString()
 
@@ -184,12 +161,7 @@ abstract class BaseRepository(private var contextBase: Context) {
             }
         }
 
-
-
-
-
         Log.d(TAG, "addProduct: \n\n Product Images ${product.productImages.size}")
-
 
     }
 
@@ -199,8 +171,8 @@ abstract class BaseRepository(private var contextBase: Context) {
         categoryInfo.child(key).setValue(category)
         categoryNames.child(key).setValue(category.name)
 
-        val ref=storageRefCategory.child(STORAGECATEGORIES).child(key)
-            ref.putFile(category.image.toUri())
+        val ref = storageRefCategory.child(STORAGECATEGORIES).child(key)
+        ref.putFile(category.image.toUri())
             .addOnCompleteListener {
                 if (it.isSuccessful)
                     ref.downloadUrl.addOnSuccessListener { it2 ->
@@ -212,6 +184,48 @@ abstract class BaseRepository(private var contextBase: Context) {
                     Toast.makeText(contextBase, "Failed To Upload", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    fun fetchAllPlans(): MutableLiveData<ArrayList<Plan>> {
+        val plans: MutableLiveData<ArrayList<Plan>> = MutableLiveData<ArrayList<Plan>>()
+        val tempList = ArrayList<Plan>(20)
+        tempList.clear()
+        plansRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                plans.value?.clear()
+                dataSnapshot.children.forEach {
+                    tempList.add(it.getValue(Plan::class.java)!!)
+                }
+                plans.value = tempList
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("HENLO", "onCancelled: $error")
+            }
+        })
+        return plans
+    }
+
+    fun loadAllProducts(name: String): MutableLiveData<ArrayList<Product>> {
+        val products: MutableLiveData<ArrayList<Product>> = MutableLiveData<ArrayList<Product>>()
+        val tempList = ArrayList<Product>(50)
+
+        val ref = fDatabase.reference.child(PRODUCTS).child(name)
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                products.value?.clear()
+                Log.d(TAG, "onDataChange: $snapshot")
+                snapshot.children.forEach {
+                    tempList.add(it.getValue(Product::class.java)!!)
+                }
+                products.value = tempList
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+//                TODO("SOLVE EVERY ERROR SITUATION IN THE APP")
+            }
+        })
+        return products
     }
 
 }

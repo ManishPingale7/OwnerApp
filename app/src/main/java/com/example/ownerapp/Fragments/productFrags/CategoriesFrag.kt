@@ -2,7 +2,6 @@ package com.example.ownerapp.Fragments.productFrags
 
 import android.content.ContentValues.TAG
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Toast
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.ownerapp.Adapters.GridAdapter
@@ -28,7 +25,7 @@ import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 
 
-class Products : Fragment() {
+class CategoriesFrag : Fragment() {
 
     private var _binding: FragmentProductsBinding? = null
     private val binding get() = _binding!!
@@ -71,7 +68,7 @@ class Products : Fragment() {
             .factoryModule(FactoryModule(MainRepository(requireContext())))
             .build() as DaggerFactoryComponent
         viewModel =
-            ViewModelProviders.of(this@Products, component.getFactory())
+            ViewModelProviders.of(this@CategoriesFrag, component.getFactory())
                 .get(MainViewModel::class.java)
         _binding = FragmentProductsBinding.inflate(inflater, container, false)
         binding.fabAddProduct.setOnClickListener {
@@ -83,26 +80,20 @@ class Products : Fragment() {
         viewModel.allCategories.observe(requireActivity()) {
             arrayListProductCat = it
 
-
             val gridAdapter = GridAdapter(requireContext(), it)
             binding.gridView.adapter = gridAdapter
 
         }
 
         binding.gridView.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(requireContext(), "${arrayListProductCat[position]}", Toast.LENGTH_SHORT)
-                .show()
+            val intent = Intent(requireContext(), ViewCategoryProducts::class.java)
+            intent.putExtra("Category", arrayListProductCat[position])
+            startActivity(intent)
 
-            Intent(requireContext(), ViewCategoryProducts::class.java).also {
-                startActivity(it)
-            }
         }
-
-
 
         binding.fabMain.setOnClickListener {
             addBtnClicked()
-
         }
         binding.fabAddCategory.setOnClickListener {
             Intent(requireContext(), AddNewCategory::class.java).also {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".Fragments.productFrags.Products">
+    tools:context=".Fragments.productFrags.CategoriesFrag">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_addCategory"
