@@ -12,20 +12,17 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
 
     fun fetchAllBranches() = repository.fetchBranches()
 
-    fun signOut() {
-        repository.signOut()
-    }
+    fun signOut() = repository.signOut()
 
-    fun sendUserToLoginActivity() {
-        repository.sendUserToLoginActivity()
-    }
+    fun sendUserToLoginActivity() = repository.sendUserToLoginActivity()
 
     fun getAllPlans() = repository.fetchAllPlans()
+
     fun sendUserToViewPlanActivity() = repository.sendUserToViewPlanActivity()
-    fun addProduct(product: Product) {
-        repository.addProduct(product)
-    }
+
+    fun addProduct(product: Product) = repository.addProduct(product)
 
     fun addCategory(category: ProductCategory) = repository.addCategory(category)
+
     fun loadProducts(name: String) = repository.loadAllProducts(name)
 }

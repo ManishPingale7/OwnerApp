@@ -55,13 +55,11 @@ abstract class BaseRepository(private var contextBase: Context) {
         }
     }
 
-
     fun sendUserToLoginActivity() {
         Intent(contextBase, LoginActivity::class.java).also {
             contextBase.startActivity(it)
         }
     }
-
 
     fun fetchBranches(): MutableLiveData<ArrayList<Branch>> {
         val branches: MutableLiveData<ArrayList<Branch>> = MutableLiveData<ArrayList<Branch>>()
@@ -90,7 +88,6 @@ abstract class BaseRepository(private var contextBase: Context) {
             contextBase.startActivity(it)
         }
     }
-
 
     fun fetchAllCategoriesNames(): MutableLiveData<ArrayList<String>> {
         val list = ArrayList<String>()
@@ -131,7 +128,6 @@ abstract class BaseRepository(private var contextBase: Context) {
         return categories
     }
 
-
     fun addProduct(product: Product) {
         val key = productsInfo.push().key.toString()
 
@@ -164,7 +160,6 @@ abstract class BaseRepository(private var contextBase: Context) {
         Log.d(TAG, "addProduct: \n\n Product Images ${product.productImages.size}")
 
     }
-
 
     fun addCategory(category: ProductCategory) {
         val key = categoryInfo.push().key.toString()

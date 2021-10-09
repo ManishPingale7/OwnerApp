@@ -1,6 +1,5 @@
 package com.example.ownerapp.data
 
-import android.net.Uri
 import java.util.*
 
 data class Product(
@@ -9,8 +8,8 @@ data class Product(
     var price: String,
     var category: String,
     var productImages: ArrayList<String>,
-    var flavours: ArrayList<String>?=null,
-    var key:String?=null
+    var flavours: ArrayList<String>? = null,
+    var key: String? = null
 ) {
-    constructor() : this("", "", "", "", ArrayList<String>(), ArrayList<String>(),"")
+    constructor() : this("", "", "", "", ArrayList<String>(), ArrayList<String>(), "")
 }
