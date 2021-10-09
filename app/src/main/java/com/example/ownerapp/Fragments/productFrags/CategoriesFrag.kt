@@ -83,6 +83,7 @@ class CategoriesFrag : Fragment() {
             val gridAdapter = GridAdapter(requireContext(), it)
             binding.gridView.adapter = gridAdapter
 
+
         }
 
         binding.gridView.setOnItemClickListener { parent, view, position, id ->

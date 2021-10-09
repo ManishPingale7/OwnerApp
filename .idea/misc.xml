@@ -10,17 +10,16 @@
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/activity_add_new_branch.xml" value="0.3671875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/activity_main.xml" value="0.3671875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/activity_view_all_branches.xml" value="0.4" />
-        <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/activity_view_category_products.xml" value="0.3671875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/branch_list_item.xml" value="0.536" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/branchlistitem.xml" value="0.3671875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/dropdownitem.xml" value="0.2546875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/fragment_home.xml" value="0.2546875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/fragment_products.xml" value="0.3671875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/fragment_settings.xml" value="0.4" />
-        <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/productlistitem.xml" value="0.3671875" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/progress_btn_layout.xml" value="0.2546875" />
         <entry key="app/src/main/res/drawable/bg1.xml" value="0.4197916666666667" />
         <entry key="app/src/main/res/drawable/bg_overlay.xml" value="0.2984375" />
+        <entry key="app/src/main/res/drawable/bottom_sheet_dialog.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/btn_circular.xml" value="0.41333333333333333" />
         <entry key="app/src/main/res/drawable/drawable_cart.xml" value="0.257" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.41333333333333333" />
@@ -42,7 +41,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_products.xml" value="0.1921182266009852" />
         <entry key="app/src/main/res/layout/activity_view_all_branches.xml" value="0.11666666666666667" />
-        <entry key="app/src/main/res/layout/activity_view_category_products.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_view_category_products.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_view_plan.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/branch_list_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/demoimageview.xml" value="0.4036458333333333" />
@@ -57,8 +56,9 @@
         <entry key="app/src/main/res/layout/fragment_specific.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/grid_item.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/image_slider_layout_item.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/layout_bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/planlistitem.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/productlistitem.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/productlistitem.xml" value="0.375" />
         <entry key="app/src/main/res/layout/progress_btn_layout.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/menu/product_menu.xml" value="0.3098958333333333" />

@@ -30,9 +30,18 @@
         <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="ToolbarColoredBackArrow" parent="Theme.OwnerApp">
         <item name="android:textColorSecondary">@color/white</item>
 
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
 </resources>
