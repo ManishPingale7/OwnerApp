@@ -29,8 +29,6 @@ class BranchesAdapter : ListAdapter<Branch, BranchesAdapter.MyViewHolder>(DiffCa
                 hideIt.isPasswordVisibilityToggleEnabled = true
 
                 branchIDItem.text = branch.branchID
-            }
-            binding.apply {
                 editPassword.setOnClickListener {
                     if (adapterPosition != RecyclerView.NO_POSITION)
                         mListener.onEditButtonClicked(adapterPosition)

@@ -2,16 +2,16 @@ package com.example.ownerapp.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ownerapp.Adapters.ProductsAdapter
 import com.example.ownerapp.R
+import com.example.ownerapp.data.Product
 import com.example.ownerapp.data.ProductCategory
 import com.example.ownerapp.databinding.ActivityViewCategoryProductsBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
@@ -19,7 +19,6 @@ import com.example.ownerapp.di.modules.FactoryModule
 import com.example.ownerapp.di.modules.RepositoryModule
 import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class ViewCategoryProducts : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -57,6 +56,11 @@ class ViewCategoryProducts : AppCompatActivity() {
 
         //Setting the recycler view
         productsAdapter = ProductsAdapter(this)
+        productsAdapter.setOnEditClickListener(object : ProductsAdapter.onItemClickedListener {
+            override fun onEditButtonClicked(product: Product) {
+                Toast.makeText(applicationContext, "Clicked $product", Toast.LENGTH_SHORT).show()
+            }
+        })
 
         binding.apply {
             recyclerViewProducts.apply {

@@ -14,18 +14,22 @@ import com.example.ownerapp.databinding.ProductlistitemBinding
 
 class ProductsAdapter(val context: Context) :
     ListAdapter<Product, ProductsAdapter.viewHolder>(DiffCallBack()) {
+    private lateinit var mListener: ProductsAdapter.onItemClickedListener
 
-//    private var context: Context? = null
-//    fun setContext(context: Context) {
-//        this.context = context
-//    }
 
+    interface onItemClickedListener {
+        fun onEditButtonClicked(product: Product)
+    }
+
+    fun setOnEditClickListener(listener: onItemClickedListener) {
+        mListener = listener
+    }
 
     inner class viewHolder(private val binding: ProductlistitemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: Product) {
-            val text="₹ ${product.price}"
+            val text = "₹ ${product.price}"
             Log.d("TAG", "bind: BINDING THIS -$product")
             binding.productNameCard.text = product.name
             binding.productPrice.text = text
@@ -35,6 +39,11 @@ class ProductsAdapter(val context: Context) :
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .fitCenter()
                 .into(binding.productImage)
+            binding.editButton.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION)
+                    mListener.onEditButtonClicked(getItem(adapterPosition))
+            }
+            //TODO:ADDING PROGRESS BAR WHILE GLIDE IS LOADING ALL THE IMAGES
         }
     }
 
