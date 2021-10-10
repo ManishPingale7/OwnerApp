@@ -79,14 +79,11 @@ class CategoriesFrag : Fragment() {
 
         viewModel.allCategories.observe(requireActivity()) {
             arrayListProductCat = it
-
             val gridAdapter = GridAdapter(requireContext(), it)
             binding.gridView.adapter = gridAdapter
-
-
         }
 
-        binding.gridView.setOnItemClickListener { parent, view, position, id ->
+        binding.gridView.setOnItemClickListener { _, _, position, _ ->
             val intent = Intent(requireContext(), ViewCategoryProducts::class.java)
             intent.putExtra("Category", arrayListProductCat[position])
             startActivity(intent)

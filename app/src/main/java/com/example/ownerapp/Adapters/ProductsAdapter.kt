@@ -25,9 +25,10 @@ class ProductsAdapter(val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: Product) {
+            val text="₹ ${product.price}"
             Log.d("TAG", "bind: BINDING THIS -$product")
             binding.productNameCard.text = product.name
-            binding.productPrice.text = product.price
+            binding.productPrice.text = text
             Log.d("TAG", "bind:${product.productImages[0]} ")
             Glide.with(context)
                 .load(product.productImages[0])

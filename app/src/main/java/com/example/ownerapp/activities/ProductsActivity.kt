@@ -37,9 +37,7 @@ class ProductsActivity : AppCompatActivity() {
         binding = ActivityProductsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbarProds)
-        // enabling action bar app icon and behaving it as toggle button
-//        actionBar?.setDisplayHomeAsUpEnabled(true)
-//        actionBar?.setHomeButtonEnabled(true)
+
         val navController = findNavController(R.id.ContainerViewProducts)
         val appBarConfig = AppBarConfiguration(setOf(R.id.products, R.id.orders))
 

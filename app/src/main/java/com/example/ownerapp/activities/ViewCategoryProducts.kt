@@ -38,9 +38,6 @@ class ViewCategoryProducts : AppCompatActivity() {
             finish()
         }
 
-
-
-//        TODO("CHANGE THE WAY VIEW MODEL IS ADDED")
     }
 
 

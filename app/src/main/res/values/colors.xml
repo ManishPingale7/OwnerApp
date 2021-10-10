@@ -26,4 +26,5 @@
     <color name="faintGray">#d3d3d3</color>
     <color name="green">#1CEE24</color>
     <color name="gold">#FFD700</color>
+    <color name="productPrColor">#ff724f</color>
 </resources>
