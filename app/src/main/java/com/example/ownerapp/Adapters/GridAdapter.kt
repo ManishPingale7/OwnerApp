@@ -1,14 +1,19 @@
 package com.example.ownerapp.Adapters
 
 import android.content.Context
-import android.net.Uri
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.ownerapp.R
 import com.example.ownerapp.data.ProductCategory
 
@@ -44,8 +49,31 @@ class GridAdapter(
         }
         val imageView: ImageView = convertView!!.findViewById(R.id.grid_image)
         val textView: TextView = convertView.findViewById(R.id.item_name)
+        val progBar: ProgressBar = convertView.findViewById(R.id.loadProgressBar)
         Glide.with(convertView)
             .load(it[position].image)
+            .listener(object : RequestListener<Drawable> {
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    progBar.visibility = View.GONE
+                    imageView.visibility = View.VISIBLE
+                    return false
+                }
+
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
+            })
             .fitCenter()
             .into(imageView)
 

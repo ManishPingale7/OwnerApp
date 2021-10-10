@@ -148,6 +148,7 @@ abstract class BaseRepository(private var contextBase: Context) {
                     product.productImages[i] = it.toString()
                     Log.d(TAG, "addProduct: Download URL=${product.productImages[i]}")
                     productsInfo.child(product.category.trim()).child(key).child("productImages")
+
                         .child(i.toString()).setValue(product.productImages[i])
                 }.addOnFailureListener {
                     Log.d(TAG, "addProduct: Errors ${it.message} \n\n ${it.cause}\n\n")
