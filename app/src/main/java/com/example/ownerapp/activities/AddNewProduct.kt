@@ -98,7 +98,7 @@ class AddNewProduct : AppCompatActivity() {
 
 
 
-        viewModel.repository.fetchAllCategoriesNames().observe(this, {
+        viewModel.repository.fetchAllCategoriesNames().observe(this) {
             val arrayAdapter = ArrayAdapter(
                 this, com.example.ownerapp.R.layout.dropdownitem,
                 it.toArray()
@@ -107,7 +107,7 @@ class AddNewProduct : AppCompatActivity() {
             categories = it
             arrayAdapter.notifyDataSetChanged()
             binding.productCategory.setAdapter(arrayAdapter)
-        })
+        }
 
 
 
@@ -257,7 +257,7 @@ class AddNewProduct : AppCompatActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor =
-            ContextCompat.getColor(this, com.example.ownerapp.R.color.my_statusbar_color)
+            ContextCompat.getColor(this, com.example.ownerapp.R.color.colorprimarymain)
 
         component = DaggerFactoryComponent.builder()
             .repositoryModule(RepositoryModule(this))

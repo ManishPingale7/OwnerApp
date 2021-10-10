@@ -15,7 +15,7 @@
 
     <color name="demo_green">#32cd32</color>
 
-    <color name="my_statusbar_color">#10AAF0</color>
+    <color name="colorprimarymain">#10AAF0</color>
     <color name="primary_color">#10AAF0</color>
 
     <color name="tab_indicator_gray">#c0c0c0</color>
@@ -27,4 +27,5 @@
     <color name="green">#1CEE24</color>
     <color name="gold">#FFD700</color>
     <color name="productPrColor">#ff724f</color>
+    <color name="red">#9AF31336</color>
 </resources>

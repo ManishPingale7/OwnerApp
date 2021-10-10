@@ -22,7 +22,7 @@ class ImageSliderAdapter : SliderViewAdapter<ImageSliderAdapter.SliderAdapterVH>
         this.context = context
     }
 
-    fun renewItems(sliderItems: ArrayList<SliderItem>) {
+    fun renewItems(sliderItems: java.util.ArrayList<SliderItem>) {
         mSliderItems = sliderItems
         notifyDataSetChanged()
     }

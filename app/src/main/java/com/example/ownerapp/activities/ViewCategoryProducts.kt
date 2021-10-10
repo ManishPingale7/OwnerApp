@@ -2,9 +2,12 @@ package com.example.ownerapp.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Toast
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
@@ -19,6 +22,9 @@ import com.example.ownerapp.di.modules.FactoryModule
 import com.example.ownerapp.di.modules.RepositoryModule
 import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
+
+
 
 class ViewCategoryProducts : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -32,6 +38,9 @@ class ViewCategoryProducts : AppCompatActivity() {
         setContentView(binding.root)
 
         init()
+
+
+
         loadData()
         binding.goBackProductsCat.setOnClickListener {
             finish()
@@ -45,7 +54,7 @@ class ViewCategoryProducts : AppCompatActivity() {
         val window: Window = this.window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.my_statusbar_color)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorprimarymain)
         component = DaggerFactoryComponent.builder()
             .repositoryModule(RepositoryModule(this))
             .factoryModule(FactoryModule(MainRepository(this)))
@@ -58,7 +67,44 @@ class ViewCategoryProducts : AppCompatActivity() {
         productsAdapter = ProductsAdapter(this)
         productsAdapter.setOnEditClickListener(object : ProductsAdapter.onItemClickedListener {
             override fun onEditButtonClicked(product: Product) {
-                Toast.makeText(applicationContext, "Clicked $product", Toast.LENGTH_SHORT).show()
+
+                val bottomSheetDialog =
+                    BottomSheetDialog(this@ViewCategoryProducts, R.style.BottomSheetDialogTheme)
+
+                val bottomSheetView = LayoutInflater.from(this@ViewCategoryProducts).inflate(
+                    R.layout.layout_bottom_sheet,
+                    this@ViewCategoryProducts.findViewById(R.id.bottom_sheet_Container)
+                )
+
+                bottomSheetDialog.setCanceledOnTouchOutside(false)
+                bottomSheetDialog.setContentView(bottomSheetView)
+                bottomSheetDialog.show()
+
+                val productName = bottomSheetView.findViewById<TextView>(R.id.bottomSheetName)
+                val productDesc = bottomSheetView.findViewById<TextView>(R.id.bottomSheetDesc)
+                val productPrice =
+                    bottomSheetView.findViewById<EditText>(R.id.bottomSheetProductPrice)
+                val saveBtn = bottomSheetView.findViewById<Button>(R.id.saveProductBtn)
+                val deleteBtn = bottomSheetView.findViewById<Button>(R.id.deleteBtn)
+
+                productName.text = product.name
+                productDesc.text = product.desc
+                productPrice.setText(product.price)
+
+                saveBtn.setOnClickListener {
+                    val desc = productDesc.text.toString()
+                    val name = productName.text.toString()
+                    val price = productPrice.text.toString()
+
+
+                    if (desc != product.desc || name != product.name || price != product.price) {
+//                        var newProd=Product(name,desc,)
+                    }
+                }
+
+                deleteBtn.setOnClickListener {
+
+                }
             }
         })
 

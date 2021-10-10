@@ -22,6 +22,7 @@
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/planlistitem.xml" value="0.3111111111111111" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/productlistitem.xml" value="0.264" />
         <entry key="..\:/Android Apps/OwnerApp/app/src/main/res/layout/progress_btn_layout.xml" value="0.2546875" />
+        <entry key="app/src/main/res/drawable-v24/bottom_sheet_dialog.xml" value="0.369" />
         <entry key="app/src/main/res/drawable/bg1.xml" value="0.4197916666666667" />
         <entry key="app/src/main/res/drawable/bg_overlay.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable/btn_circular.xml" value="0.41333333333333333" />
@@ -60,6 +61,7 @@
         <entry key="app/src/main/res/layout/fragment_specific.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/grid_item.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/image_slider_layout_item.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/layout_bottom_sheet.xml" value="0.3890625" />
         <entry key="app/src/main/res/layout/planlistitem.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/productlistitem.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/progress_btn_layout.xml" value="0.25" />

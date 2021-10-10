@@ -18,7 +18,6 @@ import com.example.ownerapp.di.modules.FactoryModule
 import com.example.ownerapp.di.modules.RepositoryModule
 import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
-import kotlinx.android.synthetic.main.branch_list_item.*
 
 class ViewAllBranches : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -66,7 +65,7 @@ class ViewAllBranches : AppCompatActivity() {
         val window: Window = this.window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.my_statusbar_color)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorprimarymain)
 
         component = DaggerFactoryComponent.builder()
             .repositoryModule(RepositoryModule(this))

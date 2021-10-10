@@ -85,7 +85,9 @@
     <string name="add">Add</string>
     <string name="has_flavours">Has Flavours</string>
     <string name="add_flavour">Add Flavour</string>
-    <string name="deleteProd">Delete Product</string>
+    <string name="delete">Delete</string>
+    <string name="product_description">Product Description</string>
+    <string name="done">Done</string>
 
     <string-array name="durationType">
         <item>Day</item>
