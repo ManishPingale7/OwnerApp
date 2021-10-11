@@ -15,12 +15,14 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import com.example.ownerapp.Adapters.ImageSliderAdapter
 import com.example.ownerapp.Utils.ProgressBtn
 import com.example.ownerapp.data.Product
@@ -41,7 +43,7 @@ import com.smarteist.autoimageslider.SliderView
 
 class AddNewProduct : AppCompatActivity() {
     lateinit var binding: ActivityAddNewProductBinding
-    var arrayListImages = ArrayList<String>()
+    var imageUri:String=""
     private lateinit var mAuth: FirebaseAuth
     private lateinit var viewModel: MainViewModel
     private lateinit var component: DaggerFactoryComponent
@@ -50,18 +52,10 @@ class AddNewProduct : AppCompatActivity() {
     private var flavoursChips = ArrayList<String>()
     private var adapter: ImageSliderAdapter? = null
 
-    var getContent = registerForActivityResult(GetMultipleContents()) { it ->
+    var getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { it ->
         binding.ImageLay.visibility = View.VISIBLE
-        arrayListImages.clear()
-        it.forEach {
-            it?.let { it1 ->
-                arrayListImages.add(it1.toString())
-                Log.d(TAG, "Selected Images are$it1: ")
-            }
-
-        }
+        imageUri=it.toString()
         applySelectedPhotos()
-        Log.d(TAG, "Selected Images are ${arrayListImages.size}: ")
         position = 0
     }
 
@@ -142,25 +136,19 @@ class AddNewProduct : AppCompatActivity() {
                 if (price.isNotEmpty()) {
                     if (category.isNotEmpty() && categories.contains(category)) {
                         if (desc.isNotEmpty()) {
-                            if (arrayListImages.size > 0) {
-                                //Adding Products here
-                                progressBtn.buttonActivated()
-                                val product = Product(name, desc, price, category, arrayListImages,flavoursChips)
-                                viewModel.addProduct(product)
-                                Handler(Looper.getMainLooper()).postDelayed({
-                                    progressBtn.buttonfinished()
-                                    Intent(this@AddNewProduct, MainActivity::class.java).also {
-                                        startActivity(it)
-                                        finish()
-                                    }
-                                }, 3000)
+                            //Adding Products here
+                            progressBtn.buttonActivated()
+                            val product = Product(name, desc, price, category, imageUri,flavoursChips)
+                            viewModel.addProduct(product)
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                progressBtn.buttonfinished()
+                                Intent(this@AddNewProduct, MainActivity::class.java).also {
+                                    startActivity(it)
+                                    finish()
+                                }
+                            }, 3000)
 
 
-                            } else {
-                                Toast.makeText(this, "Select Product Images", Toast.LENGTH_SHORT)
-                                    .show()
-
-                            }
                         } else {
                             Toast.makeText(this, "Enter Description", Toast.LENGTH_SHORT).show()
                         }
@@ -268,7 +256,6 @@ class AddNewProduct : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
 
-        initSlider()
 
     }
 
@@ -301,28 +288,13 @@ class AddNewProduct : AppCompatActivity() {
 
 
     private fun applySelectedPhotos() {
-        val sliderItemList: MutableList<SliderItem> = ArrayList()
-        for (i in 0 until arrayListImages.size) {
-            val sliderItem = SliderItem()
-            sliderItem.description = "Slider Item $i"
-            sliderItem.imageUrl = arrayListImages[i]
-            sliderItemList.add(sliderItem)
-        }
-        adapter!!.renewItems(sliderItemList as ArrayList<SliderItem>)
+        Glide.with(this)
+            .load(imageUri)
+            .fitCenter()
+            .into(binding.sliderView)
+
     }
 
-    private fun initSlider() {
-        adapter = ImageSliderAdapter()
-        adapter!!.setContext(this)
-        binding.sliderView.setSliderAdapter(adapter!!)
-        binding.sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)//set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        binding.sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
-        binding.sliderView.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
-        binding.sliderView.indicatorSelectedColor = Color.WHITE
-        binding.sliderView.indicatorUnselectedColor = Color.GRAY
-        binding.sliderView.scrollTimeInSec = 3
-        binding.sliderView.isAutoCycle = true
-        binding.sliderView.startAutoCycle()
-    }
+
 
 }

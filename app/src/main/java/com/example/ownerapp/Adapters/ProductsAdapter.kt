@@ -39,9 +39,8 @@ class ProductsAdapter(val context: Context) :
             Log.d("TAG", "bind: BINDING THIS -$product")
             binding.productNameCard.text = product.name
             binding.productPrice.text = text
-            Log.d("TAG", "bind:${product.productImages[0]} ")
             Glide.with(context)
-                .load(product.productImages[0])
+                .load(product.productImage)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
                         e: GlideException?,
@@ -50,7 +49,7 @@ class ProductsAdapter(val context: Context) :
                         isFirstResource: Boolean
                     ): Boolean {
                         binding.loadProgressLayout.visibility = View.GONE
-                        Log.d("TAG", "onLoadFailed: Failed to load image")
+                        Log.d("TAG", "onLoadFailed: Failed to load image ${e!!.message}  \n\n ${e.cause} ")
                         return false
                     }
 
@@ -81,7 +80,6 @@ class ProductsAdapter(val context: Context) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
-        Log.d("TAG", "onCreateViewHolder: INNNNNNNNNNNNNNNNNNNNNNNNN")
         return viewHolder(
             ProductlistitemBinding.inflate(
                 LayoutInflater.from(parent.context),

@@ -43,7 +43,7 @@ abstract class BaseRepository(private var contextBase: Context) {
     private val categoryInfo = fDatabase.getReference(Constants.CATEGORYINFO)
     private val categoryNames = fDatabase.getReference(Constants.CATEGORYNAMES)
 
-    private val productsInfo = fDatabase.getReference(Constants.PRODUCTS)
+    private val productsInfo = fDatabase.getReference(PRODUCTS)
 
     fun signOut() {
         mAuthBase.signOut()
@@ -139,26 +139,24 @@ abstract class BaseRepository(private var contextBase: Context) {
             }.addOnFailureListener {
                 Toast.makeText(contextBase, "Try Again later", Toast.LENGTH_SHORT).show()
             }
-        for (i in 0 until product.productImages.size) {
-            val ref =
-                storageRefProduct.child(Constants.PRODUCTS).child(product.category.trim())
-                    .child(key).child(i.toString())
-            ref.putFile(product.productImages[i].toUri()).addOnSuccessListener {
-                ref.downloadUrl.addOnSuccessListener {
-                    product.productImages[i] = it.toString()
-                    Log.d(TAG, "addProduct: Download URL=${product.productImages[i]}")
-                    productsInfo.child(product.category.trim()).child(key).child("productImages")
 
-                        .child(i.toString()).setValue(product.productImages[i])
-                }.addOnFailureListener {
-                    Log.d(TAG, "addProduct: Errors ${it.message} \n\n ${it.cause}\n\n")
-                }
+        val ref =
+            storageRefProduct.child(PRODUCTS).child(product.category.trim())
+                .child(key)
+        ref.putFile(product.productImage.toUri()).addOnSuccessListener {
+            ref.downloadUrl.addOnSuccessListener {
+                product.productImage = it.toString()
+                Log.d(TAG, "addProduct: Download URL=${product.productImage}")
+                productsInfo.child(product.category.trim()).child(key).child("productImage")
+                    .setValue(product.productImage)
+                Log.d(TAG, "addProduct: Setting Url")
             }.addOnFailureListener {
-                Log.d(TAG, "addProduct: Failed at $i")
+                Log.d(TAG, "addProduct: Errors ${it.message} \n\n ${it.cause}\n\n")
             }
         }
 
-        Log.d(TAG, "addProduct: \n\n Product Images ${product.productImages.size}")
+
+        Log.d(TAG, "addProduct: \n\n Product Images ${product.productImage}")
 
     }
 
@@ -207,7 +205,7 @@ abstract class BaseRepository(private var contextBase: Context) {
         val tempList = ArrayList<Product>(50)
 
         val ref = fDatabase.reference.child(PRODUCTS).child(name)
-        ref.addValueEventListener(object : ValueEventListener {
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 products.value?.clear()
                 Log.d(TAG, "onDataChange: $snapshot")
