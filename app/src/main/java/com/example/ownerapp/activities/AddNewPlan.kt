@@ -29,6 +29,7 @@ class AddNewPlan : AppCompatActivity() {
     lateinit var binding: ActivityAddNewPlanBinding
     var onceClicked = false
     var isPersonalTraning = false
+    var totalDays = 0
     var arraylistType = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ class AddNewPlan : AppCompatActivity() {
         init()
 
         val durationType = resources.getStringArray(R.array.durationType)
-        arraylistType = ArrayList<String>(listOf(*resources.getStringArray(R.array.durationType)))
+        arraylistType = ArrayList(listOf(*resources.getStringArray(R.array.durationType)))
         val arrayAdapter = ArrayAdapter(this, R.layout.dropdownitem, durationType)
         binding.typeTime.setAdapter(arrayAdapter)
 
@@ -64,16 +65,46 @@ class AddNewPlan : AppCompatActivity() {
                     if (timeNumber.toInt() > 0) {
                         type += "s"
                     }
-
                     if (!onceClicked) {
+                        Log.d(TAG, "onCreate: Type = $type")
+                        when (type) {
+                            "Day" -> {
+                                totalDays = timeNumber.toInt()
+                            }
+
+                            "Days" -> {
+                                totalDays = timeNumber.toInt()
+                            }
+
+                            "Months" -> {
+                                totalDays = (timeNumber.toInt() * 30)
+                            }
+                            "Month" -> {
+                                totalDays = (timeNumber.toInt() * 30)
+                            }
+
+                            "Years" -> {
+                                totalDays = (timeNumber.toInt() * 365)
+                            }
+
+                            "Year" -> {
+                                totalDays = (timeNumber.toInt() * 365)
+                            }
+                            else -> {
+                                totalDays = -1
+                            }
+                        }
+
                         progressBtn.buttonActivated()
+                        Log.d(TAG, "onCreate: Days = $totalDays")
                         viewModel.repository.addNewPlan(
                             Plan(
                                 name,
                                 desc,
                                 "$timeNumber $type",
                                 fees,
-                                isPersonalTraning
+                                isPersonalTraning,
+                                totalDays
                             )
                         )
                         onceClicked = true
