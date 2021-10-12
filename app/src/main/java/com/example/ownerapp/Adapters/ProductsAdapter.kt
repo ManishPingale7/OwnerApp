@@ -61,6 +61,7 @@ class ProductsAdapter(val context: Context) :
                         isFirstResource: Boolean
                     ): Boolean {
                         binding.relativeBar.visibility = View.GONE
+                        binding.productInfoLay.visibility = View.VISIBLE
                         binding.productImage.visibility = View.VISIBLE
                         binding.loadProgressLayout.visibility = View.GONE
                         return false

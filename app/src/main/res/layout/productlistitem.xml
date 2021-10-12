@@ -57,6 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/productInfoLay"
                 tools:ignore="UselessParent">
 
                 <TextView
@@ -91,11 +93,11 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/drawable_editback"
-                    app:icon="@drawable/ic_edit"
                     android:drawableTint="@color/colorprimarymain"
                     android:text="@string/edit"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
+                    app:icon="@drawable/ic_edit"
                     tools:targetApi="m" />
 
 
