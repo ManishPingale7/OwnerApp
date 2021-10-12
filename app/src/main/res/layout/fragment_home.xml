@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +38,7 @@
                     android:fontFamily="@font/montserratsemibold"
 
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,23 +69,23 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="20dp"
-                            android:text="@string/revenue_today"
                             android:fontFamily="@font/montserratsemibold"
+                            android:text="@string/revenue_today"
 
                             android:textColor="@color/black"
-                            android:textSize="22sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/revenueToday"
-                            android:fontFamily="@font/montserratsemibold"
-
                             android:layout_marginStart="15dp"
+
                             android:layout_marginTop="10dp"
+                            android:fontFamily="@font/montserratsemibold"
                             android:text="@string/revenue"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -110,6 +111,93 @@
                             android:text="@string/refresh"
                             android:textAllCaps="false" />
                     </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="@string/products_sold_this_month"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/productsSoldRev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="@string/revenue"
+
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    android:baselineAligned="false">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
+
+                        <TextView
+                            android:id="@+id/revenueToday2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:text="@string/revenue_today"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/revenueToday2"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:text="@string/revenue"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+
 
                 </LinearLayout>
 
@@ -156,7 +244,7 @@
 
                     android:text="@string/users_till_now"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -165,9 +253,8 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/users"
                     android:fontFamily="@font/montserratsemibold"
-
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -186,37 +273,7 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="12dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/revenue_from_business"
-                    android:fontFamily="@font/montserratsemibold"
-
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-
-                <org.eazegraph.lib.charts.ValueLineChart
-                    android:id="@+id/cubiclinechart"
-                    android:layout_width="match_parent"
-                    android:layout_height="280dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="4dp"
-                    app:egCurveSmoothness="0.4"
-                    app:egIndicatorLineColor="#FE6DA8"
-                    app:egLegendHeight="40dp"
-                    app:egShowStandardValue="true"
-                    app:egUseCubic="true"
-                    app:egUseOverlapFill="true" />
-            </LinearLayout>
 
 
         </com.google.android.material.card.MaterialCardView>
@@ -224,6 +281,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="30dp" />
+
     </LinearLayout>
 
 
