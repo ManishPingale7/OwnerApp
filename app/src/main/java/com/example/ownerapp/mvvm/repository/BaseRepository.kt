@@ -222,4 +222,29 @@ abstract class BaseRepository(private var contextBase: Context) {
         return products
     }
 
+    fun deleteProduct(product: Product) {
+        productsInfo.child(product.category).child(product.key.toString()).removeValue()
+            .addOnSuccessListener {
+                val ref =
+                    storageRefProduct.child(PRODUCTS).child(product.category.trim())
+                        .child(product.key.toString())
+                ref.delete().addOnSuccessListener {
+                    Log.d(TAG, "deleteProduct: Product Deleted From Storage")
+                }
+                Toast.makeText(contextBase, "Product Deleted", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Log.d(TAG, "deleteProduct: Failed To delete Product")
+            }
+    }
+
+    fun updateProduct(product: Product) {
+        productsInfo.child(product.category).child(product.key.toString()).setValue(product)
+            .addOnSuccessListener {
+                Toast.makeText(contextBase, "Product Updated", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(contextBase, "Failed to Update", Toast.LENGTH_SHORT).show()
+
+            }
+    }
+
 }

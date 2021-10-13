@@ -25,4 +25,6 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     fun addCategory(category: ProductCategory) = repository.addCategory(category)
 
     fun loadProducts(name: String) = repository.loadAllProducts(name)
+    fun deleteProduct(product: Product)= repository.deleteProduct(product)
+    fun updateProduct(product: Product)=repository.updateProduct(product)
 }

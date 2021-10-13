@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +23,9 @@ import com.example.ownerapp.di.modules.RepositoryModule
 import com.example.ownerapp.mvvm.repository.MainRepository
 import com.example.ownerapp.mvvm.viewmodles.MainViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
-
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 
 
 class ViewCategoryProducts : AppCompatActivity() {
@@ -80,31 +82,76 @@ class ViewCategoryProducts : AppCompatActivity() {
                 bottomSheetDialog.setContentView(bottomSheetView)
                 bottomSheetDialog.show()
 
-                val productName = bottomSheetView.findViewById<TextView>(R.id.bottomSheetName)
-                val productDesc = bottomSheetView.findViewById<TextView>(R.id.bottomSheetDesc)
+                val productName =
+                    bottomSheetView.findViewById<TextInputEditText>(R.id.bottomSheetName)
+                val productDesc =
+                    bottomSheetView.findViewById<TextInputEditText>(R.id.bottomSheetDesc)
                 val productPrice =
                     bottomSheetView.findViewById<EditText>(R.id.bottomSheetProductPrice)
-                val saveBtn = bottomSheetView.findViewById<Button>(R.id.saveProductBtn)
-                val deleteBtn = bottomSheetView.findViewById<Button>(R.id.deleteBtn)
+                val saveBtn = bottomSheetView.findViewById<MaterialButton>(R.id.saveProductBtn)
+                val deleteBtn = bottomSheetView.findViewById<AppCompatButton>(R.id.deleteBtn)
 
-                productName.text = product.name
-                productDesc.text = product.desc
+                productName.setText(product.name)
+                productDesc.setText(product.desc)
                 productPrice.setText(product.price)
 
+                deleteBtn.setOnClickListener {
+                    MaterialAlertDialogBuilder(
+                        this@ViewCategoryProducts,
+                        R.style.ThemeOverlay_AppCompat_Dialog
+                    )
+                        .setMessage(resources.getString(R.string.productdeletemsg))
+                        .setNegativeButton(resources.getString(R.string.decline)) { dialog, which ->
+                            dialog.dismiss()
+                        }
+                        .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
+                            Toast.makeText(this@ViewCategoryProducts, "Clicked", Toast.LENGTH_SHORT)
+                                .show()
+                            viewModel.deleteProduct(product)
+                            dialog.dismiss()
+                            bottomSheetDialog.dismiss()
+                        }
+                        .show()
+
+
+                }
                 saveBtn.setOnClickListener {
                     val desc = productDesc.text.toString()
                     val name = productName.text.toString()
                     val price = productPrice.text.toString()
-
-
                     if (desc != product.desc || name != product.name || price != product.price) {
-//                        var newProd=Product(name,desc,)
+
+                        MaterialAlertDialogBuilder(
+                            this@ViewCategoryProducts,
+                            R.style.ThemeOverlay_AppCompat_Dialog
+                        )
+                            .setMessage(resources.getString(R.string.productupdatemsg))
+                            .setNegativeButton(resources.getString(R.string.decline)) { dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
+                                product.name=name
+                                product.desc=desc
+                                product.price=price
+                                viewModel.updateProduct(product)
+                            }
+                            .show()
+
+
+                        Toast.makeText(
+                            this@ViewCategoryProducts,
+                            "Product Changed",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+
+                    } else {
+                        Toast.makeText(this@ViewCategoryProducts, "Not Changed", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
 
-                deleteBtn.setOnClickListener {
 
-                }
             }
         })
 

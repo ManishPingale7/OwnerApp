@@ -89,6 +89,11 @@
     <string name="product_description">Product Description</string>
     <string name="done">Done</string>
     <string name="products_sold_this_month">Products Sold This Month</string>
+    <string name="yes">Yes</string>
+    <string name="decline">Decline</string>
+    <string name="accept">Accept</string>
+    <string name="productdeletemsg">Click Accept to Delete Product</string>
+    <string name="productupdatemsg">Click Accept to update product?</string>
 
     <string-array name="durationType">
         <item>Day</item>
