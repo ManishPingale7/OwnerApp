@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.ContainerViewMain)
         val appBarConfig =
-            AppBarConfiguration(setOf(R.id.branches, R.id.specific, R.id.products, R.id.settings))
+            AppBarConfiguration(setOf(R.id.branches, R.id.products, R.id.settings))
         setupActionBarWithNavController(navController, appBarConfig)
         binding.bottomNavigation.setupWithNavController(navController)
 
