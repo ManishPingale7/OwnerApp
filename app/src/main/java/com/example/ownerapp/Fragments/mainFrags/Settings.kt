@@ -17,9 +17,10 @@ import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import com.example.ownerapp.R
 import com.example.ownerapp.activities.AddNewBranch
 import com.example.ownerapp.activities.AddNewPlan
-import com.example.ownerapp.activities.ProductsActivity
 import com.example.ownerapp.activities.ViewAllBranches
 import com.example.ownerapp.databinding.FragmentSettingsBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
@@ -63,8 +64,20 @@ class Settings : Fragment() {
         }
 
         binding.viewAllProducts.setOnClickListener {
-            val intent = Intent(requireContext(), ProductsActivity::class.java)
-            startActivity(intent)
+            binding.root.findNavController().navigate(
+                R.id.action_settings_to_products,
+                null, // Bundle of args
+                null
+            )
+        }
+
+
+        binding.ordersSettings.setOnClickListener {
+            binding.root.findNavController().navigate(
+                R.id.action_settings_to_orders2,
+                null, // Bundle of args
+                null
+            )
         }
 
         binding.addNewPlan.setOnClickListener {
@@ -126,7 +139,7 @@ class Settings : Fragment() {
             TODO("Add if !API==M")
         }
 
-        val biometricPrompt: BiometricPrompt =
+        val biometricPrompt =
             BiometricPrompt(
                 requireActivity(),
                 executor,

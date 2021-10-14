@@ -94,6 +94,7 @@
     <string name="accept">Accept</string>
     <string name="productdeletemsg">Click Accept to Delete Product</string>
     <string name="productupdatemsg">Click Accept to update product?</string>
+    <string name="view_all_orders_from_customers">View All Orders from Customers</string>
 
     <string-array name="durationType">
         <item>Day</item>

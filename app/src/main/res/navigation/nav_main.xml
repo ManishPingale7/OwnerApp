@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_settings_to_products"
             app:destination="@id/products" />
+        <action
+            android:id="@+id/action_settings_to_orders2"
+            app:destination="@id/orders2" />
+        <action
+            android:id="@+id/action_settings_to_orders22"
+            app:destination="@id/orders2" />
     </fragment>
     <fragment
         android:id="@+id/products"
@@ -35,4 +41,9 @@
             android:id="@+id/action_products_to_settings"
             app:destination="@id/settings" />
     </fragment>
+    <fragment
+        android:id="@+id/orders2"
+        android:name="com.example.ownerapp.Fragments.productFrags.Orders"
+        android:label="@string/orders"
+        tools:layout="@layout/fragment_orders" />
 </navigation>
