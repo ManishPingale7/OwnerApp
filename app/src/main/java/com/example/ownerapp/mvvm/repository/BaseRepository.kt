@@ -89,6 +89,9 @@ abstract class BaseRepository(private var contextBase: Context) {
         }
     }
 
+
+
+
     fun fetchAllCategoriesNames(): MutableLiveData<ArrayList<String>> {
         val list = ArrayList<String>()
         categoryNames.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -128,38 +131,6 @@ abstract class BaseRepository(private var contextBase: Context) {
         return categories
     }
 
-    fun addProduct(product: Product) {
-        val key = productsInfo.push().key.toString()
-
-        product.key = key
-        Log.d(TAG, "addProduct: Product $product\n\n")
-        productsInfo.child(product.category.trim()).child(key).setValue(product)
-            .addOnSuccessListener {
-                Toast.makeText(contextBase, "Product Added Successfully", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(contextBase, "Try Again later", Toast.LENGTH_SHORT).show()
-            }
-
-        val ref =
-            storageRefProduct.child(PRODUCTS).child(product.category.trim())
-                .child(key)
-        ref.putFile(product.productImage.toUri()).addOnSuccessListener {
-            ref.downloadUrl.addOnSuccessListener {
-                product.productImage = it.toString()
-                Log.d(TAG, "addProduct: Download URL=${product.productImage}")
-                productsInfo.child(product.category.trim()).child(key).child("productImage")
-                    .setValue(product.productImage)
-                Log.d(TAG, "addProduct: Setting Url")
-            }.addOnFailureListener {
-                Log.d(TAG, "addProduct: Errors ${it.message} \n\n ${it.cause}\n\n")
-            }
-        }
-
-
-        Log.d(TAG, "addProduct: \n\n Product Images ${product.productImage}")
-
-    }
-
     fun addCategory(category: ProductCategory) {
         val key = categoryInfo.push().key.toString()
         categoryInfo.child(key).setValue(category)
@@ -179,6 +150,10 @@ abstract class BaseRepository(private var contextBase: Context) {
                 }
             }
     }
+
+
+
+
 
     fun fetchAllPlans(): MutableLiveData<ArrayList<Plan>> {
         val plans: MutableLiveData<ArrayList<Plan>> = MutableLiveData<ArrayList<Plan>>()
@@ -200,6 +175,9 @@ abstract class BaseRepository(private var contextBase: Context) {
         return plans
     }
 
+
+
+    //Products Functions
     fun loadAllProducts(name: String): MutableLiveData<ArrayList<Product>> {
         val products: MutableLiveData<ArrayList<Product>> = MutableLiveData<ArrayList<Product>>()
         val tempList = ArrayList<Product>(50)
@@ -245,6 +223,38 @@ abstract class BaseRepository(private var contextBase: Context) {
                 Toast.makeText(contextBase, "Failed to Update", Toast.LENGTH_SHORT).show()
 
             }
+    }
+
+    fun addProduct(product: Product) {
+        val key = productsInfo.push().key.toString()
+
+        product.key = key
+        Log.d(TAG, "addProduct: Product $product\n\n")
+        productsInfo.child(product.category.trim()).child(key).setValue(product)
+            .addOnSuccessListener {
+                Toast.makeText(contextBase, "Product Added Successfully", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(contextBase, "Try Again later", Toast.LENGTH_SHORT).show()
+            }
+
+        val ref =
+            storageRefProduct.child(PRODUCTS).child(product.category.trim())
+                .child(key)
+        ref.putFile(product.productImage.toUri()).addOnSuccessListener {
+            ref.downloadUrl.addOnSuccessListener {
+                product.productImage = it.toString()
+                Log.d(TAG, "addProduct: Download URL=${product.productImage}")
+                productsInfo.child(product.category.trim()).child(key).child("productImage")
+                    .setValue(product.productImage)
+                Log.d(TAG, "addProduct: Setting Url")
+            }.addOnFailureListener {
+                Log.d(TAG, "addProduct: Errors ${it.message} \n\n ${it.cause}\n\n")
+            }
+        }
+
+
+        Log.d(TAG, "addProduct: \n\n Product Images ${product.productImage}")
+
     }
 
 }

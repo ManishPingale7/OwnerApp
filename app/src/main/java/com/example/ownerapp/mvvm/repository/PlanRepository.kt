@@ -14,6 +14,7 @@ class PlanRepository(private var contextPlan: Context): BaseRepository(contextPl
 
     fun addNewPlan(plan: Plan) {
         val key=planRef.push().key.toString()
+        plan.key= key
         planRef.child(key).setValue(plan).addOnSuccessListener {
             Toast.makeText(contextPlan, "Plan Added Successfully", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {

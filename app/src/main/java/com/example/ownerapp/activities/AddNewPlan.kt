@@ -104,6 +104,7 @@ class AddNewPlan : AppCompatActivity() {
                                 "$timeNumber $type",
                                 fees,
                                 isPersonalTraning,
+                                "",
                                 totalDays
                             )
                         )
