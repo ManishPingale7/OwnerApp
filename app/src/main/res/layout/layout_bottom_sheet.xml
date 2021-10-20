@@ -149,7 +149,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_weight="50"
                 android:background="@drawable/drawable_cart"
-
                 android:text="@string/delete"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

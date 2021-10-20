@@ -22,6 +22,7 @@ import com.example.ownerapp.R
 import com.example.ownerapp.activities.AddNewBranch
 import com.example.ownerapp.activities.AddNewPlan
 import com.example.ownerapp.activities.ViewAllBranches
+import com.example.ownerapp.activities.ViewUsers
 import com.example.ownerapp.databinding.FragmentSettingsBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -78,6 +79,10 @@ class Settings : Fragment() {
                 null, // Bundle of args
                 null
             )
+        }
+
+        binding.viewActiveInactiveUsers.setOnClickListener {
+            startActivity(Intent(requireContext(), ViewUsers::class.java))
         }
 
         binding.addNewPlan.setOnClickListener {
