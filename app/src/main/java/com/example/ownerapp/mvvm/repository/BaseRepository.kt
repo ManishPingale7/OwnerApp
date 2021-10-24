@@ -34,7 +34,7 @@ abstract class BaseRepository(private var contextBase: Context) {
 
     var categories = MutableLiveData<ArrayList<ProductCategory>>()
 
-    private val fDatabase = FirebaseDatabase.getInstance()
+     val fDatabase = FirebaseDatabase.getInstance()
     private val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
     private val plansRef = fDatabase.getReference(PLANS)
     var storage = FirebaseStorage.getInstance()
@@ -88,8 +88,6 @@ abstract class BaseRepository(private var contextBase: Context) {
             contextBase.startActivity(it)
         }
     }
-
-
 
 
     fun fetchAllCategoriesNames(): MutableLiveData<ArrayList<String>> {
@@ -152,9 +150,6 @@ abstract class BaseRepository(private var contextBase: Context) {
     }
 
 
-
-
-
     fun fetchAllPlans(): MutableLiveData<ArrayList<Plan>> {
         val plans: MutableLiveData<ArrayList<Plan>> = MutableLiveData<ArrayList<Plan>>()
         val tempList = ArrayList<Plan>(20)
@@ -174,7 +169,6 @@ abstract class BaseRepository(private var contextBase: Context) {
         })
         return plans
     }
-
 
 
     //Products Functions
