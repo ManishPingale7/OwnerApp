@@ -5,8 +5,7 @@ import com.example.ownerapp.data.Product
 import com.example.ownerapp.data.ProductCategory
 import com.example.ownerapp.mvvm.repository.MainRepository
 
-class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
-
+class MainViewModel(var repository: MainRepository) : ViewModel() {
 
     val allCategories = repository.getCategoriesInfo()
 
@@ -25,6 +24,10 @@ class MainViewModel constructor(var repository: MainRepository) : ViewModel() {
     fun addCategory(category: ProductCategory) = repository.addCategory(category)
 
     fun loadProducts(name: String) = repository.loadAllProducts(name)
-    fun deleteProduct(product: Product)= repository.deleteProduct(product)
-    fun updateProduct(product: Product)=repository.updateProduct(product)
+
+    fun deleteProduct(product: Product) = repository.deleteProduct(product)
+
+    fun updateProduct(product: Product) = repository.updateProduct(product)
+
+    fun getAllOrders() = repository.getAllOrder()
 }
