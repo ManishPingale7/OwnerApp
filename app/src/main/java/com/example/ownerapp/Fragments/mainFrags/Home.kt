@@ -2,7 +2,6 @@ package com.example.ownerapp.Fragments.mainFrags
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,18 +31,12 @@ class Home : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         init()
-        Log.d("hee", "onCreateView: In the Home")
-
-
-
-
 
         return binding.root
     }
 
 
     private fun init() {
-
         val component: DaggerFactoryComponent = DaggerFactoryComponent.builder()
             .repositoryModule(RepositoryModule(requireContext()))
             .factoryModule(FactoryModule(MainRepository(requireContext())))
