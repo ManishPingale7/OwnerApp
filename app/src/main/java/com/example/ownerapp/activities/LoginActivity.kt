@@ -22,18 +22,14 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var viewModel: AuthViewModel
     private lateinit var component: DaggerFactoryComponent
-
     var loggedIn = false
     lateinit var binding: ActivityLoginBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
-
-
 
         binding.btnLoginLg.setOnClickListener {
             val em = binding.logEmailEdit.text.toString()
@@ -42,10 +38,7 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.login(em, pass)
             else
                 Toast.makeText(this, "Access Denied", Toast.LENGTH_SHORT).show()
-
         }
-
-
     }
 
     private fun init() {

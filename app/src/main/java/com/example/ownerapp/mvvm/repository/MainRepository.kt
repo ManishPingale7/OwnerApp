@@ -30,9 +30,13 @@ class MainRepository(private val contextMain: Context) : BaseRepository(contextM
             }
         })
         Log.d("TAG", "getAllOrder: HERE IS LIST ${ordersList.value}")
-        Log.d("TAG", "getAllOrder: HERE IS LIST12 ${tempList}")
+        Log.d("TAG", "getAllOrder: HERE IS LIST12 $tempList")
         return ordersList
     }
+
+    fun pushOwnerFcmToken(token: String?) =
+        fDatabase.reference.child("OwnerFcmToken").setValue(token)
+
 
     private var mAuthMain = FirebaseAuth.getInstance()
     var curUserMain = mAuthMain.currentUser
