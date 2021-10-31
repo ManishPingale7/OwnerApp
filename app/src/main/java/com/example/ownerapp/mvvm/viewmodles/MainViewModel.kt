@@ -30,5 +30,6 @@ class MainViewModel(var repository: MainRepository) : ViewModel() {
     fun updateProduct(product: Product) = repository.updateProduct(product)
 
     fun getAllOrders() = repository.getAllOrder()
+
     fun setOwnerToken(token: String?) = repository.pushOwnerFcmToken(token)
 }
