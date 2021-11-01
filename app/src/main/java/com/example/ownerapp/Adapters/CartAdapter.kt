@@ -1,12 +1,13 @@
 package com.example.ownerapp.Adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.ownerapp.data.Cart
 import com.example.ownerapp.data.Product
 import com.example.ownerapp.databinding.CartitemBinding
 import com.google.gson.Gson
@@ -20,7 +21,8 @@ class CartAdapter(val context: Context, private val dataSet: ArrayList<Cart>) :
 
         fun bind(cart: Cart) {
             binding.apply {
-                Log.d("TAG", "bind: $cart")
+                if (adapterPosition == 0)
+                    topStrip.visibility = View.VISIBLE
                 val product = gson.fromJson(cart.Product, Product::class.java)
                 val text = "₹ ${product.price}"
                 productNameCard.text = product.name

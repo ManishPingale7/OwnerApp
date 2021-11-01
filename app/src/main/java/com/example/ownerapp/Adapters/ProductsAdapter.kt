@@ -37,46 +37,52 @@ class ProductsAdapter(val context: Context) :
         fun bind(product: Product) {
             val text = "₹ ${product.price}"
             Log.d("TAG", "bind: BINDING THIS -$product")
-            binding.productNameCard.text = product.name
-            binding.productPrice.text = text
-            Glide.with(context)
-                .load(product.productImage)
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        binding.loadProgressLayout.visibility = View.GONE
-                        Log.d("TAG", "onLoadFailed: Failed to load image ${e!!.message}  \n\n ${e.cause} ")
-                        return false
-                    }
+            binding.apply {
+                if (adapterPosition == 0)
+                    topStrip.visibility = View.VISIBLE
+                productNameCard.text = product.name
+                productPrice.text = text
+                Glide.with(context)
+                    .load(product.productImage)
+                    .listener(object : RequestListener<Drawable> {
+                        override fun onLoadFailed(
+                            e: GlideException?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            loadProgressLayout.visibility = View.GONE
+                            Log.d(
+                                "TAG",
+                                "onLoadFailed: Failed to load image ${e!!.message}  \n\n ${e.cause} "
+                            )
+                            return false
+                        }
 
-                    override fun onResourceReady(
-                        resource: Drawable?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        dataSource: DataSource?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        binding.relativeBar.visibility = View.GONE
-                        binding.productInfoLay.visibility = View.VISIBLE
-                        binding.productImage.visibility = View.VISIBLE
-                        binding.loadProgressLayout.visibility = View.GONE
-                        return false
-                    }
+                        override fun onResourceReady(
+                            resource: Drawable?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            dataSource: DataSource?,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            relativeBar.visibility = View.GONE
+                            productInfoLay.visibility = View.VISIBLE
+                            productImage.visibility = View.VISIBLE
+                            loadProgressLayout.visibility = View.GONE
+                            return false
+                        }
 
-                })
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .fitCenter()
-                .into(binding.productImage)
+                    })
+                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                    .fitCenter()
+                    .into(productImage)
 
-            binding.editButton.setOnClickListener {
-                if (adapterPosition != RecyclerView.NO_POSITION)
-                    mListener.onEditButtonClicked(getItem(adapterPosition))
+                editButton.setOnClickListener {
+                    if (adapterPosition != RecyclerView.NO_POSITION)
+                        mListener.onEditButtonClicked(getItem(adapterPosition))
+                }
             }
-            //TODO:ADDING PROGRESS BAR WHILE GLIDE IS LOADING ALL THE IMAGES
         }
     }
 

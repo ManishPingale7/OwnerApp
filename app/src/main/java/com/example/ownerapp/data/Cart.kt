@@ -1,4 +1,4 @@
-package com.example.ownerapp.Adapters
+package com.example.ownerapp.data
 
 data class Cart(
     val Product: String,

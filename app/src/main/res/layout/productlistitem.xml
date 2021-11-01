@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <View
+        android:id="@+id/topStrip"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:visibility="invisible"
-        android:background="@color/grey" />
+        android:background="@color/grey"
+        android:visibility="invisible" />
 
 
     <LinearLayout
@@ -22,11 +23,11 @@
         <ImageView
             android:id="@+id/productImage"
             android:layout_width="0dp"
-            android:visibility="invisible"
             android:layout_height="200dp"
             android:layout_margin="10dp"
             android:layout_weight="40"
-            android:contentDescription="@string/todo" />
+            android:contentDescription="@string/todo"
+            android:visibility="invisible" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/relativeBar"
@@ -55,11 +56,11 @@
             android:layout_weight="60">
 
             <LinearLayout
+                android:id="@+id/productInfoLay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:visibility="gone"
-                android:id="@+id/productInfoLay"
                 tools:ignore="UselessParent">
 
                 <TextView
