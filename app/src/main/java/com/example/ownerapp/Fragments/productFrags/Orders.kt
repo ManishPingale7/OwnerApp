@@ -1,7 +1,6 @@
 package com.example.ownerapp.Fragments.productFrags
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ownerapp.Adapters.CartAdapter
+import com.example.ownerapp.Interfaces.OrdersCallback
+import com.example.ownerapp.data.Cart
 import com.example.ownerapp.databinding.FragmentOrdersBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
 import com.example.ownerapp.di.modules.FactoryModule
@@ -42,20 +43,23 @@ class Orders : Fragment() {
             .build() as DaggerFactoryComponent
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
-
-
-        viewModel.getAllOrders().observe(viewLifecycleOwner) {
-            Log.d("TAG", "init: HERE IS D`ATA $it")
-            cartAdapter = CartAdapter(requireContext(), it)
-            binding.apply {
-                recyclerViewCartItems.apply {
-                    adapter = cartAdapter
-                    layoutManager = LinearLayoutManager(requireContext())
-                    setHasFixedSize(true)
-                }
+        binding.apply {
+            recyclerViewCartItems.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
             }
         }
 
+        viewModel.getAllOrders(object : OrdersCallback {
+            override fun getOrdersCallback(list: ArrayList<Cart>) {
+                cartAdapter = CartAdapter(context!!, list)
+                binding.apply {
+                    recyclerViewCartItems.apply {
+                        adapter = cartAdapter
+                    }
+                }
+            }
+        })
 
     }
 

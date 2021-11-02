@@ -53,4 +53,5 @@ class CartAdapter(val context: Context, private val dataSet: ArrayList<Cart>) :
     }
 
     override fun getItemCount() = dataSet.size
+
 }

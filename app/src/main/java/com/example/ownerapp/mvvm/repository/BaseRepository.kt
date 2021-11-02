@@ -23,6 +23,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -33,8 +35,8 @@ abstract class BaseRepository(private var contextBase: Context) {
     val categoryList = MutableLiveData<ArrayList<String>>()
 
     var categories = MutableLiveData<ArrayList<ProductCategory>>()
-
-     val fDatabase = FirebaseDatabase.getInstance()
+    val firestore = Firebase.firestore
+    val fDatabase = FirebaseDatabase.getInstance()
     private val branchesInfoRef = fDatabase.getReference(Constants.BRANCH_INFO)
     private val plansRef = fDatabase.getReference(PLANS)
     var storage = FirebaseStorage.getInstance()
