@@ -99,6 +99,7 @@
     <string name="modifications">Modifications</string>
     <string name="revenue_from_products">Revenue From Products</string>
     <string name="user_gained_this_month">User Gained This Month</string>
+    <string name="quantity">Quantity</string>
 
     <string-array name="durationType">
         <item>Day</item>
