@@ -51,7 +51,7 @@ class BranchesAdapter : ListAdapter<Branch, BranchesAdapter.MyViewHolder>(DiffCa
         holder.bind(getItem(position))
     }
 
-    class DiffCallBack : DiffUtil.ItemCallback<Branch>() {
+    private class DiffCallBack : DiffUtil.ItemCallback<Branch>() {
         override fun areItemsTheSame(oldItem: Branch, newItem: Branch) =
             oldItem.branchID == newItem.branchID
 

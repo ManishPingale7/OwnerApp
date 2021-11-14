@@ -4,7 +4,7 @@ data class Cart(
     val Product: String,
     val Quantity: Int,
     val Customer: String,
-    val status: String
+    val Status: String
 ) {
     constructor() : this(" ", 0, "", "")
 }

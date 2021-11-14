@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ownerapp.Adapters.CartAdapter
-import com.example.ownerapp.Interfaces.OrdersCallback
 import com.example.ownerapp.data.Cart
 import com.example.ownerapp.databinding.FragmentOrdersBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
@@ -33,6 +33,7 @@ class Orders : Fragment() {
         init()
 
 
+
         return binding.root
     }
 
@@ -43,24 +44,23 @@ class Orders : Fragment() {
             .build() as DaggerFactoryComponent
         viewModel = ViewModelProviders.of(this, component.getFactory())
             .get(MainViewModel::class.java)
+        cartAdapter = CartAdapter(requireContext())
+        cartAdapter.setListener(object : CartAdapter.buttonListeners {
+            override fun onAcceptListener(cart: Cart) {
+                Toast.makeText(context, " $cart", Toast.LENGTH_SHORT).show()
+            }
+        })
         binding.apply {
             recyclerViewCartItems.apply {
+                adapter = cartAdapter
                 layoutManager = LinearLayoutManager(requireContext())
                 setHasFixedSize(true)
             }
         }
 
-        viewModel.getAllOrders(object : OrdersCallback {
-            override fun getOrdersCallback(list: ArrayList<Cart>) {
-                cartAdapter = CartAdapter(context!!, list)
-                binding.apply {
-                    recyclerViewCartItems.apply {
-                        adapter = cartAdapter
-                    }
-                }
-            }
-        })
-
+        viewModel.getAllOrders().observe(requireActivity()) {
+            cartAdapter.submitList(it)
+        }
     }
 
 }

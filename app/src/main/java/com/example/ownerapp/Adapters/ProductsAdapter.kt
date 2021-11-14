@@ -20,7 +20,7 @@ import com.example.ownerapp.databinding.ProductlistitemBinding
 
 class ProductsAdapter(val context: Context) :
     ListAdapter<Product, ProductsAdapter.viewHolder>(DiffCallBack()) {
-    private lateinit var mListener: ProductsAdapter.onItemClickedListener
+    private lateinit var mListener: onItemClickedListener
 
 
     interface onItemClickedListener {
@@ -100,7 +100,7 @@ class ProductsAdapter(val context: Context) :
         holder.bind(getItem(position))
     }
 
-    class DiffCallBack : DiffUtil.ItemCallback<Product>() {
+    private class DiffCallBack : DiffUtil.ItemCallback<Product>() {
         override fun areItemsTheSame(oldItem: Product, newItem: Product) =
             oldItem.key == newItem.key
 

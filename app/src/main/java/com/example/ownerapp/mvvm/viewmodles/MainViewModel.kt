@@ -1,7 +1,6 @@
 package com.example.ownerapp.mvvm.viewmodles
 
 import androidx.lifecycle.ViewModel
-import com.example.ownerapp.Interfaces.OrdersCallback
 import com.example.ownerapp.data.Product
 import com.example.ownerapp.data.ProductCategory
 import com.example.ownerapp.mvvm.repository.MainRepository
@@ -30,7 +29,7 @@ class MainViewModel(var repository: MainRepository) : ViewModel() {
 
     fun updateProduct(product: Product) = repository.updateProduct(product)
 
-    fun getAllOrders(callback: OrdersCallback) = repository.getAllOrder(callback)
+    fun getAllOrders() = repository.getAllOrder()
 
     fun setOwnerToken(token: String?) = repository.pushOwnerFcmToken(token)
 }
