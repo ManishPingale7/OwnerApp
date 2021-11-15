@@ -41,6 +41,8 @@
             android:id="@+id/categoryName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/semibold"
+
             android:inputType="text">
 
         </com.google.android.material.textfield.TextInputEditText>
@@ -61,6 +63,7 @@
         android:id="@+id/submitCat2"
         layout="@layout/progress_btn_layout"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
