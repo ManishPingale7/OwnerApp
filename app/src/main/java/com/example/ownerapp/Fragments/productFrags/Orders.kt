@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ownerapp.Adapters.CartAdapter
+import com.example.ownerapp.Utils.Constants.ACCEPTED
+import com.example.ownerapp.Utils.Constants.DECLINED
 import com.example.ownerapp.data.Cart
 import com.example.ownerapp.databinding.FragmentOrdersBinding
 import com.example.ownerapp.di.components.DaggerFactoryComponent
@@ -34,8 +36,6 @@ class Orders : Fragment() {
 
         init()
 
-
-
         return binding.root
     }
 
@@ -52,7 +52,18 @@ class Orders : Fragment() {
             override fun onAcceptListener(cart: Cart) {
                 //Accepting the Order i.e. updating the status to ACCEPTED
                 Toast.makeText(requireContext(), "Order Accepted", Toast.LENGTH_SHORT).show()
-                viewModel.acceptOrder(cart)
+                viewModel.changeOrderStatus(cart, ACCEPTED)
+            }
+
+            override fun onDeleteListener(cart: Cart) {
+                /*
+                * Change the status to Declined i.e. Deleted  -->Done!
+                * Show a dialog box before actually deleting the order -->Aditya's Work
+                * once the order is deleted send a notification to user about it -->Will do in js
+                * and tell owner to return the money to the user -->Aditya's Work
+                */
+                Toast.makeText(requireContext(), "Order Deleted", Toast.LENGTH_SHORT).show()
+                viewModel.changeOrderStatus(cart, DECLINED)
             }
         })
         binding.apply {

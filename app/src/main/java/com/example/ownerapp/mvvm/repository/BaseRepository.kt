@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.lifecycle.MutableLiveData
 import com.example.ownerapp.Utils.Constants
-import com.example.ownerapp.Utils.Constants.ACCEPTED
 import com.example.ownerapp.Utils.Constants.PLANS
 import com.example.ownerapp.Utils.Constants.PRODUCTS
 import com.example.ownerapp.Utils.Constants.STORAGECATEGORIES
@@ -251,8 +250,7 @@ abstract class BaseRepository(private var contextBase: Context) {
 
     }
 
-    fun changeOrderStatus(cart: Cart) =
-        firestore.collection("Orders").document(cart.id).update("Status", ACCEPTED)
-
+    fun changeOrderStatus(cart: Cart, status: String) =
+        firestore.collection("Orders").document(cart.id).update("Status", status)
 
 }

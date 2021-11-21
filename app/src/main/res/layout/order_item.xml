@@ -99,6 +99,7 @@
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/deleteButton"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -106,22 +107,22 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
-                        android:textColor="@color/white"
                         android:background="@drawable/drawable_cart"
-                        android:text="@string/delete" />
+                        android:text="@string/delete"
+                        android:textColor="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/acceptButton"
                         android:layout_width="100dp"
-                        android:background="@drawable/background_ststus_color"
-                        android:textColor="@color/white"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
+                        android:background="@drawable/background_ststus_color"
                         android:text="@string/accept"
+                        android:textColor="@color/white"
                         tools:ignore="RelativeOverlap" />
                 </RelativeLayout>
 

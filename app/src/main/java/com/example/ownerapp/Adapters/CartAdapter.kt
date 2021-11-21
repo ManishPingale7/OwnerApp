@@ -20,8 +20,8 @@ class CartAdapter(private val context: Context) :
     private lateinit var mListener: buttonListeners
 
     interface buttonListeners {
-        //TODO("change the status to accepted")
         fun onAcceptListener(cart: Cart)
+        fun onDeleteListener(cart: Cart)
     }
 
     fun setListener(listener: buttonListeners) {
@@ -51,6 +51,10 @@ class CartAdapter(private val context: Context) :
                         mListener.onAcceptListener(getItem(adapterPosition))
                 }
 
+                deleteButton.setOnClickListener {
+                    if (adapterPosition != RecyclerView.NO_POSITION)
+                        mListener.onDeleteListener(getItem(adapterPosition))
+                }
             }
         }
     }

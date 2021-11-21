@@ -2,6 +2,7 @@ package com.example.ownerapp.Utils
 
 object Constants {
 
+    const val DECLINED = "DECLINED"
     const val PENDING = "PENDING"
     const val ACCEPTED = "ACCEPTED"
 
