@@ -1,6 +1,9 @@
 package com.example.ownerapp.mvvm.viewmodles
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.asLiveData
+import com.example.ownerapp.data.Cart
 import com.example.ownerapp.data.Product
 import com.example.ownerapp.data.ProductCategory
 import com.example.ownerapp.mvvm.repository.MainRepository
@@ -8,6 +11,8 @@ import com.example.ownerapp.mvvm.repository.MainRepository
 class MainViewModel(var repository: MainRepository) : ViewModel() {
 
     val allCategories = repository.getCategoriesInfo()
+
+    val allPendingOrder = repository.getPendingOrders().asFlow().asLiveData()
 
     fun fetchAllBranches() = repository.fetchBranches()
 
@@ -29,7 +34,8 @@ class MainViewModel(var repository: MainRepository) : ViewModel() {
 
     fun updateProduct(product: Product) = repository.updateProduct(product)
 
-    fun getAllOrders() = repository.getAllOrder()
 
     fun setOwnerToken(token: String?) = repository.pushOwnerFcmToken(token)
+
+    fun acceptOrder(cart: Cart) = repository.changeOrderStatus(cart)
 }

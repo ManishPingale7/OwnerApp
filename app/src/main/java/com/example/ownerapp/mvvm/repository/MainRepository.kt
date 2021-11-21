@@ -3,16 +3,16 @@ package com.example.ownerapp.mvvm.repository
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.ownerapp.Utils.Constants.PENDING
 import com.example.ownerapp.data.Cart
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.toObjects
 
 class MainRepository(private val contextMain: Context) : BaseRepository(contextMain) {
 
-    fun getAllOrder(): MutableLiveData<ArrayList<Cart>> {
+    fun getPendingOrders(): MutableLiveData<ArrayList<Cart>> {
         val tempList = ArrayList<Cart>()
         val mList = MutableLiveData<ArrayList<Cart>>()
-        firestore.collection("Orders")
+        firestore.collection("Orders").whereEqualTo("Status", PENDING)
             .addSnapshotListener { value, error ->
                 tempList.clear()
                 error?.let {
@@ -22,9 +22,12 @@ class MainRepository(private val contextMain: Context) : BaseRepository(contextM
                 value?.let { result ->
                     Log.d("TAG", "getAllOrder: RESULTING LIST: $result")
                     tempList.clear()
-                    result.toObjects<Cart>().forEach {
-                        tempList.add(it)
-                        Log.d("TAG", "getAllOrder: ORDERS: $it")
+                    val docs = result.documents
+                    docs.forEach {
+                        val cart = it.toObject(Cart::class.java)
+                        if (cart != null)
+                            tempList.add(cart.copy(id = it.id))
+                        Log.d("TAG", "getAllOrder: ORDERS: ${cart!!.copy(id = it.id)}")
                     }
                     mList.value = tempList
                 }

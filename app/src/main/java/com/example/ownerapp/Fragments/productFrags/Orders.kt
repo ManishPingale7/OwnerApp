@@ -1,6 +1,8 @@
 package com.example.ownerapp.Fragments.productFrags
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,8 +48,11 @@ class Orders : Fragment() {
             .get(MainViewModel::class.java)
         cartAdapter = CartAdapter(requireContext())
         cartAdapter.setListener(object : CartAdapter.buttonListeners {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onAcceptListener(cart: Cart) {
-                Toast.makeText(context, " $cart", Toast.LENGTH_SHORT).show()
+                //Accepting the Order i.e. updating the status to ACCEPTED
+                Toast.makeText(requireContext(), "Order Accepted", Toast.LENGTH_SHORT).show()
+                viewModel.acceptOrder(cart)
             }
         })
         binding.apply {
@@ -58,8 +63,10 @@ class Orders : Fragment() {
             }
         }
 
-        viewModel.getAllOrders().observe(requireActivity()) {
+        viewModel.allPendingOrder.observe(requireActivity()) {
+            Log.d("OBSERVE", "init: Now Observe! $it")
             cartAdapter.submitList(it)
+            cartAdapter.notifyDataSetChanged()
         }
     }
 

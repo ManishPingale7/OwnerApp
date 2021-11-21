@@ -8,16 +8,14 @@ import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.lifecycle.MutableLiveData
 import com.example.ownerapp.Utils.Constants
+import com.example.ownerapp.Utils.Constants.ACCEPTED
 import com.example.ownerapp.Utils.Constants.PLANS
 import com.example.ownerapp.Utils.Constants.PRODUCTS
 import com.example.ownerapp.Utils.Constants.STORAGECATEGORIES
 import com.example.ownerapp.activities.LoginActivity
 import com.example.ownerapp.activities.MainActivity
 import com.example.ownerapp.activities.ViewPlan
-import com.example.ownerapp.data.Branch
-import com.example.ownerapp.data.Plan
-import com.example.ownerapp.data.Product
-import com.example.ownerapp.data.ProductCategory
+import com.example.ownerapp.data.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -252,5 +250,9 @@ abstract class BaseRepository(private var contextBase: Context) {
         Log.d(TAG, "addProduct: \n\n Product Images ${product.productImage}")
 
     }
+
+    fun changeOrderStatus(cart: Cart) =
+        firestore.collection("Orders").document(cart.id).update("Status", ACCEPTED)
+
 
 }
