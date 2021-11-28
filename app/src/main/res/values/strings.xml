@@ -100,6 +100,8 @@
     <string name="revenue_from_products">Revenue From Products</string>
     <string name="user_gained_this_month">User Gained This Month</string>
     <string name="quantity">Quantity</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="customer">Customer</string>
 
     <string-array name="durationType">
         <item>Day</item>

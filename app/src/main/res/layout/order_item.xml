@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/montserratsemibold"
                     android:gravity="start"
                     android:text="@string/product_price"
@@ -90,6 +90,27 @@
                     android:fontFamily="@font/montserratsemibold"
                     android:gravity="start"
                     android:text="@string/quantity"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:gravity="start"
+                    android:text="@string/customer_name"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/orderItemCustomer_name"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:gravity="start"
+                    android:text="@string/customer"
                     android:textColor="@color/black" />
 
                 <RelativeLayout
