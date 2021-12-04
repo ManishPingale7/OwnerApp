@@ -36,7 +36,6 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/revenue_this_month"
-                    android:fontFamily="@font/monseratregular"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -46,7 +45,6 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/revenue"
-                    android:fontFamily="@font/monseratregular"
                     android:textColor="@color/green"
                     android:textSize="18sp" />
 
@@ -68,7 +66,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="20dp"
-                            android:fontFamily="@font/monseratregular"
                             android:text="@string/revenue_today"
 
                             android:textColor="@color/black"
@@ -81,7 +78,6 @@
                             android:layout_marginStart="15dp"
 
                             android:layout_marginTop="10dp"
-                            android:fontFamily="@font/monseratregular"
                             android:text="@string/revenue"
                             android:textColor="@color/green"
                             android:textSize="16sp" />
@@ -105,8 +101,6 @@
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
                             android:drawableStart="@drawable/ic_refresh"
-                            android:fontFamily="@font/monseratregular"
-
                             android:text="@string/refresh"
                             android:textAllCaps="false" />
                     </RelativeLayout>
@@ -145,7 +139,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="30dp"
-                    android:fontFamily="@font/monseratregular"
                     android:text="@string/products_sold_this_month"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -156,7 +149,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/monseratregular"
                     android:text="@string/revenue"
 
                     android:textColor="@color/green"
@@ -181,7 +173,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="20dp"
-                            android:fontFamily="@font/monseratregular"
                             android:text="@string/revenue_from_products"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -189,13 +180,23 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/revenueToday4"
                             android:layout_below="@id/revenueToday2"
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="10dp"
-                            android:fontFamily="@font/monseratregular"
                             android:text="@string/revenue"
                             android:textColor="@color/green"
                             android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/revenueToday4"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/view_full_details"
+                            android:textColor="@color/blue"
+                            />
                     </RelativeLayout>
 
 
@@ -225,6 +226,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/usersGainedMonth"
                 android:orientation="vertical">
 
                 <TextView
@@ -233,7 +235,6 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/user_gained_this_month"
-                    android:fontFamily="@font/monseratregular"
 
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -243,7 +244,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/monseratregular"
                     android:text="@string/_30"
                     android:textColor="@color/green"
                     android:textSize="18sp" />
@@ -266,7 +266,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="20dp"
-                            android:fontFamily="@font/monseratregular"
                             android:text="@string/revenue_today"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -277,7 +276,6 @@
                             android:layout_below="@id/revenueToday3"
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="10dp"
-                            android:fontFamily="@font/monseratregular"
                             android:text="@string/revenue"
                             android:textColor="@color/green"
                             android:textSize="16sp" />

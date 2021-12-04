@@ -54,7 +54,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserratsemibold"
                     android:gravity="start"
                     android:text="@string/product_name"
                     android:textColor="@color/black" />
@@ -65,7 +64,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserratsemibold"
                     android:gravity="start"
                     android:text="@string/product_price"
                     android:textColor="@color/productPrColor"
@@ -76,7 +74,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserratsemibold"
                     android:gravity="start"
                     android:text="@string/quantity"
                     android:textColor="@color/black" />
@@ -87,7 +84,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserratsemibold"
                     android:gravity="start"
                     android:text="@string/quantity"
                     android:textColor="@color/black" />
@@ -97,7 +93,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserratsemibold"
                     android:gravity="start"
                     android:text="@string/customer_name"
                     android:textColor="@color/black" />
@@ -108,7 +103,6 @@
                     android:id="@+id/orderItemCustomer_name"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserratsemibold"
                     android:gravity="start"
                     android:text="@string/customer"
                     android:textColor="@color/black" />

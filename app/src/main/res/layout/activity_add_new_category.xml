@@ -41,8 +41,6 @@
             android:id="@+id/categoryName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/semibold"
-
             android:inputType="text">
 
         </com.google.android.material.textfield.TextInputEditText>

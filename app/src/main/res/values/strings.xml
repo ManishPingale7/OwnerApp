@@ -102,6 +102,8 @@
     <string name="quantity">Quantity</string>
     <string name="customer_name">Customer Name</string>
     <string name="customer">Customer</string>
+    <string name="view_full_details">View Full Details</string>
+    <string name="status">Status</string>
 
     <string-array name="durationType">
         <item>Day</item>

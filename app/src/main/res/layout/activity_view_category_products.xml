@@ -37,7 +37,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="1dp"
                 android:layout_toEndOf="@+id/bk_img"
-                android:fontFamily="@font/semibold"
                 android:text="@string/back"
                 android:textAlignment="center"
                 android:textAllCaps="false"
@@ -49,7 +48,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/categoryNameTxt"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/semibold"
             android:text="@string/category"
             android:textColor="@color/black" />
     </RelativeLayout>

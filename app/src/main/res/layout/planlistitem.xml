@@ -30,7 +30,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:fontFamily="@font/montserratsemibold"
                 android:text="@string/plan_name"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
@@ -83,7 +82,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserratsemibold"
                         android:text="@string/duration"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
@@ -94,7 +92,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserratsemibold"
                         android:text="@string/_30"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
@@ -112,7 +109,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserratsemibold"
                         android:text="Type"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
@@ -123,7 +119,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserratsemibold"
                         android:text="None"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
@@ -141,7 +136,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserratsemibold"
                         android:text="Fees"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
@@ -152,7 +146,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserratsemibold"
                         android:text="Rs.4599"
                         android:textColor="@color/white"
                         android:textSize="18sp" />

@@ -42,7 +42,6 @@
                 android:text="@string/continuestr"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:fontFamily="@font/semibold"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
