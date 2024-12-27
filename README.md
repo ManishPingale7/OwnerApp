@@ -17,4 +17,3 @@ A comprehensive app designed for gym owners to manage memberships, handle e-comm
 - **Firebase**: Firebase provides real-time database, authentication, and cloud messaging.
 - **Razorpay**: Payment gateway integration to process secure transactions.
 - **Android**: Native Android development ensures smooth, responsive user interface.
-- 
